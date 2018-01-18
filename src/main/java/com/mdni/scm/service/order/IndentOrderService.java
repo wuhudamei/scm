@@ -10,6 +10,8 @@ import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.lowagie.text.DocumentException;
 import com.lowagie.text.Element;
+import com.lowagie.text.Font;
+import com.lowagie.text.PageSize;
 import com.lowagie.text.pdf.PdfPTable;
 import com.mdni.scm.common.Constants;
 import com.mdni.scm.common.PropertyHolder;
@@ -424,10 +426,13 @@ public class IndentOrderService extends CrudService<IndentOrderDao, IndentOrder>
             if(null != list && list.size() > 0 ){
                 tempfilePath = FileUtils.saveFilePath(UploadCategory.PDF, PropertyHolder.getUploadDir(),
                         UUID.randomUUID().toString() + "." + UploadCategory.PDF.getPath());
-                PdfTablePrint pdfTablePrint = new PdfTablePrint(new File(tempfilePath));
-
+//                PdfTablePrint pdfTablePrint = new PdfTablePrint(new File(tempfilePath));
+                PdfTablePrint pdfTablePrint = new PdfTablePrint(new File(tempfilePath), PageSize.A4, 10f, 10f, 36f, 10f);
+                pdfTablePrint.setFontSize(12);
+                pdfTablePrint.setFontStyle(Font.BOLD);
+//                pdfTablePrint.setFontColor(new Color(255, 0, 0));
                 //table1
-                float[] table1Widths = {0.2F, 0.1F, 0.2F, 0.1F, 0.2F, 0.2F};
+                float[] table1Widths = {0.1F, 0.15F, 0.15F, 0.15F, 0.15F, 0.3F};
                 PdfPTable table1 = pdfTablePrint.createTable(table1Widths);
                 pdfTablePrint.drawTableRow("北京美得你装饰设计有限公司-订货单详情",PdfDrawCell.getTitleFont(), false);
 
@@ -453,7 +458,7 @@ public class IndentOrderService extends CrudService<IndentOrderDao, IndentOrder>
                 pdfTablePrint.drawTableRowEmpty();
 
                 //table2
-                float[] relativeWidths = {0.1F, 0.1F, 0.1F, 0.1F, 0.1F, 0.1F, 0.1F, 0.1F, 0.1F, 0.1F, 0.1F, 0.1F, 0.1F, 0.1F, 0.1F};
+                float[] relativeWidths = {0.2F, 0.08F, 0.08F, 0.08F, 0.08F, 0.08F, 0.08F, 0.08F, 0.1F, 0.1F, 0.1F, 0.08F, 0.08F, 0.08F, 0.2F};
                 PdfPTable table2 = pdfTablePrint.createTable(relativeWidths);
                 pdfTablePrint.drawTableRow("商品信息", Element.ALIGN_LEFT, false);
                 String[] rowFive = {"商品名称", "商品型号", "商品规格", "属性值1", "属性值2", "属性值3", "订货数量", "安装位置",
