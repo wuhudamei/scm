@@ -1,0 +1,311 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mdni.scm.repository.prod.CatalogDao">
+    <resultMap id="BaseResultMap" type="Catalog">
+        <id column="id" property="id"/>
+        <result column="name" property="name"/>
+        <result column="status" property="status"/>
+        <result column="url" property="url"/>
+        <result column="parent_id" property="parent.id"/>
+        <result column="editor" property="editor.id"/>
+        <result column="editor_time" property="editTime"/>
+        <result column="is_check_scale" property="checkScale"/>
+        <result column="convert_unit" property="convertUnit"/>
+        <result column="catalog_type" property="catalogType"/>
+        <result column="loss_factor" property="lossFactor"/>
+        <result column="use_decimal" property="useDecimal"/>
+        <result column="meal_category" property="mealCategory"/>
+    </resultMap>
+    
+    <sql id="Base_Column_List">
+        id, name,url, parent_id, seq, status,is_check_scale,convert_unit,catalog_type,loss_factor,use_decimal,meal_category
+    </sql>
+
+    <select id="getById" resultMap="BaseResultMap" parameterType="long">
+        select
+        <include refid="Base_Column_List"/>
+        from prod_catalog
+        where id = #{id}
+    </select>
+
+    <select id="getByUrl" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from prod_catalog
+        where url = #{catalogUrl}
+    </select>
+    
+    <select id="getByName" resultMap="BaseResultMap" parameterType="Catalog">
+        select
+        <include refid="Base_Column_List"/>
+        from prod_catalog
+        where name = #{name}
+        <if test="id!=null">
+        	AND id !=#{id}
+        </if>
+        limit 1
+    </select>
+    
+    <select id="findLeafCatalogList" resultMap="BaseResultMap">
+         select * from prod_catalog where  id not in 
+          (select parent_id  from prod_catalog) 
+          <if test="status!=null">
+          	and status  = #{status}
+          </if>
+          order by id
+    </select>
+	
+
+    <delete id="deleteById" parameterType="long">
+        delete from prod_catalog
+        where id = #{id}
+    </delete>
+    
+    <insert id="insert" parameterType="Catalog" useGeneratedKeys="true" keyProperty="id">
+        insert into prod_catalog
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="name != null">
+                name,
+            </if>
+            <if test="url!= null">
+                url,
+            </if>
+            <if test="parent != null">
+                parent_id,
+            </if>
+            <if test="seq != null">
+                seq,
+            </if>
+            <if test="status != null">
+                status,
+            </if>
+            <if test="editor != null">
+                editor,
+            </if>
+            <if test="editTime != null">
+                editor_time,
+            </if>
+            <if test="checkScale != null">
+                is_check_scale,
+            </if>
+            <if test="convertUnit != null">
+                convert_unit,
+            </if>
+            <if test="catalogType != null">
+                catalog_type,
+            </if>
+            <if test="lossFactor != null">
+                loss_factor,
+            </if>
+            <if test="useDecimal != null">
+                use_decimal,
+            </if>
+            <if test="mealCategory != null">
+                meal_category
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="name != null">
+                #{name},
+            </if>
+            <if test="url != null">
+                #{url},
+            </if>
+            <if test="parent!=null">
+                #{parent.id},
+            </if>
+            <if test="seq != null">
+                #{seq},
+            </if>
+            <if test="status != null">
+                #{status},
+            </if>
+            <if test="editor != null">
+                #{editor.id},
+            </if>
+            <if test="editTime != null">
+                #{editTime},
+            </if>
+            <if test="checkScale != null">
+                #{checkScale},
+            </if>
+            <if test="convertUnit != null">
+                #{convertUnit},
+            </if>
+            <if test="catalogType != null">
+                #{catalogType},
+            </if>
+            <if test="lossFactor != null">
+                #{lossFactor},
+            </if>
+            <if test="useDecimal != null">
+                #{useDecimal},
+            </if>
+            <if test="mealCategory != null">
+                #{mealCategory}
+            </if>
+        </trim>
+    </insert>
+    
+    <update id="update" parameterType="Catalog">
+        update prod_catalog
+        <set>
+            <if test="name != null">
+                name = #{name},
+            </if>
+            <if test="url != null">
+                url = #{url},
+            </if>
+            
+            <if test="parent != null">
+                parent_id= #{parent.id},
+            </if>
+            
+            <if test="seq != null">
+                seq = #{seq},
+            </if>
+            <if test="status!=null">
+                status = #{status},
+            </if>
+            <if test="editor != null">
+               editor = #{editor.id},
+            </if>
+            <if test="editTime != null">
+               editor_time = #{editTime},
+            </if>
+            <if test="checkScale != null">
+                is_check_scale = #{checkScale},
+            </if>
+            <if test="convertUnit != null">
+                convert_unit=#{convertUnit},
+            </if>
+            <if test="catalogType != null">
+                catalog_type=#{catalogType},
+            </if>
+            <if test="lossFactor != null">
+                loss_factor=#{lossFactor},
+            </if>
+            <if test="useDecimal != null">
+                use_decimal=#{useDecimal},
+            </if>
+            <if test="mealCategory != null">
+                meal_category=#{mealCategory}
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+    
+    
+    <update id="open" parameterType="Catalog">
+        update prod_catalog
+        <set>
+            <if test="status!=null">
+                status = #{status},
+            </if>
+            <if test="editor != null">
+               editor = #{editor.id},
+            </if>
+            <if test="checkScale != null">
+                is_check_scale = #{checkScale},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+    
+    
+    <update id="lock" parameterType="Catalog">
+        update prod_catalog
+        <set>
+            <if test="status!=null">
+                status = #{status},
+            </if>
+            <if test="editor != null">
+               editor = #{editor.id},
+            </if>
+            <if test="editTime != null">
+               editor_time = #{editTime},
+            </if>
+        </set>
+        where url like CONCAT(#{url},'%')
+    </update>
+
+	<!-- 查询所有,状态为启用 -->
+    <select id="findAll" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from prod_catalog
+    </select>
+    
+    
+    <select id="finalAllByStatus" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from prod_catalog
+		 <if test="status!=null">
+		 	where status = #{status}
+		 </if>		       
+		 order by parent_id,seq DESC
+    </select>
+    
+
+    <select id="findSubCatalogList" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from prod_catalog
+        <where>
+        	<choose>
+        		<when test="parentId !=null">
+        				parent_id = #{parentId}	
+        		</when>
+        		<otherwise>
+        			(parent_id is null or parent_id =0)
+        		</otherwise>
+        	</choose>
+        	<if test="status!=null">
+        		and status = #{status}
+        	</if>
+        </where>
+		order by seq DESC,id        
+    </select>
+	
+
+    <select id="searchTotal" parameterType="map" resultType="long">
+        SELECT count(*)
+        <include refid="searchFromWhere"/>
+    </select>
+
+    <select id="search" parameterType="map" resultMap="BaseResultMap">
+        SELECT *  
+        <include refid="searchFromWhere"/>
+        order by
+        <foreach collection="sort" item="order" separator=",">
+            ${order.property} ${order.direction}
+        </foreach>
+        limit #{offset}, #{pageSize}
+    </select>
+
+    <select id="findCatalogByIsReject" resultMap="BaseResultMap">
+        select * from prod_catalog where is_check_scale = 1
+    </select>
+
+    <select id="findCatalogParent" parameterType="long" resultType="int">
+        select parent_id from prod_catalog where id = #{parentId}
+    </select>
+
+    
+     <sql id="searchFromWhere">
+       FROM prod_catalog
+        <where>
+            <if test="keyword!=null and keyword!=''">
+                (name like CONCAT('%',#{keyword},'%')
+                )
+            </if>
+            <if test="status!=null">
+                and status = #{status}
+            </if>
+             <if test="parentId!=null">
+                and parent_id = #{parentId}
+            </if>
+        </where>
+    </sql>
+</mapper>

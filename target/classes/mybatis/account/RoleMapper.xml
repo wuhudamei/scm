@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mdni.scm.repository.account.RoleDao">
+    
+    <sql id="selectAllRoleColumn">
+    	id, name, description
+    </sql>
+    
+    <insert id="insert" parameterType="Role" useGeneratedKeys="true" keyProperty="id">
+        insert into acct_role(name,description) values (#{name},#{description})
+    </insert>
+    
+    <insert id="deleteById" parameterType="long">
+        delete from acct_role where id = #{id}
+    </insert>
+    
+    <update id="update" parameterType="Role">
+        update acct_role set name = #{name},description = #{description} where id = #{id}
+    </update>
+    
+    <select id="getById" parameterType="long" resultType="Role">
+        select <include refid="selectAllRoleColumn" />
+        from acct_role
+        where id = #{id}
+    </select>
+
+    <select id="getByName" parameterType="string" resultType="Role">
+        select <include refid="selectAllRoleColumn" />
+        from acct_role
+        where name = #{name}
+    </select>
+
+    <select id="checkExistRoleName" parameterType="Role" resultType="Role">
+        select <include refid="selectAllRoleColumn" />
+        from acct_role
+        where name = #{name}
+        <if test="id != null">
+            and id != #{id}
+        </if>
+    </select>
+
+    <select id="findAll" resultType="Role">
+        select  <include refid="selectAllRoleColumn" /> from acct_role
+    </select>
+
+    <select id="findRolesByUserId" parameterType="long" resultType="Role">
+        select <include refid="selectAllRoleColumn" />
+        from acct_user_role userRole JOIN acct_role role on (userRole.role_id = role.id)
+        where user_id = #{userId}
+    </select>
+
+
+    <select id="findAllRoleWithCheckedByUserId" parameterType="long" resultType="Role">
+        SELECT
+        r.*, CASE
+        WHEN ur.role_id IS NOT NULL THEN  'true'
+        ELSE  'false'  END AS checked
+        FROM
+        acct_role r LEFT JOIN acct_user_role ur ON (r.id = ur.role_id AND ur.user_id = #{userId} )
+        ORDER BY r.id
+    </select>
+
+    <select id="deleteByUserId" parameterType="long">
+        delete from acct_user_role where user_id = #{userId}
+    </select>
+
+    <insert id="insertUserRole" parameterType="com.mdni.scm.entity.account.UserRole">
+        insert into acct_user_role(role_id,user_id) values (#{roleId},#{userId})
+    </insert>
+
+
+    <insert id="batchInsertUserRoleList">
+        insert into acct_user_role(role_id,user_id) values
+        <foreach collection="roleIdList" item="roleId" index="index" separator=",">
+            (${roleId},${userId})
+        </foreach>
+    </insert>
+
+
+    <select id="searchTotal" parameterType="map" resultType="long">
+        select count(*)
+        <include refid="searchFromWhere"/>
+    </select>
+
+
+    <select id="search" parameterType="map" resultType="Role">
+        select <include refid="selectAllRoleColumn" />
+        <include refid="searchFromWhere"/>
+        <if test="sort != null">
+            order by
+            <foreach collection="sort" item="order" separator=",">
+                ${order.property} ${order.direction}
+            </foreach>
+        </if>
+        limit #{offset}, #{pageSize}
+    </select>
+
+    <sql id="searchFromWhere">
+        from acct_role
+        <where>
+            <if test="keyword != null">
+                 name like CONCAT('%', #{keyword}, '%')
+            </if>
+        </where>
+    </sql>
+
+</mapper>

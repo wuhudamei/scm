@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mdni.scm.repository.orderInstallData.OrderInstallDao">
+    <resultMap id="BaseResultMap" type="OrderInstallData">
+        <id column="id" property="id"/>
+        <result column="install_img" property="orderInstallImg"/>
+        <result column="order_id" property="orderId"/>
+        <result column="remark" property="remark"/>
+        <result column="creator" property="creator"/>
+        <result column="creat_time" property="creatTime"/>
+    </resultMap>
+
+
+    <select id="searchTotal" parameterType="map" resultType="long">
+       SELECT count(*)
+        from indent_order_install_data
+    </select>
+
+    <select id="search" resultMap="BaseResultMap" parameterType="map">
+        SELECT *
+        from indent_order_install_data
+        <if test="sort != null">
+            ORDER BY
+            <foreach collection="sort" item="order" separator=",">
+                ${order.property} ${order.direction}
+            </foreach>
+        </if>
+        limit #{offset},#{pageSize}
+   </select>
+
+    <insert id="insert" parameterType="OperateLog" keyProperty="id">
+        INSERT INTO indent_order_install_data
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="orderInstallImg != null">
+                install_img,
+            </if>
+            <if test="orderId != null">
+                order_id,
+            </if>
+            <if test="remark != null">
+                remark,
+            </if>
+            <if test="creator != null">
+                creator,
+            </if>
+            <if test="creatTime != null">
+                creat_time,
+            </if>
+
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="orderInstallImg != null">
+                #{orderInstallImg},
+            </if>
+            <if test="orderId != null">
+                #{orderId},
+            </if>
+            <if test="remark != null">
+                #{remark},
+            </if>
+            <if test="creator != null">
+                #{creator},
+            </if>
+            <if test="creatTime != null">
+                #{creatTime},
+            </if>
+        </trim>
+    </insert>
+
+
+    <update id="update" parameterType="ReviewSizeResult">
+        update indent_order_install_data
+        <set>
+            <if test="orderInstallImg != null">
+                install_img=#{orderInstallImg},
+            </if>
+            <if test="orderId != null">
+                order_id=#{orderId},
+            </if>
+            <if test="remark != null">
+                remark=#{remark},
+            </if>
+            <if test="creator != null">
+                creator=#{creator},
+            </if>
+            <if test="creatTime != null">
+                creat_time=#{creatTime},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <select id="getByOrderId" resultMap="BaseResultMap" parameterType="long">
+        select * from indent_order_install_data where order_id = #{orderId} ORDER BY creat_time desc LIMIT 1
+    </select>
+
+</mapper>

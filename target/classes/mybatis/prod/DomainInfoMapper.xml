@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mdni.scm.repository.prod.DomainInfoDao">
+    <resultMap id="BaseResultMap" type="DomainInfo">
+        <id column="id" property="id"/>
+        <result column="domain_name" property="domainName"/>
+        <result column="include_domain_type" property="includeDomainType"/>
+        <result column="domain_status" property="domainStatus"/>
+        <result column="create_time" property="createTime"/>
+        <result column="create_user" property="createUser"/>
+        <result column="update_time" property="updateTime"/>
+        <result column="update_user" property="updateUser"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id, domain_name,include_domain_type, domain_status, create_time, create_user,update_time,update_user
+    </sql>
+
+    <insert id="insert" parameterType="Catalog" useGeneratedKeys="true" keyProperty="id">
+        insert into sm_domain_info
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="domainName != null">
+                domain_name,
+            </if>
+            <if test="includeDomainType!= null">
+                include_domain_type,
+            </if>
+            <if test="domainStatus != null">
+                domain_status,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="createUser != null">
+                create_user,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+            <if test="updateUser != null">
+                update_user
+            </if>
+
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="domainName != null">
+                #{domainName},
+            </if>
+            <if test="includeDomainType!= null">
+                #{includeDomainType},
+            </if>
+            <if test="domainStatus != null">
+                #{domainStatus},
+            </if>
+            <if test="createTime != null">
+                #{createTime},
+            </if>
+            <if test="createUser != null">
+                #{createUser},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime},
+            </if>
+            <if test="updateUser != null">
+                #{updateUser}
+            </if>
+        </trim>
+    </insert>
+
+    <update id="update" parameterType="Catalog">
+        update sm_domain_info
+        <set>
+            <if test="domainName != null">
+                domain_name = #{domainName},
+            </if>
+            <if test="includeDomainType!= null">
+                include_domain_type = #{includeDomainType},
+            </if>
+            <if test="domainStatus != null">
+                domain_status = #{domainStatus},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime},
+            </if>
+            <if test="createUser != null">
+                create_user = #{createUser},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime},
+            </if>
+            <if test="updateUser != null">
+                update_user = #{updateUser}
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <select id="findAll" resultMap="BaseResultMap">
+        select * from sm_domain_info
+    </select>
+
+</mapper>

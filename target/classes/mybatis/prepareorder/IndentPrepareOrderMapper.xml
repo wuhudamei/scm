@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mdni.scm.repository.prepareorder.IndentPrepareOrderDao">
+
+    <resultMap id="BaseResultMap" type="IndentPrepareOrder">
+        <id column="id" property="id"/>
+        <result column="contract_code" property="contractCode" />
+        <result column="contract_id" property="contractId" />
+        <result column="data_source" property="dataSource" />
+        <result column="status" property="status" />
+        <result column="brand_id" property="brandId"/>
+        <result column="brand_name" property="brandName"/>
+        <result column="create_time" property="createTime" />
+        <result column="update_time" property="updateTime" />
+        <result column="update_account" property="updateAccount" />
+        <result column="switch_time" property="switchTime" />
+        <result column="customer_name" property="customerName" />
+        <result column="installation_location" property="installationLocation" />
+    </resultMap>
+
+    <!--一对多映射-->
+    <resultMap id="MultipleMap" type="IndentPrepareOrder" extends="BaseResultMap">
+        <collection property="indentPrepareOrderItemList" ofType="IndentPrepareOrderItem">
+            <id column="indent_prepare_order_id" property="id"/>
+            <result column="prepare_order_id" property="prepareOrderId"/>
+            <result column="sku_id" property="skuId"/>
+            <result column="sku_name" property="skuName"/>
+            <result column="model" property="model"/>
+            <result column="spec" property="spec"/>
+            <result column="attribute1" property="attribute1"/>
+            <result column="attribute2" property="attribute2"/>
+            <result column="attribute3" property="attribute3"/>
+            <result column="supply_price" property="supplyPrice"/>
+            <result column="quantity" property="quantity"/>
+            <result column="installation_location" property="installationLocation"/>
+            <result column="spec_unit" property="specUnit"/>
+            <result column="tablet_num" property="tabletNum"/>
+            <result column="supplier_id" property="supplierId" />
+            <result column="sku_code" property="skuCode" />
+        </collection>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id, contract_code, data_source, status, brand_id, brand_name, create_time,
+        update_time, update_account, switch_time
+    </sql>
+
+    <select id="getById" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM indent_prepare_order
+        WHERE id = #{id}
+    </select>
+
+    <delete id="deleteById" parameterType="Long">
+        DELETE FROM indent_prepare_order
+        WHERE id = #{id}
+    </delete>
+
+    <insert id="insert" parameterType="IndentPrepareOrder" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO indent_prepare_order
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="contractCode != null">
+                contract_code,
+            </if>
+            <if test="dataSource != null">
+                data_source,
+            </if>
+            <if test="status != null">
+                status,
+            </if>
+            <if test="brandId != null">
+                brand_id,
+            </if>
+            <if test="brandName != null">
+                brand_name,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+            <if test="updateAccount != null">
+                update_account,
+            </if>
+            <if test="switchTime != null">
+                switch_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="contractCode != null">
+                #{contractCode},
+            </if>
+            <if test="dataSource != null">
+                #{dataSource},
+            </if>
+            <if test="status != null">
+                #{status},
+            </if>
+            <if test="brandId != null">
+                #{brandId},
+            </if>
+            <if test="brandName != null">
+                #{brandName},
+            </if>
+            <if test="createTime != null">
+                #{createTime},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime},
+            </if>
+            <if test="updateAccount != null">
+                #{updateAccount},
+            </if>
+            <if test="switchTime != null">
+                #{switchTime},
+            </if>
+        </trim>
+    </insert>
+
+    <!--批量插入-->
+    <!--<insert id="batchInsertList">
+        INSERT INTO indent_prepare_order
+          (
+              contract_code, data_source, status, brand_id, brand_name,
+              create_time, update_time, update_account,
+              switch_time
+          )
+        VALUES
+        <foreach collection="list" index="index" item="item" separator=",">
+            (
+                #{item.contractCode},#{item.dataSource},#{item.status},#{item.brandId}
+                , #{item.brandName}, #{item.createTime},
+                #{item.updateTime},#{item.updateAccount},#{item.switchTime}
+            )
+        </foreach>
+    </insert>-->
+
+    <update id="update" parameterType="IndentPrepareOrder">
+        UPDATE indent_prepare_order
+        <set>
+            <if test="contractCode != null">
+                contract_code = #{contractCode},
+            </if>
+            <if test="dataSource != null">
+                data_source = #{dataSource},
+            </if>
+            <if test="status != null">
+                status = #{status},
+            </if>
+            <if test="brandId != null">
+                brand_id = #{brandId},
+            </if>
+            <if test="brandName != null">
+                brand_name = #{brandName},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime},
+            </if>
+            <if test="updateAccount != null">
+                update_account = #{updateAccount},
+            </if>
+            <if test="switchTime != null">
+                switch_time = #{switchTime},
+            </if>
+        </set>
+        WHERE id = #{id}
+    </update>
+
+    <select id="searchTotal" parameterType="map" resultType="long">
+        SELECT COUNT(0)
+        FROM
+          indent_prepare_order inOrder
+        LEFT JOIN customer_contract con ON con.contract_code = inOrder.contract_code
+        LEFT JOIN customer cus ON cus.id = con.customer_id
+        <where>
+            <if test="brandId != null">
+                AND inOrder.brand_id = #{brandId}
+            </if>
+            <if test="keyword != null">
+                AND (inOrder.contract_code = #{keyword}
+                OR cus.name LIKE CONCAT('%', #{keyword} , '%')
+                )
+            </if>
+            <if test="status != null">
+                AND inOrder.status = #{status}
+            </if>
+            <if test="dataSource != null">
+                AND inOrder.data_source = #{dataSource}
+            </if>
+            <if test="startDate != null">
+                AND DATE(inOrder.create_time) &gt;= DATE(#{startDate})
+            </if>
+            <if test="endDate != null">
+                AND DATE(inOrder.create_time) &lt;= DATE(#{endDate})
+            </if>
+        </where>
+    </select>
+
+    <select id="search" parameterType="map" resultMap="BaseResultMap">
+        SELECT
+          inOrder.*, cus.name customer_name, con.id contract_id,
+          GROUP_CONCAT(DISTINCT item.installation_location Separator ',') installation_location
+        FROM
+          indent_prepare_order inOrder
+        LEFT JOIN customer_contract con ON con.contract_code = inOrder.contract_code
+        LEFT JOIN customer cus ON cus.id = con.customer_id
+        LEFT JOIN indent_prepare_order_item item ON item.prepare_order_id = inOrder.id
+        <where>
+            <if test="brandId != null">
+                AND inOrder.brand_id = #{brandId}
+            </if>
+            <if test="keyword != null">
+                AND (inOrder.contract_code = #{keyword}
+                      OR cus.name LIKE CONCAT('%', #{keyword} , '%')
+                    )
+            </if>
+            <if test="status != null">
+                AND inOrder.status = #{status}
+            </if>
+            <if test="dataSource != null">
+                AND inOrder.data_source = #{dataSource}
+            </if>
+            <if test="startDate != null">
+                AND DATE(inOrder.create_time) &gt;= DATE(#{startDate})
+            </if>
+            <if test="endDate != null">
+                AND DATE(inOrder.create_time) &lt;= DATE(#{endDate})
+            </if>
+        </where>
+        GROUP BY item.prepare_order_id
+        <if test="sort != null">
+            ORDER BY
+            <foreach collection="sort" item="order" separator=",">
+                ${order.property} ${order.direction}
+            </foreach>
+        </if>
+        limit #{offset}, #{pageSize}
+    </select>
+
+    <select id="getWithItemById" resultMap="MultipleMap">
+        SELECT
+            ( SELECT
+                price
+                FROM
+                `prod_sku_price`
+                WHERE
+                sku_id = item.sku_id
+                AND price_type = 'SUPPLY'
+                AND date(price_start_date) &lt;= DATE(NOW())
+                ORDER BY price_start_date DESC LIMIT 1
+            ) supply_price,
+            porder.*, item.id indent_prepare_order_id,
+            item.*, sku.supplier_id,
+            sku. CODE sku_code
+        FROM
+          indent_prepare_order porder
+        LEFT JOIN indent_prepare_order_item item ON porder.id = item.prepare_order_id
+        LEFT JOIN prod_sku sku ON sku.id = item.sku_id
+        WHERE porder.id = #{id}
+    </select>
+
+</mapper>

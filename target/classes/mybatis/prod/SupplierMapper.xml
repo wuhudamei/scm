@@ -1,0 +1,303 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mdni.scm.repository.prod.SupplierDao">
+    <resultMap id="BaseResultMap" type="Supplier">
+        <id column="id" property="id"/>
+        <result column="code" property="code"/>
+        <result column="name" property="name"/>
+        <result column="pinyin_initial" property="pinyinInitial"/>
+        <result column="contactor" property="contactor"/>
+        <result column="mobile" property="mobile"/>
+        <result column="company_phone" property="phone"/>
+        <result column="company_address" property="address"/>
+        <result column="description" property="description"/>
+        <result column="region_supplier_id" property="regionSupplier.id"/>
+        <result column="region_supplier_name" property="regionSupplier.name"/>
+        <result column="status" property="status"/>
+        <result column="editor" property="editor.id"/>
+        <result column="edit_time" property="editTime"/>
+        <result column="supplier_abbreviation" property="supplierAbbreviation"/>
+        <result column="cooperative_brand_name" property="cooperativeBrandName"/>
+        <result column="manager" property="manager"/>
+        <result column="manager_mobile" property="managerMobile"/>
+        <result column="business_manager" property="businessManager"/>
+        <result column="business_manager_mobile" property="businessManagerMobile"/>
+        <result column="opening_bank" property="openingBank"/>
+        <result column="account_number" property="accountNumber"/>
+        <result column="tax_registration_certificate_image_url" property="taxRegistrationCertificateImageUrl"/>
+        <result column="business_license_image_url" property="businessLicenseImageUrl"/>
+        <result column="taxpayer_identification_number" property="taxpayerIdentificationNumber" />
+    </resultMap>
+    
+    <sql id="Base_Column_List">
+        id, code, name,pinyin_initial, 
+        contactor,mobile, company_phone,company_address,description,region_supplier_id, status,
+        editor,edit_time,
+        supplier_abbreviation,cooperative_brand_name,
+        manager,manager_mobile,
+        business_manager,business_manager_mobile,
+        opening_bank,account_number,
+        tax_registration_certificate_image_url,
+        business_license_image_url,
+        taxpayer_identification_number
+    </sql>
+    
+    <select id="getById" resultMap="BaseResultMap" parameterType="long">
+        select
+        <include refid="Base_Column_List"/>
+        from prod_supplier
+        where id = #{id}
+    </select>
+    
+    <delete id="deleteById" parameterType="long">
+        delete from prod_supplier
+        where id = #{id}
+    </delete>
+    
+    <select id="findByIdIn"  parameterType="list" resultMap="BaseResultMap">
+        SELECT <include refid="Base_Column_List"/> FROM prod_supplier
+        <foreach collection="list"  index="idx"  item="id" open="where id in (" separator=","  close=")">
+        	#{id}
+        </foreach>
+         ORDER BY  id
+    </select>
+    
+    
+    <insert id="insert" parameterType="Supplier" useGeneratedKeys="true" keyProperty="id">
+        insert into prod_supplier
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+           code, name,pinyin_initial, company_phone,company_address,contactor,mobile,region_supplier_id,
+           status,description,editor,edit_time,supplier_abbreviation,cooperative_brand_name,manager,
+            manager_mobile,business_manager,business_manager_mobile,opening_bank,account_number,
+            tax_registration_certificate_image_url,business_license_image_url,taxpayer_identification_number
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            #{code},#{name},#{pinyinInitial},
+            #{phone}, #{address}, #{contactor}, #{mobile},#{regionSupplier.id},
+            #{status}, #{description},#{editor.id},#{editTime},#{supplierAbbreviation},
+            #{cooperativeBrandName},#{manager},#{managerMobile},#{businessManager},#{businessManagerMobile},
+            #{openingBank},#{accountNumber},#{taxRegistrationCertificateImageUrl},#{businessLicenseImageUrl},
+            #{taxpayerIdentificationNumber}
+        </trim>
+    </insert>
+    
+    <update id="update" parameterType="Supplier">
+        update prod_supplier
+        <set>
+            <if test="code != null">
+                code = #{code},
+            </if>
+            <if test="name != null">
+                name = #{name},
+            </if>
+            <if test="pinyinInitial!=null">
+            	pinyin_initial = #{pinyinInitial},
+            </if>
+           
+            <if test="contactor!=null">
+            	contactor = #{contactor},
+            </if>
+            <if test="mobile!=null">
+            	mobile = #{mobile},
+            </if>
+            
+            <if test="phone!=null">
+            	company_phone = #{phone},
+            </if>
+			        
+            <if test="address != null">
+                company_address = #{address},
+            </if>
+            <if test="description != null">
+                description = #{description},
+            </if>
+            <if test="status != null">
+                status = #{status},
+            </if>
+            
+            <if test="regionSupplier!=null">
+            	region_supplier_id = #{regionSupplier.id},
+            </if>
+
+            <if test="editor != null">
+                editor = #{editor.id},
+            </if>
+            <if test="editTime != null">
+                edit_time = #{editTime},
+            </if>
+
+            <if test="supplierAbbreviation != null">
+                supplier_abbreviation = #{supplierAbbreviation},
+            </if>
+
+            <if test="cooperativeBrandName != null">
+                cooperative_brand_name = #{cooperativeBrandName},
+            </if>
+
+            <if test="manager != null">
+                manager = #{manager},
+            </if>
+
+            <if test="managerMobile != null">
+                manager_mobile = #{managerMobile},
+            </if>
+
+            <if test="businessManager != null">
+                business_manager = #{businessManager},
+            </if>
+
+            <if test="businessManagerMobile != null">
+                business_manager_mobile = #{businessManagerMobile},
+            </if>
+
+            <if test="openingBank != null">
+                opening_bank = #{openingBank},
+            </if>
+
+            <if test="accountNumber != null">
+                account_number = #{accountNumber},
+            </if>
+
+            <if test="taxRegistrationCertificateImageUrl != null">
+                tax_registration_certificate_image_url = #{taxRegistrationCertificateImageUrl},
+            </if>
+
+            <if test="businessLicenseImageUrl != null">
+                business_license_image_url = #{businessLicenseImageUrl},
+            </if>
+
+            <if test="taxpayerIdentificationNumber != null">
+                taxpayer_identification_number = #{taxpayerIdentificationNumber},
+            </if>
+
+        </set>
+        where id = #{id}
+    </update>
+    
+    <select id="findSuppliersByStatusAndRegionIdsIn" resultMap="BaseResultMap">
+    	select
+        <include refid="Base_Column_List"/>
+        from prod_supplier
+        <where>
+        <foreach collection="regionSupplierIdList" index="idx" item="regionSupplierId" open="region_supplier_id in (" close=")" separator=",">
+          ${regionSupplierId}
+        </foreach>
+       	<if test="status!=null">
+       		and status = #{status}
+       	</if>
+        </where>
+		order by id
+    </select>
+
+    <select id="findRegionSupplierBySupplierId" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from prod_supplier
+        where region_supplier_id = ( select region_supplier_id from prod_supplier where id = #{id}) and status = 'OPEN'
+
+    </select>
+
+    <select id="searchTotal" parameterType="map" resultType="long">
+        SELECT COUNT(*) 
+        <include refid="searchFromWhere"/>
+    </select>
+
+    <select id="search" parameterType="map" resultMap="BaseResultMap">
+        SELECT ps.*,rs.region_name AS region_supplier_name
+	    <include refid="searchFromWhere"/>
+        <if test="sort != null">
+            ORDER BY
+            <foreach collection="sort" item="order" separator=",">
+                ${order.property} ${order.direction}
+            </foreach>
+        </if>
+        limit #{offset},#{pageSize}
+    </select>
+    
+    <!-- 通过code判断供应商编码是否已经存在 -->
+    <select id="getByCode" resultMap="BaseResultMap" parameterType="Supplier">
+        select  <include refid="Base_Column_List"/>
+        from prod_supplier
+        where code = #{code}
+		<if test="id!=null">
+			and id != #{id}
+		</if>
+		limit 1        
+    </select>
+    
+     <select id="getByName" resultMap="BaseResultMap" parameterType="Supplier">
+        select <include refid="Base_Column_List"/>
+        from prod_supplier
+        where name = #{name}
+		<if test="id!=null">
+			and id != #{id}
+		</if>   
+		limit 1     
+    </select>
+
+    <select id="findAll" resultMap="BaseResultMap">
+        select name from prod_supplier;
+    </select>
+
+    <select id="getByStoreCode" resultMap="BaseResultMap" parameterType="map">
+        select * from prod_supplier ps
+        LEFT JOIN region_supplier rs ON ps.region_supplier_id = rs.id
+        LEFT JOIN store s ON s.code = rs.store_code
+        <where>
+            <if test="keyword != null">
+              AND  ps.name LIKE CONCAT('%', #{keyword}, '%')
+            </if>
+            AND s.code=#{storeCode} and ps.`status` = 'OPEN'
+        </where>
+        <if test="sort != null">
+            ORDER BY ps.
+            <foreach collection="sort" item="order" separator=",">
+                ${order.property} ${order.direction}
+            </foreach>
+        </if>
+        limit #{offset},#{pageSize}
+    </select>
+    
+    <sql id="searchFromWhere">
+        from prod_supplier ps
+        LEFT JOIN region_supplier rs ON ps.region_supplier_id = rs.id
+        <where>
+           <if test="keyword != null">
+				ps.name LIKE concat('%',#{keyword},'%') OR
+	            ps.code LIKE concat('%',#{keyword},'%') OR
+	            ps.pinyin_initial LIKE  concat('%',#{keyword},'%')
+	        </if>
+	        
+	        <if test="managedSupplierIdList!=null">
+	        	AND ps.id in
+	        	<foreach collection="managedSupplierIdList" index="idx" item="supplierId" open="(" close=")" separator=",">
+					${supplierId}
+	        	</foreach>
+	        </if>
+
+	        <if test="status != null">
+	            AND ps.status = #{status}
+	        </if>
+	        <if test="regionSupplierId != null">
+	        	AND ps.region_supplier_id = #{regionSupplierId}
+	        </if>
+        </where>
+    </sql>
+
+    <select id="findByMap" resultType="map" parameterType="map">
+        SELECT
+        id, name as name
+        FROM prod_supplier
+        WHERE status= 'OPEN'
+        <if test="storeCode == null">
+            AND region_supplier_id in ( select id from region_supplier where status= 'OPEN')
+        </if>
+        <if test="storeCode != null">
+            AND region_supplier_id in ( select id from region_supplier where store_code  = #{storeCode} and status= 'OPEN')
+        </if>
+        <if test="name != null ">
+            AND name LIKE concat('%',#{name},'%')
+        </if>
+        ORDER BY id asc
+    </select>
+</mapper>

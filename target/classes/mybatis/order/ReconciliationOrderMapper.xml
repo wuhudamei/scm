@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mdni.scm.repository.order.ReconciliationOrderDao">
+    <resultMap id="BaseResultMap" type="ReconciliationOrderItem">
+        <result column="id" property="id"/>
+        <result column="supplier_id" property="supplierId"/>
+        <result column="sku_id" property="skuId"/>
+        <result column="sku_name" property="skuName"/>
+        <result column="model" property="model"/>
+        <result column="spec" property="spec"/>
+        <result column="attribute1" property="attribute1"/>
+        <result column="attribute2" property="attribute2"/>
+        <result column="attribute3" property="attribute3"/>
+        <result column="supply_price" property="supplyPrice"/>
+        <result column="quantity" property="quantity"/>
+        <result column="status" property="status"/>
+        <result column="send_time" property="sendTime"/>
+        <result column="pay_status" property="payStatus"/>
+        <result column="other_fee" property="otherFee"/>
+        <result column="contract_code" property="contractCode"/>
+        <result column="order_code" property="orderCode"/>
+        <result column="pay_time" property="payTime"/>
+        <result column="operator" property="operator"/>
+        <result column="name" property="operatName"/>
+    </resultMap>
+
+    <select id="findByReconciliation" resultMap="BaseResultMap">
+        select
+        ioi.id,ioi.supplier_id,ioi.sku_id, ioi.sku_name, ioi.model,spec,ioi.attribute1,ioi.attribute2,ioi.attribute3,
+        ioi.supply_price,ioi.quantity,ioi.status,ioi.send_time,ioi.pay_status,
+        ifnull(iofee.other_fee,0.00) other_fee,
+        io.contract_code,io.order_code
+        from indent_order_item ioi
+        LEFT JOIN indent_order io ON ioi.order_id = io.id
+        left join ( select item_id,sum(fee_value) other_fee  from ident_order_item_otherfee group by item_id) iofee on ioi.id = iofee.item_id
+        <where>
+            <if test="managedSupplierIdList != null and managedSupplierIdList != ''">
+                ioi.supplier_id IN
+                <foreach item="supplierId" collection="managedSupplierIdList" open="(" separator="," close=")">
+                    #{supplierId}
+                </foreach>
+            </if>
+            <if test="startTime != null and startTime !=''">
+                AND ioi.send_time &gt;= #{startTime}
+            </if>
+            <if test="endTime != null and endTime !=''">
+                AND DATE_FORMAT(ioi.send_time,'%Y-%m-%d')  &lt;= #{endTime}
+            </if>
+            AND ioi.pay_status = 'NOT_PAIED'
+            AND ioi.status = 'SENT'
+        </where>
+    </select>
+
+    <update id="updateReconciliation">
+        update indent_order_item
+        SET pay_status = 'PAIED',pay_time = #{payTime},operator = #{operator}
+        where id IN
+        <foreach item="id" collection="ids" open="(" separator="," close=")">
+              #{id}
+        </foreach>
+    </update>
+    
+    <select id="findCheckOnWork" resultMap="BaseResultMap">
+        select
+        ioi.id,ioi.supplier_id,ioi.sku_id, ioi.sku_name, ioi.model,spec,ioi.attribute1,ioi.attribute2,ioi.attribute3,
+        ioi.supply_price,ioi.quantity,ioi.status,ioi.send_time,ioi.pay_status,
+        ifnull(iofee.other_fee,0.00) other_fee,
+        io.contract_code,io.order_code
+        from indent_order_item ioi
+        LEFT JOIN indent_order io ON ioi.order_id = io.id
+        left join ( select item_id,sum(fee_value) other_fee  from ident_order_item_otherfee group by item_id) iofee on ioi.id = iofee.item_id
+        WHERE ioi.id IN
+        <foreach item="id" collection="list" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </select>
+
+    <select id="findByPayTime" resultMap="BaseResultMap">
+        select
+        ioi.id,ioi.supplier_id,ioi.sku_id, ioi.sku_name, ioi.model,spec,ioi.attribute1,ioi.attribute2,ioi.attribute3,
+        ioi.supply_price,ioi.quantity,ioi.status,ioi.send_time,ioi.pay_status,ioi.operator,
+        ifnull(iofee.other_fee,0.00) other_fee,
+        io.contract_code,io.order_code,au.name
+        from indent_order_item ioi
+        LEFT JOIN indent_order io ON ioi.order_id = io.id
+        LEFT JOIN acct_user au ON ioi.operator = au.id
+        left join ( select item_id,sum(fee_value) other_fee  from ident_order_item_otherfee group by item_id) iofee on ioi.id = iofee.item_id
+        <where>
+            <if test="managedSupplierIdList != null and managedSupplierIdList != ''">
+                ioi.supplier_id IN
+                <foreach item="supplierId" collection="managedSupplierIdList" open="(" separator="," close=")">
+                    #{supplierId}
+                </foreach>
+            </if>
+            <if test="keyword != null and keyword != ''">
+                AND (io.contract_code = #{keyword} OR io.order_code = #{keyword} OR ioi.sku_name = #{keyword})
+            </if>
+            <if test="startTime != null and startTime !=''">
+                AND ioi.pay_time &gt;= #{startTime}
+            </if>
+            <if test="endTime != null and endTime !=''">
+                AND DATE_FORMAT(ioi.pay_time,'%Y-%m-%d') &lt;=  #{endTime}
+            </if>
+            AND ioi.pay_status = 'PAIED'
+            AND ioi.status = 'SENT'
+        </where>
+    </select>
+</mapper>

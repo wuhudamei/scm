@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mdni.scm.repository.review.ReviewDao">
+    <resultMap id="BaseResultMap" type="Review">
+        <result column="notice_time" property="noticeTime"/>
+        <result column="name" property="name"/>
+        <result column="create_time" property="createTime"/>
+        <result column="review_status" property="reviewStatus"/>
+    </resultMap>
+    <select id="findReview" resultMap="BaseResultMap">
+        SELECT rsn.notice_time,pc.name,rsr.create_time,rsn.review_status
+        FROM review_size_result rsr
+        LEFT JOIN review_size_notice rsn ON rsr.review_size_notice_id = rsn.id
+        LEFT JOIN prod_catalog pc ON rsr.prod_catalog_id = pc.id
+        WHERE rsr.contract_id = #{contractCode}
+    </select>
+</mapper>

@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mdni.scm.repository.account.UserDao">
+    <resultMap id="userInfoResultMap" type="User">
+        <id column="id" property="id"/>
+        <result column="username" property="username"/>
+        <result column="name" property="name"/>
+        <result column="mobile" property="mobile"/>
+        <result column="position" property="position"/>
+        <result column="acct_type" property="acctType"/>
+        <result column="supplier_id" property="supplierId"/>
+        <result column="store_code" property="storeCode"/>
+    </resultMap>
+
+    <resultMap type="User" id="userAllInfoResultMap" extends="userInfoResultMap">
+        <collection property="roles" ofType="Role">
+            <result property="name" column="role_name"/>
+            <collection property="permission" ofType="Permission">
+                <result property="permission" column="permission"/>
+            </collection>
+        </collection>
+    </resultMap>
+
+
+    <sql id="userSimpleInfo">
+        a.id,a.username,a.name, a.mobile,a.position,a.acct_type,a.supplier_id,a.store_code
+    </sql>
+
+
+    <!-- 插入用户： 由数据库生成id并赋值到user对象 -->
+    <insert id="insert" parameterType="User" useGeneratedKeys="true"  keyProperty="id">
+        insert into acct_user(
+        username
+        
+        <if test="name != null">
+            ,name
+        </if>
+        
+        <if test="mobile != null">
+            ,mobile
+        </if>
+        
+        <if test="position != null">
+            ,position
+        </if>
+
+        <if test="acctType != null">
+            ,acct_type
+        </if>
+        
+        <if test="supplierId != null">
+            ,supplier_id
+        </if>
+
+        <if test="storeCode != null">
+            ,store_code
+        </if>
+        )
+        values (
+        #{username}
+        <if test="name != null">
+            ,#{name}
+        </if>
+        <if test="mobile != null">
+            ,#{mobile}
+        </if>
+        <if test="position != null">
+            ,#{position}
+        </if>
+
+        <if test="acctType != null">
+            ,#{acctType}
+        </if>
+        
+        <if test="supplierId != null">
+            ,#{supplierId}
+        </if>
+        <if test="storeCode != null">
+            ,#{storeCode}
+        </if>
+        )
+    </insert>
+
+    <!-- 更新用户：1.参数为User对象 2.忽略null字段 -->
+    <update id="update" parameterType="User">
+        update acct_user
+        <set>
+			<if test="acctType!=null">
+				acct_type = #{acctType},
+			</if> 
+			<if test="name != null">
+                name = #{name},
+            </if>
+		    <if test="mobile!=null">
+                mobile = #{mobile},
+            </if>
+			           
+            <if test="position!=null">
+                position = #{position},
+            </if>
+            <if test="supplierId!=null">
+                supplier_id = #{supplierId},
+            </if>
+            <if test="storeCode!=null">
+                store_code = #{storeCode},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <select id="findAll" resultMap="userInfoResultMap">
+        select
+        <include refid="userSimpleInfo"/>
+        from acct_user a
+    </select>
+    <delete id="deleteById" parameterType="long">
+        delete from acct_user where id=#{id}
+    </delete>
+
+    <select id="getById" parameterType="long" resultMap="userInfoResultMap">
+        select
+        <include refid="userSimpleInfo"/>
+        from acct_user a where a.id=#{id}
+    </select>
+
+    <select id="getByLoginName" parameterType="string" resultMap="userInfoResultMap">
+        select
+       <include refid="userSimpleInfo"/>
+        from acct_user a
+        where a.username = #{username}
+    </select>
+
+    <select id="searchTotal" parameterType="map" resultType="long">
+        select count(*) from acct_user a
+        <include refid="searchWhere"/>
+    </select>
+
+    <select id="search" parameterType="map" resultMap="userInfoResultMap">
+        select <include refid="userSimpleInfo"/>,b.name as storeName
+        from acct_user a
+        left join store b on a.store_code = b.code
+        <include refid="searchWhere"/>
+        <if test="sort != null">
+            order by
+            <foreach collection="sort" item="order" separator=",">
+                ${order.property} ${order.direction}
+            </foreach>
+        </if>
+        limit #{offset}, #{pageSize}
+    </select>
+
+    <sql id="searchWhere">
+        <where>
+            a.username != 'admin'
+            <if test="keyword != null">
+            	and (a.username like CONCAT('%', #{keyword}, '%') or a.name like CONCAT('%', #{keyword}, '%') or a.mobile like CONCAT('%', #{keyword}, '%') )
+            </if>
+            <if test="acctType!=null">
+            	and a.acct_type = #{acctType}
+            </if>
+            <if test="storeCode!=null">
+                and a.store_code = #{storeCode}
+            </if>
+            
+        </where>
+    </sql>
+
+    <select id="findUsersByIdIn" resultMap="userInfoResultMap" parameterType="list">
+        SELECT  <include refid="userSimpleInfo"/>
+        FROM acct_user a  where a.id in
+        <foreach collection="list" index="idx" item="uid" separator="," open="(" close=")">
+            ${uid}
+        </foreach>
+    </select>
+</mapper>

@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mdni.scm.repository.prod.SkuApprovalRecordDao">
+  <resultMap id="BaseResultMap" type="SkuApprovalRecord">
+    <id column="id"  property="id" />
+    <result column="approval_account"  property="approvalAccount" />
+    <result column="approval_result"  property="approvalResult" />
+    <result column="approval_note"  property="approvalNote" />
+    <result column="sku_id"  property="skuId" />
+    <result column="approval_time"  property="approvalTime" />
+    <result column="approval_node"  property="approvalNode" />
+    <result column="name"  property="name" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, approval_account, approval_result, approval_note, sku_id, approval_time,approval_node
+  </sql>
+  <select id="getById"  resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from prod_sku_approval_record
+    where id = #{id}
+  </select>
+  <delete id="deleteById" >
+    delete from prod_sku_approval_record
+    where id = #{id}
+  </delete>
+  <insert id="insert">
+    insert into prod_sku_approval_record
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="approvalAccount != null">
+        approval_account,
+      </if>
+      <if test="approvalResult != null">
+        approval_result,
+      </if>
+      <if test="approvalNote != null">
+        approval_note,
+      </if>
+      <if test="skuId != null">
+        sku_id,
+      </if>
+      <if test="approvalTime != null">
+        approval_time,
+      </if>
+      <if test="approvalNode != null">
+        approval_node,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id},
+      </if>
+      <if test="approvalAccount != null">
+        #{approvalAccount},
+      </if>
+      <if test="approvalResult != null">
+        #{approvalResult},
+      </if>
+      <if test="approvalNote != null">
+        #{approvalNote},
+      </if>
+      <if test="skuId != null">
+        #{skuId},
+      </if>
+      <if test="approvalTime != null">
+        #{approvalTime},
+      </if>
+      <if test="approvalNode != null">
+        #{approvalNode},
+      </if>
+    </trim>
+  </insert>
+  <update id="update" >
+    update prod_sku_approval_record
+    <set>
+      <if test="approvalAccount != null">
+        approval_account = #{approvalAccount},
+      </if>
+      <if test="approvalResult != null">
+        approval_result = #{approvalResult},
+      </if>
+      <if test="approvalNote != null">
+        approval_note = #{approvalNote},
+      </if>
+      <if test="skuId != null">
+        sku_id = #{skuId},
+      </if>
+      <if test="approvalTime != null">
+        approval_time = #{approvalTime},
+      </if>
+      <if test="approvalNode != null">
+        approval_node = #{approvalNode},
+      </if>
+    </set>
+    where id = #{id}
+  </update>
+  <select id="findBySkuId"  resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from prod_sku_approval_record
+    where sku_id = #{skuId}
+  </select>
+  <select id="findBySkuIdAndUserId"  resultMap="BaseResultMap">
+    select
+    psar.id, psar.approval_account, psar.approval_result,
+    psar.approval_note, psar.sku_id, psar.approval_time,psar.approval_node,
+    au.name
+    from prod_sku_approval_record psar
+    LEFT   JOIN  acct_user au ON  au.id=psar.approval_account
+    where psar.sku_id = #{skuId}
+    AND psar.approval_account = #{userId}
+    ORDER BY psar.approval_time DESC
+  </select>
+  <select id="findResultByStatus"  resultMap="BaseResultMap">
+    select
+    psar.id, psar.approval_account, psar.approval_result,
+    psar.approval_note, psar.sku_id, psar.approval_time,psar.approval_node,
+    au.name
+    from prod_sku_approval_record psar
+    LEFT   JOIN  acct_user au ON  au.id=psar.approval_account
+    where psar.sku_id = #{skuId}
+      <if test="status!=null">
+      AND psar.approval_node = #{status}
+      </if>
+    ORDER BY psar.approval_time DESC
+  </select>
+  <select id="countBackByStatus"  resultType="java.lang.Long">
+    select
+    count(*)
+    from prod_sku_approval_record
+    where sku_id = #{skuId}
+    AND approval_node = #{status}
+    AND approval_result= '0'
+  </select>
+</mapper>

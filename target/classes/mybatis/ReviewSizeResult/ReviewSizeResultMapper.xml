@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mdni.scm.repository.reviewSizeResult.ReviewSizeResultDao">
+    <resultMap id="BaseResultMap" type="ReviewSizeResult">
+        <id column="id" property="id"/>
+        <result column="product_name" property="productName"/>
+        <result column="location" property="location"/>
+        <result column="model" property="model"/>
+        <result column="specification" property="specification"/>
+        <result column="unit" property="unit"/>
+        <result column="count" property="count"/>
+        <result column="remark" property="remark"/>
+        <result column="creater" property="creater"/>
+        <result column="create_time" property="createTime"/>
+        <result column="contract_id" property="contractId"/>
+        <result column="review_size_notice_id" property="reviewSizeNoticeId"/>
+        <result column="prod_catalog_id" property="prodCatalogId"/>
+    </resultMap>
+    
+
+    <select id="searchTotal" parameterType="map" resultType="long">
+        SELECT count(*)
+        FROM review_size_result
+        WHERE contract_id = #{contractId}
+    </select>
+
+    <select id="search" resultMap="BaseResultMap" parameterType="map">
+        SELECT
+            *
+        FROM
+            review_size_result
+        WHERE
+            contract_id = #{contractId}
+            AND  prod_catalog_id in ( select id from prod_catalog where url like  #{prodCatalogId} )
+        limit #{offset}, #{pageSize}
+   </select>
+
+    <insert id="insert" parameterType="OperateLog" keyProperty="id">
+        INSERT INTO review_size_result
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="productName != null">
+                product_name,
+            </if>
+            <if test="location != null">
+                location,
+            </if>
+            <if test="model != null">
+                model,
+            </if>
+            <if test="specification != null">
+                specification,
+            </if>
+            <if test="unit != null">
+                unit,
+            </if>
+            <if test="count != null">
+                count,
+            </if>
+            <if test="remark != null">
+                remark,
+            </if>
+            <if test="creater != null">
+                creater,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="contractId != null">
+                contract_id,
+            </if>
+            <if test="reviewSizeNoticeId != null">
+                review_size_notice_id,
+            </if>
+            <if test="prodCatalogId != null">
+                prod_catalog_id
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="productName != null">
+                #{productName},
+            </if>
+            <if test="location != null">
+                #{location},
+            </if>
+            <if test="model != null">
+                #{model},
+            </if>
+            <if test="specification != null">
+                #{specification},
+            </if>
+            <if test="unit != null">
+                #{unit},
+            </if>
+            <if test="count != null">
+                #{count},
+            </if>
+            <if test="remark != null">
+                #{remark},
+            </if>
+            <if test="creater != null">
+                #{creater},
+            </if>
+            <if test="createTime != null">
+                #{createTime},
+            </if>
+            <if test="contractId != null">
+                #{contractId},
+            </if>
+            <if test="reviewSizeNoticeId != null">
+                #{reviewSizeNoticeId},
+            </if>
+            <if test="prodCatalogId != null">
+                #{prodCatalogId}
+            </if>
+        </trim>
+    </insert>
+
+    <select id="getReviewSizeResultById" resultMap="BaseResultMap" parameterType="long">
+        select * from review_size_result where review_size_notice_id = #{id}
+    </select>
+    <select id="getById" resultMap="BaseResultMap"  parameterType="long">
+        select * from review_size_result where id = #{id}
+    </select>
+
+    <delete id="deleteById">
+        delete from review_size_result where id = #{id}
+    </delete>
+
+    <update id="update" parameterType="ReviewSizeResult">
+        update review_size_result
+        <set>
+            <if test="productName != null">
+                product_name = #{productName},
+            </if>
+            <if test="location != null">
+                location = #{location},
+            </if>
+            <if test="model != null">
+                model = #{model},
+            </if>
+            <if test="specification != null">
+                specification = #{specification},
+            </if>
+            <if test="unit != null">
+                unit = #{unit},
+            </if>
+            <if test="count != null">
+                count = #{count},
+            </if>
+            <if test="remark != null">
+                remark = #{remark},
+            </if>
+            <if test="creater != null">
+                creater=#{creater},
+            </if>
+            <if test="createTime != null">
+                create_time=#{createTime},
+            </if>
+            <if test="contractId != null">
+                contract_id= #{contractId},
+            </if>
+            <if test="reviewSizeNoticeId != null">
+                review_size_notice_id=#{reviewSizeNoticeId},
+            </if>
+            <if test="prodCatalogId != null">
+                prod_catalog_id=#{prodCatalogId}
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+</mapper>
