@@ -1,0 +1,195 @@
+.wrap-ipad{
+    background: url('../images/bg-ipad.jpg') repeat;
+    .svg-heart{
+        width: .27rem;
+        height: .24rem;
+    }
+    .bar-search{
+        background: $color-primary;
+        height: .77rem;
+        font-size: .15rem;
+        color: #f2f2f2;
+        .bar-item{
+            color: #f2f2f2;
+            padding: 0 .3rem;
+        }
+        .badge{
+            top: -.05rem;
+            right: .23rem;
+        }
+        .svg-wish{
+            width: .22rem;
+            height: .17rem;
+            fill: #ffffff;
+            margin-right: .02rem;
+        }
+        .svg-arrow{
+            width: .19rem;
+            margin-right: .05rem;
+        } 
+    }
+    .filter-letter .item{
+        margin-right: .07rem;
+        margin-left: .04rem;
+    }
+    .item-search{
+        margin-left: .8rem;
+        margin-right: .8rem;
+    }
+    .search{
+        .search-input{
+            height: .35rem;
+            line-height: .34rem;
+            background: #ffffff;
+            color: #d2d2d2;
+            ::-webkit-input-placeholder{
+                color: #d2d2d2;
+            }
+            ::-moz-placeholder{
+                color: #d2d2d2;
+            }
+            :-moz-placeholder{
+                color: #d2d2d2;
+            } 
+        }
+        .search-icon{
+            padding-top: .1rem;
+        }
+        .search-icon-front{
+            padding-top: .1rem;
+        }
+    }
+    .list-search-result{
+        background: #ffffff;
+        margin-top: 1px;
+        .item{
+            color: #919191;
+            border-bottom: 1px solid #eeeeee;
+        }
+    }
+   .nav-bar-main{
+       height: .41rem;
+       padding: 0 .3rem;
+       border-bottom: 1px solid #d2d2d2;
+       margin-bottom: .09rem;
+       .item{
+           height: .41rem;
+           line-height: .45rem;
+           text-align: center;
+           font-size: .14rem;
+           color: $color-primary;
+           margin-bottom: -1px;
+           &._active{
+               border-bottom: 1px solid $color-primary;
+           }
+       }
+   } 
+   .brand-select{
+       padding: .15rem;
+       border: 1px solid #d2d2d2;
+       margin-left: .15rem;
+       margin-right: .15rem;
+       margin-top: -1px;
+       .text{
+           margin-bottom: .15rem
+       }
+       .tag-solid{
+            background: #d2d2d2;
+            font-size: .14rem;
+            padding: .04rem .05rem .04rem .15rem;
+            margin-right: .25rem;
+            margin-bottom: .15rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: $color-primary;
+            .icon{
+                 margin-left: .1rem;
+            }
+        }
+   }
+   .bar-filter{
+       background: #ffffff;
+       margin-bottom: .15rem;
+       box-shadow: none;
+   }   
+   .button-brand{
+       margin-top: .18rem;
+       margin-bottom: .18rem;
+       .btn-normal:first-child{
+           margin-right: 1rem;
+       }
+   }
+   .filter-content{
+       background: #ffffff;
+   }
+   .content-details{
+       margin-top: .1rem;
+   }
+   .swiper-container-love{
+       .item-goods{
+           width: 1.5rem;
+           img{
+               width: 1.5rem;
+           }
+       }
+       .item-more{
+           width: 1.5rem;
+           height: 1.5rem;
+           font-size: .17rem;
+       }
+   }
+}
+.message-content{
+    padding: .1rem .2rem 0 .2rem;
+}
+.content-space{
+    padding-left: .2rem;
+    padding-right: .2rem;
+} 
+.banner-box{
+	margin-top: .05rem;
+	margin-right: .1rem;
+	.banner-section{
+		flex-wrap: wrap;
+	}  
+	.banner{
+		background-color: #ffffff; 
+		margin-bottom: .1rem;
+		margin-left: .1rem;
+		img{
+			width: 100%;
+			height: 100%;
+		} 
+	} 
+}
+.filter-box{
+    position: relative;
+    z-index: 999;
+}
+.filter-box .filter-price .item-fiter {
+    width: 15%;
+    text-align: center;
+}
+.filter-price{
+    padding-left: 0;
+}
+.filter-box .filter-content{
+    top: .39rem;
+    border-top: 1px dashed #e5e5e5;
+}
+.filter-letter-box{
+    border-bottom: 0;
+}
+.btn-normal{
+      padding: .065rem .45rem !important; 
+}
+.item-input{
+    width: 2.45rem;
+}
+.form-text{
+    font-size: .14rem;
+    em{
+        font-size: .17rem;
+    }
+}

@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mdni.scm.repository.prepareorder.IndentPrepareOrderItemDao">
+
+    <resultMap id="BaseResultMap" type="IndentPrepareOrderItem">
+        <id column="id" property="id"/>
+        <result column="prepare_order_id" property="prepareOrderId"/>
+        <result column="sku_id" property="skuId"/>
+        <result column="sku_name" property="skuName"/>
+        <result column="model" property="model"/>
+        <result column="spec" property="spec"/>
+        <result column="attribute1" property="attribute1"/>
+        <result column="attribute2" property="attribute2"/>
+        <result column="attribute3" property="attribute3"/>
+        <result column="supply_price" property="supplyPrice"/>
+        <result column="quantity" property="quantity"/>
+        <result column="installation_location" property="installationLocation"/>
+        <result column="spec_unit" property="specUnit"/>
+        <result column="tablet_num" property="tabletNum"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id, prepare_order_id, sku_id, sku_name, model, spec, attribute1, attribute2, attribute3,
+        supply_price, quantity, installation_location, spec_unit, tablet_num
+    </sql>
+
+    <select id="getById" parameterType="Long" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from indent_prepare_order_item
+        where id = #{id}
+    </select>
+
+    <select id="getByPrepareOrderId" parameterType="Long" resultMap="BaseResultMap">
+      SELECT * FROM indent_prepare_order_item ipoi
+      LEFT JOIN indent_prepare_order ipo ON ipo.id=ipoi.prepare_order_id
+      where ipoi.prepare_order_id = #{prepareOrderId}
+    </select>
+
+    <delete id="deleteById" parameterType="Long">
+        delete from indent_prepare_order_item
+        where id = #{id}
+    </delete>
+
+    <insert id="insert" parameterType="IndentPrepareOrderItem">
+        insert into indent_prepare_order_item
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="prepareOrderId != null">
+                prepare_order_id,
+            </if>
+            <if test="skuId != null">
+                sku_id,
+            </if>
+            <if test="skuName != null">
+                sku_name,
+            </if>
+            <if test="model != null">
+                model,
+            </if>
+            <if test="spec != null">
+                spec,
+            </if>
+            <if test="attribute1 != null">
+                attribute1,
+            </if>
+            <if test="attribute2 != null">
+                attribute2,
+            </if>
+            <if test="attribute3 != null">
+                attribute3,
+            </if>
+            <if test="supplyPrice != null">
+                supply_price,
+            </if>
+            <if test="quantity != null">
+                quantity,
+            </if>
+            <if test="installationLocation != null">
+                installation_location,
+            </if>
+            <if test="specUnit != null">
+                spec_unit,
+            </if>
+            <if test="tabletNum != null">
+                tablet_num,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="prepareOrderId != null">
+                #{prepareOrderId},
+            </if>
+            <if test="skuId != null">
+                #{skuId},
+            </if>
+            <if test="skuName != null">
+                #{skuName},
+            </if>
+            <if test="model != null">
+                #{model},
+            </if>
+            <if test="spec != null">
+                #{spec},
+            </if>
+            <if test="attribute1 != null">
+                #{attribute1},
+            </if>
+            <if test="attribute2 != null">
+                #{attribute2},
+            </if>
+            <if test="attribute3 != null">
+                #{attribute3},
+            </if>
+            <if test="supplyPrice != null">
+                #{supplyPrice},
+            </if>
+            <if test="quantity != null">
+                #{quantity},
+            </if>
+            <if test="installationLocation != null">
+                #{installationLocation},
+            </if>
+            <if test="specUnit != null">
+                #{specUnit},
+            </if>
+            <if test="tabletNum != null">
+                #{tabletNum},
+            </if>
+        </trim>
+    </insert>
+
+    <update id="update" parameterType="IndentPrepareOrderItem">
+        update indent_prepare_order_item
+        <set>
+            <if test="prepareOrderId != null">
+                prepare_order_id = #{prepareOrderId},
+            </if>
+            <if test="skuId != null">
+                sku_id = #{skuId},
+            </if>
+            <if test="skuName != null">
+                sku_name = #{skuName},
+            </if>
+            <if test="model != null">
+                model = #{model},
+            </if>
+            <if test="spec != null">
+                spec = #{spec},
+            </if>
+            <if test="attribute1 != null">
+                attribute1 = #{attribute1},
+            </if>
+            <if test="attribute2 != null">
+                attribute2 = #{attribute2},
+            </if>
+            <if test="attribute3 != null">
+                attribute3 = #{attribute3},
+            </if>
+            <if test="supplyPrice != null">
+                supply_price = #{supplyPrice},
+            </if>
+            <if test="quantity != null">
+                quantity = #{quantity},
+            </if>
+            <if test="installationLocation != null">
+                installation_location = #{installationLocation},
+            </if>
+            <if test="specUnit != null">
+                spec_unit = #{specUnit},
+            </if>
+            <if test="tabletNum != null">
+                tablet_num = #{tabletNum},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+</mapper>

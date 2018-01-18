@@ -1,0 +1,36 @@
+//== set pagination.scss
+//
+//##
+.pagination{
+  padding: 0 0 20px 0;
+  text-align: center;
+  .pagi-items{
+    display: inline-block;
+    overflow: hidden;
+  }
+  .pagi-item{
+    float:left;
+    width: 23px;
+    height: 23px;
+    line-height: 23px;
+    border: 1px solid #d2d2d2;
+    background: #ffffff;
+    cursor: pointer;
+    color: #666666;
+    margin-right: 5px;
+    &:hover,
+    &.active{
+      background: #e60012;
+      border: 1px solid #e60012;
+      color: #ffffff;
+    }
+    .icon{
+      margin-top: 7px;
+    }
+    .num{
+      display: inline-block;
+      width: 100%;
+      cursor: pointer;
+    }
+  }
+}

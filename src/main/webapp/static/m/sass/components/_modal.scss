@@ -1,0 +1,128 @@
+/*
+  定义弹层样式
+*/
+.modal-overlay {
+  position: fixed; // absolute -> fixed 变为全屏显示
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: rgba(0, 0, 0, 0.3);
+  z-index: 1001;
+  visibility: hidden;
+  opacity: 0;
+  &._in{
+    visibility: visible;
+    opacity: 1;
+    &._blur{
+      background: hsla(0,0%,80%,.5);
+      ~ .wrap-blur{
+        filter: blur(5px);
+      }
+    }
+  }
+}
+ 
+.modal{
+  width: 2.2rem;
+  font-size: .15rem; 
+  color: #454545;
+  position: fixed;
+  left: 50%;
+  top: 30%;
+  margin-left: -1.1rem;
+  z-index: 1003;
+  text-align: center;
+  opacity: 0;
+  visibility: hidden;
+  transition-duration: 400ms;
+  transform: translate3d(0, 0, 100px);
+  overflow: hidden;
+  background: #ffffff;
+  &._in {
+    opacity: 1;
+    visibility: visible;
+    transform: translate3d( 0, 0 -100px);
+  }
+  &._radius{
+    border-radius: .06rem;
+  }
+  &._border{
+    border: 1px solid #d5d5d5;
+  }
+}
+.modal-inner {
+  position: relative;
+  padding: .2rem .4rem;
+  line-height: 1.5;
+  text-align: left;
+  &:after {
+    display: block;
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    right: auto;
+    top: auto;
+    height: 1px;
+    width: 100%;
+    background-color: #d5d5d5;
+    z-index: 102;
+  }
+}
+.modal-button-box{
+  height: .38rem;
+  line-height: .38rem; 
+  overflow: hidden; 
+} 
+.modal-button{
+  position: relative;
+  font-size: .16rem;
+  text-align: center;
+  color: #454545;
+  background: #ffffff;
+  white-space: nowrap;
+  overflow: hidden;
+  cursor: pointer;
+  &:not(:last-child):after{
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 0;
+    left: auto;
+    bottom: auto;
+    width: 1px;
+    height: 100%;
+    background-color: #d5d5d5;
+    display: block;
+    z-index: 102;
+  }
+}
+.toast{
+  background: rgba(0, 0, 0, 0.6);
+  color: #ffffff;
+  width: 1.8rem;
+  text-align: center;
+  line-height: 1.5;
+  font-size: .15rem;
+  padding-top: .15rem;
+  padding-bottom: .15rem;
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  margin-left: -.9rem; 
+  z-index: 1000;
+  opacity: 0;
+  transition-duration: 400ms;
+  transform: preserve-3d translate3d(30%, 50%, -100px)  scaleZ(0);
+  .icon{
+    display: block;
+    margin: 0 auto;
+    margin-bottom: .15rem;
+  }
+  &._in{
+    opacity: 1;
+    transform: preserve-3d translate3d( 0, 0 100px)  scaleZ(1);
+  } 
+}

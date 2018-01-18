@@ -1,0 +1,31 @@
+//练习的样式，正式样式里不被使用
+.content-block-title{
+  padding: .15rem;
+  font-size: .15rem;
+  color: #414141;
+}
+.block{
+  margin: 15px;
+  padding: 5px;
+  overflow: hidden;
+}
+.block-tirangle{
+  position: relative;
+  height: .4rem;
+  line-height: .3rem;
+  .triangle{
+    position: absolute;
+    top: .08rem;
+  }
+  .text{
+    padding-left: .3rem;
+  }
+}
+h1.tit{
+  display: inline-block;
+  font-size: .16rem;
+  color:  #f15b39;
+  padding-left: .25rem;
+  margin: .1rem 0 .15rem 0;
+  border-bottom: 2px solid #f15b39;
+}

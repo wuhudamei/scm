@@ -1,0 +1,139 @@
+//== set search.scss
+//
+//## 宽高
+$sc-w-bor: 1px; //边框宽度
+$sc-w: 478px; //search宽
+$sc-w-txt: 90%; //search-txt宽
+$sc-w-btn: 85px; //search-btn宽
+$sc-h-txt: 18px; //search-txt行高
+$sc-h-result: 30px; //search-result的li高和行高
+$sc-h-btn: 32px; //search-btn高和行高
+//## 颜色
+$sc-color1: #ffffff; //search背景色
+$sc-color2: #dcdcdc; //search边框色，search-btn背景色
+$sc-color3: #dddddd; //search-result边框色
+$sc-color4: #f9f9f9; //search-result背景色
+$sc-color5: #919191; //search-result a字体色
+$sc-color6: #000000; //search-result a:hvoer字体色
+$sc-color7: #2985b0; //search-result a span字体色
+
+.search{
+	margin-top: 35px;
+	margin-left: 150px;
+
+}
+.search-form{
+	width: $sc-w;
+	height: 32px;
+	overflow: hidden;
+	background-color: $sc-color1;
+	line-height: 16px;
+	position: relative;
+	text-indent: 6px;
+	font-family: \5fae\8f6f\96c5\9ed1;
+	input:focus::-webkit-input-placeholder{
+		color: #fff;
+		transition: color.5s;
+	}
+}
+.placeholder{
+	position: relative;
+	color: #bfbfbf;
+	font-size: 14px;
+	left: 6px;
+	top: 8px;
+	z-index: 0;
+}
+.search-txt{
+	position: absolute;
+	z-index: 2;
+	background: transparent;
+	width: $sc-w-txt;
+	line-height: $sc-h-txt;
+	padding: 7px 7px;
+	border: 0 none;
+	font-size: 14px;
+	&:focus {
+		outline: 0 none;
+	}
+	&::-ms-clear {
+		display: none;
+	}
+}
+.search-btn{
+	float: right;
+	width: 22px;
+	height: $sc-h-btn;
+	line-height: $sc-h-btn;
+	text-align:  center;
+	color: $sc-color1;
+	background: $sc-color2;
+	overflow: hidden;
+	text-decoration:  none;
+	letter-spacing: 2px;
+	text-indent:  3px;
+	font-size:14px;
+}
+.search-hot{
+	overflow: hidden;
+	color: #626262;
+	padding: 5px 0 5px 10px;
+	line-height: 1.5;
+	em{
+		float: left;
+		font-weight: bold;
+		line-height: 18px;
+		font-size: 12px;
+	}
+	a{
+		padding: 0 10px;
+		float: left;
+		color: #626262;
+		&:hover,
+		&.active{
+			color: $color-primary;
+		}
+	}
+}
+.search-icon{
+	  position: absolute;
+    right: 0;
+    top: 6px;
+}
+.search-result{
+	// display: none;
+	position: absolute;
+	top: 64px;
+	width: $sc-w;
+	border: 1px solid #d2d2d2;
+	background-color: $sc-color1;
+	font-size: 14px;
+	padding: 10px 0;
+	box-sizing: border-box;
+	> li {
+		height: $sc-h-result;
+		line-height: $sc-h-result;
+
+		&:hover {
+			background-color: $sc-color4;
+		}
+	}
+	& a {
+		display: block;
+		width: 462px;
+		padding:0 8px;
+		color: $sc-color5;
+		text-decoration: none;
+		overflow: hidden;
+		white-space:nowrap;
+		&:hover {
+			color: $sc-color6;
+		}
+		span{
+			position:  absolute;
+			right: 16px;
+			color: $sc-color7;
+			padding:  0 10px;
+		}
+	}
+}

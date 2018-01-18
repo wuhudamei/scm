@@ -1,0 +1,29 @@
+// Button group 
+/* 按钮组 横向无间隙 */
+.button-line {
+	display: inline-block;
+	.btn-normal{
+		// float: left;
+		/* 需要加间隙 */
+		/*margin-right: .3rem;*/
+		&:last-child{
+			margin-right: 0;
+		}
+	}
+}
+/* 按钮组 竖向 */
+.button-block .btn-normal{
+	display: block;
+} 
+
+.button-confirm{
+	font-size: .13rem;
+	line-height: .16rem;
+	padding: .14rem .36rem;
+	text-align: center;
+	border: 1px solid #212025;
+	cursor: pointer;
+	background-color: #212025;
+	border-radius: .01rem;
+	color: #ffffff;
+}

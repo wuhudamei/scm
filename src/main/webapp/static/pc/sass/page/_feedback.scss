@@ -1,0 +1,81 @@
+.feedback {
+    padding: 30px;
+    background: #fff;
+    .feedback-content {
+        .feedback-title {
+            p {
+                font-size: 18px;
+                line-height: 2;
+                a {
+                    color: #bf433d;
+                    text-decoration: underline;
+                }
+            }
+        }
+        .feedback-form {
+            padding-top: 30px;
+            p {
+                padding-bottom: 25px;
+                line-height: 1.5;
+                color: #919191;
+                position: relative;
+                span {
+                    display: inline-block;
+                    width: 70px;
+                    text-align: right;
+                    padding-right: 10px;
+                    font-size: 14px;
+                    vertical-align: top;
+                }
+                .inp-txt {
+                    width: 248px;
+                    border: 1px solid #919191;
+                    text-indent: 10px;
+                    line-height: 24px;
+                    appearance: none;
+                    font: lighter 14px/24px '\5fae\8f6f\96c5\9ed1';
+                    color: $color-primary;
+                    box-sizing: content-box;
+                    &.error {
+                        border-color: #bf433d;
+                    }
+                }
+                label.error {
+                    position: absolute;
+                    top: 28px;
+                    left: 190px;
+                    display: block;
+                    text-align: left;
+                    color: #bf433d;
+                }
+                select::-ms-expand {
+                    /*清除ie的默认选择框样式清除，隐藏下拉箭头*/
+                    display: none;
+                }
+                .select-list {
+                    width: 250px;
+                    /*将默认的select选择框样式清除*/
+                    border-radius: 0;
+                    outline: none;
+                    appearance: none;
+                    text-indent: 10px;
+                    line-height: 24px;
+                    border: 1px solid #919191;
+                    /*在选择框的最右侧中间显示小箭头图片*/
+                    background: url(../images/icon/icon-arrow-down.png) no-repeat 225px center;
+                }
+            }
+            .item-button {
+                a {
+                    margin-left: 60px;
+                    &:last-child {
+                        margin-left: 30px;
+                    }
+                }
+            }
+        }
+        width: 540px;
+        margin: 10px auto;
+        text-align: center;
+    }
+}

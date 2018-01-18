@@ -1,0 +1,463 @@
+<!doctype html>
+<html lang="zh-cn">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content=" " />
+    <meta name="description" content=" " />
+    <meta http-equiv="x-ua-compatible" content="IE=Edge, chrome=1" />
+    <meta name="renderer" content="webkit">
+    <title>留言页</title>
+    <link type="text/css" rel="stylesheet" href="../css/style.css">
+    <link type="text/css" rel="stylesheet" href="../css/swiper.min.css">
+</head>
+
+<body>
+    <div class="wrap">
+        <div class="header">
+            <div class="top-bar">
+                <div class="header-con">
+                    <div class="header-top clearfix">
+                        <a class="logo fl" href="index.html"><img src="../images/logo.png" alt="logo图片" /></a>
+                        <div class="search fl" id="search">
+                            <div class="search-form clearfix">
+                                <input class="search-txt">
+                                <a href="javascript:;" class="icon icon-search fr disN">搜索</a>
+                                <a href="javascript:;" class="icon icon-del-sh fr">删除</a>
+                            </div>
+                            <!--  隐藏 disN -->
+                            <ul class="search-result">
+                                <li><a href="javascript:;">车险</a></li>
+                                <li><a href="javascript:;">理财型保险</a></li>
+                            </ul>
+                        </div>
+                        <ul class="top-bar-nav clearfix">
+                            <li><a href="javascript:void(0)" class="alink">关于我们 </a> | </li>
+                            <li><a href="javascript:void(0)" class="alink"><i class="icon icon-wishlist"><i class="icon icon-num">88</i></i>心愿单 </a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="header-con">
+                <div class="classify-menu">
+                    <ul class="sidebar-chinese">
+                        <li> <a href="javascript:void(0)">生活电器</a></li>
+                        <li class="current"> <a href="javascript:void(0)">厨电</a></li>
+                        <li> <a href="javascript:void(0)">个护</a></li>
+                        <li> <a href="javascript:void(0)">家居</a></li>
+                        <li> <a href="javascript:void(0)">厨具</a></li>
+                        <li> <a href="javascript:void(0)">商旅</a></li>
+                        <li> <a href="javascript:void(0)">商旅</a></li>
+                        <li> <a href="javascript:void(0)">电子</a></li>
+                        <li> <a href="javascript:void(0)">汽车</a></li>
+                        <li> <a href="javascript:void(0)">母婴</a></li>
+                        <li> <a href="javascript:void(0)">精品</a></li>
+                        <li> <a href="javascript:void(0)">卡券</a></li>
+                        <li> <a href="javascript:void(0)">虚拟</a></li>
+                    </ul>
+                    <!-- 隐藏添加  class disN -->
+                    <div class="pull-down disN">
+                        <ul class="sidebar-english clearfix">
+                            <li> <a class="current" href="javascript:void(0)">A</a></li>
+                            <li> <a href="javascript:void(0)">B</a></li>
+                            <li> <a href="javascript:void(0)">C</a></li>
+                            <li> <a href="javascript:void(0)">D</a></li>
+                            <li> <a href="javascript:void(0)">E</a></li>
+                            <li> <a href="javascript:void(0)">F</a></li>
+                            <li> <a href="javascript:void(0)">G</a></li>
+                            <li> <a href="javascript:void(0)">H</a></li>
+                            <li> <a href="javascript:void(0)">I</a></li>
+                            <li> <a href="javascript:void(0)">J</a></li>
+                            <li> <a href="javascript:void(0)">K</a></li>
+                            <li> <a href="javascript:void(0)">L</a></li>
+                            <li> <a href="javascript:void(0)">M</a></li>
+                            <li> <a href="javascript:void(0)">N</a></li>
+                            <li> <a href="javascript:void(0)">O</a></li>
+                            <li> <a href="javascript:void(0)">P</a></li>
+                            <li> <a href="javascript:void(0)">Q</a></li>
+                            <li> <a href="javascript:void(0)">R</a></li>
+                            <li> <a href="javascript:void(0)">S</a></li>
+                            <li> <a href="javascript:void(0)">T</a></li>
+                            <li> <a href="javascript:void(0)">U</a></li>
+                            <li> <a href="javascript:void(0)">V</a></li>
+                            <li> <a href="javascript:void(0)">W</a></li>
+                            <li> <a href="javascript:void(0)">X</a></li>
+                            <li> <a href="javascript:void(0)">Y</a></li>
+                            <li> <a href="javascript:void(0)">Z</a></li>
+                        </ul>
+                        <ul class="brand-list clearfix">
+                            <li> <a class="current" href="javascript:void(0)">阿迪达斯 <i class="icon icon-del">icon</i></a></li>
+                            <li> <a href="javascript:void(0)">奥克斯</a></li>
+                            <li> <a href="javascript:void(0)">安儿乐</a></li>
+                            <li> <a href="javascript:void(0)">阿迪达斯</a></li>
+                            <li> <a href="javascript:void(0)">奥克斯</a></li>
+                            <li> <a href="javascript:void(0)">安儿乐</a></li>
+                            <li> <a href="javascript:void(0)">奥克斯</a></li>
+                            <li> <a href="javascript:void(0)">安儿乐</a></li>
+                            <li> <a href="javascript:void(0)">阿迪达斯</a></li>
+                            <li> <a href="javascript:void(0)">奥克斯</a></li>
+                            <li> <a href="javascript:void(0)">安儿乐</a></li>
+                            <li> <a href="javascript:void(0)">阿迪达斯</a></li>
+                            <li> <a href="javascript:void(0)">奥克斯</a></li>
+                            <li> <a href="javascript:void(0)">安儿乐</a></li>
+                            <li> <a href="javascript:void(0)">奥克斯</a></li>
+                            <li> <a href="javascript:void(0)">安儿乐</a></li>
+                            <li> <a href="javascript:void(0)">阿迪达斯</a></li>
+                            <li> <a href="javascript:void(0)">奥克斯</a></li>
+                            <li> <a href="javascript:void(0)">安儿乐</a></li>
+                            <li> <a href="javascript:void(0)">奥克斯</a></li>
+                            <li> <a href="javascript:void(0)">安儿乐</a></li>
+                            <li> <a href="javascript:void(0)">阿迪达斯</a></li>
+                            <li> <a href="javascript:void(0)">奥克斯</a></li>
+                            <li> <a href="javascript:void(0)">安儿乐</a></li>
+                            <li> <a href="javascript:void(0)">奥克斯</a></li>
+                            <li> <a href="javascript:void(0)">安儿乐</a></li>
+                            <li> <a href="javascript:void(0)">阿迪达斯</a></li>
+                            <li> <a href="javascript:void(0)">奥克斯</a></li>
+                            <li> <a href="javascript:void(0)">安儿乐</a></li>
+                            <li> <a href="javascript:void(0)">阿迪达斯</a></li>
+                            <li> <a href="javascript:void(0)">奥克斯</a></li>
+                            <li> <a href="javascript:void(0)">安儿乐</a></li>
+                            <li> <a href="javascript:void(0)">奥克斯</a></li>
+                            <li> <a href="javascript:void(0)">安儿乐</a></li>
+                            <li> <a href="javascript:void(0)">阿迪达斯</a></li>
+                            <li> <a href="javascript:void(0)">奥克斯</a></li>
+                            <li> <a href="javascript:void(0)">安儿乐</a></li>
+                            <li> <a href="javascript:void(0)">阿迪达斯</a></li>
+                            <li> <a href="javascript:void(0)">奥克斯</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!--/.classify-menu-->
+        </div>
+        <!--/.header-->
+        <div class="main">
+            <div class="content">
+                <div class="tab-pane">
+                    <ol class="breadcrumb">
+                        <li><a href="javascript:;">首页 > </a></li>
+                        <li><a href="javascript:;">上一级 > </a></li>
+                        <li class="active">留言</li>
+                    </ol>
+                </div>
+                <div class="feedback">
+                    <div class="feedback-content">
+                        <div class="feedback-title">
+                            <p>亲，您已选定 <em class="font24">88</em> 件心仪商品，</p>
+                            <p>留下您的信息，让我们联系您，为您制定一个专属商品需求方案。</p>
+                            <p>亲，您可以留下联系方式或添加商品需求！去 <a href="javascript:void(0)">添加商品</a>
+                            </p>
+                        </div>
+                        <form class="feedback-form ">
+                            <p><span><em>*</em>姓名</span>
+                                <input type="text" class="inp-txt error" id="name" name="name" value="王思聪">
+                                <label for="name" class="error">请填写您的姓名</label>
+                            </p>
+                            <p><span><em>*</em>电话</span>
+                                <input type="text" class="inp-txt" id="mobile" name="mobile" value="18888888888">
+                                <label for="mobile" class="error">请重新输入正确的电话号码</label>
+                            </p>
+                            <p><span>邮箱</span>
+                                <input type="text" class="inp-txt" id="email" name="email" value="wangsicong@163.com">
+                                <label for="email" class="error">请重新输入有效的邮箱地址</label>
+                            </p>
+                            <p><span><em>*</em>公司名称</span>
+                                <input type="text" class="inp-txt" id="companyname" name="companyname" value="大诚若谷信息技术有限公司">
+                                <label for="companyname" class="error">请填写您的公司名称</label>
+                            </p>
+                            <p><span>所在部门</span>
+                                <select class="select-list">
+                                    <option value="技术部">技术部</option>
+                                    <option value="市场部">市场部</option>
+                                    <option value="技术部">技术部</option>
+                                    <option value="其它" selected="selected">其它</option>
+                                </select>
+                            </p>
+                            <p><span></span>
+                                <input type="text" class="inp-txt">
+                            </p>
+                            <p><span>留言</span>
+                                <textarea cols="40" rows="10" class="inp-txt" placeholder="你好，请联系我"></textarea>
+                            </p>
+                            <p class="item-button">
+                                <!-- 不可用置灰 添加class btn-disabled -->
+                                <a href="javascript:void(0)" class=" btn btn-red">提交</a><a href="javascript:void(0)" class=" btn btn-dark">重置</a>
+                            </p>
+                        </form>
+                    </div>
+                    <div class="product-list choose">
+                        <div class="item-title">
+                            <span class="choose">已选商品 <i class="font18">共 <em class="font24">88</em> 件</i></span>
+                        </div>
+                        <!--/.swiper-container-->
+                            <!-- 按钮 -->
+                            <!-- <div class="button-prev"></div>
+                            <div class="button-next"></div>
+                            <div class="pro-item">
+                                <div class="item">
+                                    <a class="row" href="javascript:;">
+                                        <i class="icon icon-follow">icon</i>
+                                        <img src="../images/pro/pro-236-236.jpg" alt="../images/pro/load-img.jpg" class="active">
+                                        <div class="item-name">
+                                            <h1>日本虎牌微电脑电饭煲（大口酷）JA</h1>
+                                            <h2>市场价：<span class="pro-price">¥349</span></h2></div>
+                                    </a>
+                                </div>
+                                <div class="item">
+                                    <a class="row" href="javascript:;">
+                                        <i class="icon icon-follow">icon</i>
+                                        <img src="../images/pro/pro-236-236.jpg" alt="../images/pro/load-img.jpg" class="active">
+                                        <div class="item-name">
+                                            <h1>日本虎牌微电脑电饭煲（大口酷）JA</h1>
+                                            <h2>市场价：<span class="pro-price">¥349</span></h2></div>
+                                    </a>
+                                </div>
+                                <div class="item">
+                                    <a class="row" href="javascript:;">
+                                        <i class="icon icon-follow">icon</i>
+                                        <img src="../images/pro/pro-236-236.jpg" alt="../images/pro/load-img.jpg" class="active">
+                                        <div class="item-name">
+                                            <h1>日本虎牌微电脑电饭煲（大口酷）JA</h1>
+                                            <h2>市场价：<span class="pro-price">¥349</span></h2></div>
+                                    </a>
+                                </div>
+                                <div class="item">
+                                    <a class="row" href="javascript:;">
+                                        <i class="icon icon-follow">icon</i>
+                                        <img src="../images/pro/pro-236-236.jpg" alt="../images/pro/load-img.jpg" class="active">
+                                        <div class="item-name">
+                                            <h1>日本虎牌微电脑电饭煲（大口酷）JA</h1>
+                                            <h2>市场价：<span class="pro-price">¥349</span></h2></div>
+                                    </a>
+                                </div>
+                                <div class="item">
+                                    <a class="row" href="javascript:;">
+                                        <i class="icon icon-follow">icon</i>
+                                        <img src="../images/pro/pro-236-236.jpg" alt="../images/pro/load-img.jpg" class="active">
+                                        <div class="item-name">
+                                            <h1>日本虎牌微电脑电饭煲（大口酷）JA</h1>
+                                            <h2>市场价：<span class="pro-price">¥349</span></h2></div>
+                                    </a>
+                                </div>
+                                <div class="item">
+                                    <a class="row" href="javascript:;">
+                                        <i class="icon icon-follow">icon</i>
+                                        <img src="../images/pro/pro-236-236.jpg" alt="../images/pro/load-img.jpg" class="active">
+                                        <div class="item-name">
+                                            <h1>日本虎牌微电脑电饭煲（大口酷）JA</h1>
+                                            <h2>市场价：<span class="pro-price">¥349</span></h2></div>
+                                    </a>
+                                </div>
+                                <div class="item">
+                                    <a class="row" href="javascript:;">
+                                        <i class="icon icon-follow">icon</i>
+                                        <img src="../images/pro/pro-236-236.jpg" alt="../images/pro/load-img.jpg" class="active">
+                                        <div class="item-name">
+                                            <h1>日本虎牌微电脑电饭煲（大口酷）JA</h1>
+                                            <h2>市场价：<span class="pro-price">¥349</span></h2></div>
+                                    </a>
+                                </div>
+                                <div class="item">
+                                    <a class="row" href="javascript:;">
+                                        <i class="icon icon-follow">icon</i>
+                                        <img src="../images/pro/pro-236-236.jpg" alt="../images/pro/load-img.jpg" class="active">
+                                        <div class="item-name">
+                                            <h1>日本虎牌微电脑电饭煲（大口酷）JA</h1>
+                                            <h2>市场价：<span class="pro-price">¥349</span></h2></div>
+                                    </a>
+                                </div>
+                            </div> -->
+                            <div class="pro-choose">
+                            <div class="swiper-container clearfix">
+                                <div class="swiper-wrapper">
+                                    <div class="swiper-slide item">
+                                        <a class="row" href="javascript:;">
+                                            <i class="icon icon-follow">icon</i>
+                                            <img src="../images/pro/pro-236-236.jpg" alt="../images/pro/load-img.jpg" class="active">
+                                            <div class="item-name">
+                                                <h1>日本虎牌微电脑电饭煲（大口酷）JA</h1>
+                                                <h2>市场价：<span class="pro-price">¥349</span></h2></div>
+                                        </a>
+                                    </div>
+                                    <div class="swiper-slide item">
+                                        <a class="row" href="javascript:;">
+                                            <i class="icon icon-follow">icon</i>
+                                            <img src="../images/pro/pro-236-236.jpg" alt="../images/pro/load-img.jpg" class="active">
+                                            <div class="item-name">
+                                                <h1>日本虎牌微电脑电饭煲（大口酷）JA</h1>
+                                                <h2>市场价：<span class="pro-price">¥349</span></h2></div>
+                                        </a>
+                                    </div>
+                                    <div class="swiper-slide item">
+                                        <a class="row" href="javascript:;">
+                                            <i class="icon icon-follow">icon</i>
+                                            <img src="../images/pro/pro-236-236.jpg" alt="../images/pro/load-img.jpg" class="active">
+                                            <div class="item-name">
+                                                <h1>日本虎牌微电脑电饭煲（大口酷）JA</h1>
+                                                <h2>市场价：<span class="pro-price">¥349</span></h2></div>
+                                        </a>
+                                    </div>
+                                    <div class="swiper-slide item">
+                                        <a class="row" href="javascript:;">
+                                            <i class="icon icon-follow">icon</i>
+                                            <img src="../images/pro/pro-236-236.jpg" alt="../images/pro/load-img.jpg" class="active">
+                                            <div class="item-name">
+                                                <h1>日本虎牌微电脑电饭煲（大口酷）JA</h1>
+                                                <h2>市场价：<span class="pro-price">¥349</span></h2></div>
+                                        </a>
+                                    </div>
+                                    <div class="swiper-slide item">
+                                        <a class="row" href="javascript:;">
+                                            <i class="icon icon-follow">icon</i>
+                                            <img src="../images/pro/pro-236-236.jpg" alt="../images/pro/load-img.jpg" class="active">
+                                            <div class="item-name">
+                                                <h1>日本虎牌微电脑电饭煲（大口酷）JA</h1>
+                                                <h2>市场价：<span class="pro-price">¥349</span></h2></div>
+                                        </a>
+                                    </div>
+                                    <div class="swiper-slide item">
+                                        <a class="row" href="javascript:;">
+                                            <i class="icon icon-follow">icon</i>
+                                            <img src="../images/pro/pro-236-236.jpg" alt="../images/pro/load-img.jpg" class="active">
+                                            <div class="item-name">
+                                                <h1>日本虎牌微电脑电饭煲（大口酷）JA</h1>
+                                                <h2>市场价：<span class="pro-price">¥349</span></h2></div>
+                                        </a>
+                                    </div>
+                                    <div class="swiper-slide item">
+                                        <a class="row" href="javascript:;">
+                                            <i class="icon icon-follow">icon</i>
+                                            <img src="../images/pro/pro-236-236.jpg" alt="../images/pro/load-img.jpg" class="active">
+                                            <div class="item-name">
+                                                <h1>日本虎牌微电脑电饭煲（大口酷）JA</h1>
+                                                <h2>市场价：<span class="pro-price">¥349</span></h2></div>
+                                        </a>
+                                    </div>
+                                </div>
+                                <!-- 按钮 -->
+                                <div class="swiper-button-prev"></div>
+                                <div class="swiper-button-next"></div>
+                            </div>
+                            </div>
+                        </div>
+                </div>
+                <div class="product-list">
+                    <div class="item-title">
+                        <span><i class="icon icon-unfollow recommend"></i>推荐商品</span>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="item">
+                        <a class="row" href="javascript:;">
+                            <i class="icon icon-follow">icon</i>
+                            <img src="../images/pro/pro-236-236.jpg" alt="../images/pro/load-img.jpg">
+                            <div class="item-name">
+                                <h1>日本虎牌微电脑电饭煲（大口酷）JA日本虎牌微电脑电饭煲（大口酷）JA</h1>
+                                <h2>市场价：<span class="pro-price">¥349</span></h2></div>
+                        </a>
+                    </div>
+                    <div class="item">
+                        <a class="row" href="javascript:;">
+                            <i class="icon icon-unfollow">icon</i>
+                            <img src="../images/pro/pro-236-236.jpg" alt="">
+                            <div class="item-name">
+                                <h1>日本虎牌微电脑电饭煲（大口酷）JA</h1>
+                                <h2>市场价：<span class="pro-price">¥349</span></h2></div>
+                        </a>
+                    </div>
+                    <div class="item">
+                        <a class="row" href="javascript:;">
+                            <i class="icon icon-unfollow">icon</i>
+                            <img src="../images/pro/pro-236-236.jpg" alt="">
+                            <div class="item-name">
+                                <h1>日本虎牌微电脑电饭煲（大口酷）JA</h1>
+                                <h2>市场价：<span class="pro-price">¥349</span></h2></div>
+                        </a>
+                    </div>
+                    <div class="item last">
+                        <a class="row" href="javascript:;">
+                            <i class="icon icon-unfollow">icon</i>
+                            <img src="../images/pro/pro-236-236.jpg" alt="">
+                            <div class="item-name">
+                                <h1>日本虎牌微电脑电饭煲（大口酷）JA</h1>
+                                <h2>市场价：<span class="pro-price">¥349</span></h2></div>
+                        </a>
+                    </div>
+                    <div class="item">
+                        <a class="row" href="javascript:;">
+                            <i class="icon icon-unfollow">icon</i>
+                            <img src="../images/pro/pro-236-236.jpg" alt="">
+                            <div class="item-name">
+                                <h1>日本虎牌微电脑电饭煲（大口酷）JA</h1>
+                                <h2>市场价：<span class="pro-price">¥349</span></h2></div>
+                        </a>
+                    </div>
+                    <div class="item">
+                        <a class="row" href="javascript:;">
+                            <i class="icon icon-unfollow">icon</i>
+                            <img src="../images/pro/pro-236-236.jpg" alt="">
+                            <div class="item-name">
+                                <h1>日本虎牌微电脑电饭煲（大口酷）JA</h1>
+                                <h2>市场价：<span class="pro-price">¥349</span></h2></div>
+                        </a>
+                    </div>
+                    <div class="item">
+                        <a class="row" href="javascript:;">
+                            <i class="icon icon-unfollow">icon</i>
+                            <img src="../images/pro/pro-236-236.jpg" alt="">
+                            <div class="item-name">
+                                <h1>日本虎牌微电脑电饭煲（大口酷）JA</h1>
+                                <h2>市场价：<span class="pro-price">¥349</span></h2></div>
+                        </a>
+                    </div>
+                    <div class="item"><a href="javascript:void(0)" class="row"><span class="more-view">查看更多</span></a></div>
+                </div>
+                <!--/.product-list-->
+            </div>
+            <!--/.content-->
+        </div>
+        <!--/.main-->
+        <!-- 右侧悬浮状态 -->
+        <div id="floating_window">
+            <a id="gotop" href="javascript:void(0)"> </a>
+        </div>
+        <!-- /#floating_window -->
+        <ul class="right-nav">
+            <li><span class="follow-box"><i class="icon icon-num">88</i></span></li>
+            <li><img src="../images/icon/icon-wishlist-txt.png" alt="">
+            </li>
+        </ul>
+        <!--/.right-nav-->
+    </div>
+    <!--/.wrap -->
+    <!-- 弹出层 -->
+    <div id="winBg"></div>
+    <div class="popup-div">
+        <div class="popup-content">
+            <!-- 提示语  成功 -->
+            <p>您的留言已提交成功，我们会尽快与您取得联系。</p>
+            <!-- 提示语  失败 disN-->
+            <p class="disN">网络不太给力，留言提交失败，请重新提交。</p>
+        </div>
+        <div class="btn-area"><a href="javascript:void(0)" class="btn-confirm">确定</a></div>
+    </div>
+</body>
+<script src="../js/jquery-1.12.4.min.js"></script>
+<script src="../js/gotop.js" type="text/javascript"></script>
+<script src="../js/swiper-2.7.0.min.js"></script>
+<script>
+var mySwiper = new Swiper('.swiper-container', {
+    slidesPerView: 4, 
+    
+});
+$('.swiper-button-prev').on('click', function(e) {
+    e.stopPropagation();
+    mySwiper.swipePrev();
+})
+$('.swiper-button-next').on('click', function(e) {
+    e.stopPropagation();
+    mySwiper.swipeNext();
+})
+</script>
+
+</html>

@@ -1,0 +1,83 @@
+//== set sortbar.scss
+//
+//##
+.sortbar {
+    height: 35px;
+    background: #ffffff;
+    display: block;
+}
+
+.m-sortbar {
+    margin-top: 16px;
+}
+
+.sort-word {
+    line-height: 35px;
+    font-weight: bolder;
+    text-indent: 10px;
+    font-size: 14px;
+    color: #3e3e3e;
+    &.ss-word {
+        font-weight: lighter;
+        b {
+            font-weight: bolder;
+            color: $color-primary;
+        }
+    }
+}
+
+.pager {
+    line-height: 35px;
+    overflow: hidden;
+}
+
+.pager-item {
+    float: left;
+    height: 35px;
+    font-size: 15px;
+    .current {
+        color: #f40000;
+    }
+    .link {
+        float: left;
+        display: block;
+        padding: 0 15px;
+    }
+}
+
+//
+.sh-sortbar {
+    margin-top: 16px;
+    background: none;
+    border: 1px solid #e5e5e5;
+    box-sizing: border-box;
+    overflow: hidden;
+    ul {
+        float: left;
+        width: 800px;
+        li {
+            float: left;
+            padding: 5px 10px;
+            line-height: 21px;
+            line-height: 22px\9;
+            a {
+                color: #0059a3;
+                padding: 5px;
+                vertical-align: middle;
+                &.current {
+                    color: #e60012;
+                    border: 1px solid #e60012;
+                    background: #ffe3e3;
+                }
+            }
+        }
+    }
+    .choose-name {
+        float: left;
+        font-weight: bold;
+        padding: 0 20px;
+        height: 35px;
+        line-height: 35px;
+        background: #e5e5e5;
+    }
+}

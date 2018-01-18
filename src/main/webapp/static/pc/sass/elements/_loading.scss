@@ -1,0 +1,23 @@
+.loading{
+    position: fixed; 
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.8);
+    z-index: 1112;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(1turn);
+    }
+}
+img.spinner {
+	width: 4px;
+	height: 4px;
+    animation: spin 0.6s infinite steps(12);
+}

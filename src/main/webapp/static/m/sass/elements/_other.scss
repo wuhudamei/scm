@@ -1,0 +1,71 @@
+// Modified
+.modified{
+	line-height: .24rem;
+	position: relative;
+	display: inline-block;
+	._solid{
+		background: $bg-primary;
+		color: #ffffff;
+	}
+}
+.plus,
+.minus,
+.num{ 
+	float: left;
+	width: .27rem;  
+	height: .27rem; 
+	color: $color-primary;
+	font-size: .14rem;
+	text-align: center;
+	
+}  
+.plus,
+.minus{
+	cursor: pointer;
+	border: 1px solid $color-primary;
+}
+.num{
+	width: .5rem; 
+	border-top: 1px solid $color-primary;
+	border-bottom: 1px solid $color-primary;
+	input{
+		width: inherit;
+		height: inherit; 
+		text-align: center;
+		color: $color-primary;
+		border: none;
+		background: transparent;
+	}
+}  
+
+// 返回顶部
+.return-top{
+	position: fixed;
+	bottom: .6rem;
+	right: .15rem;
+	z-index: 22222;
+}
+
+//面包屑
+.breadcrumbs{
+	background: #ffffff;
+	overflow: hidden;
+	padding: .11rem .15rem;
+	margin-bottom: .1rem;
+	li{
+		float: left;
+		color: $color-primary;
+		margin-right: .1rem;
+	}
+	a{
+		color: #919191;
+
+		&:after{
+			content: '>';
+			margin-left: .1rem;
+		}
+	}
+}
+
+
+

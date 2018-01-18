@@ -1,0 +1,126 @@
+/* css for btn */
+.btn{
+	display: inline-block;
+	text-align: center;
+	color: #ffffff;
+	position: relative;
+	cursor: pointer;
+	padding: 10px;
+	width: 90px;
+	font-size: 14px;
+	border: 1px solid #fff;
+}
+
+.btn-red{
+	background: #cb181d;
+	border: 1px solid #cb181d;
+}
+.btn-white{
+	background: #fff;
+	border: 1px solid #cb181d;
+	color: #cb181d;
+}
+
+.btn-dark{
+	background: $bg-primary;
+	border: 1px solid $bg-primary;
+}
+
+.btn-disabled{
+	background: #d6d6d6 !important;
+	border: 1px solid #d6d6d6 !important;
+	color: #fff !important;
+}
+.btn-register,
+.btn-login{
+	display: block;
+	width: 100%;
+	height: 48px;
+	line-height: 48px;
+	margin-bottom: 14px;
+	border-radius: 1px;
+	font-size: 20px;
+}
+.btn-register{
+	background: #fb8142;
+	border: 1px solid #fb8142;
+}
+.btn-login{
+	background: #f1f8ff;
+	border: 1px solid #819edd;
+	color: #819edd;
+}
+.btn-view{
+	padding: 5px 26px;
+	background: #ffc051;
+	font-size: 14px;
+	position: absolute;
+	bottom: 0;
+	margin-bottom: 38px;
+}
+.btn-submit{
+	display: block;
+	width: 100%;
+	height: 50px;
+	margin-bottom: 14px;
+	border-radius: 5px;
+	font-size: 20px;
+	background: #e60012;
+	border: none;
+	position: relative;
+}
+.btn-item{
+	border:1px solid #e92334;
+	background: #ffe3e3;
+	color: #e92334;
+	padding: 5px 11px;
+	transition:.3s all linear;
+	will-change: background;
+	&:hover{
+		background: #e92334;
+		color:#ffffff;
+		border:1px solid #e92334;
+	}
+}
+.recommend-list .btn-item{
+	border:1px solid #fb8935;
+	background: #fb8935;
+	color: #ffffff;
+	padding: 5px 21px;
+}
+
+.btn-box{
+	display: inline-block;
+	width: 228px;
+	margin:20px 0 0 32px;
+}
+.btn-vcode {
+	height: 35px;
+	width: 135px;
+	background: #fed9be;
+	color:#fa6900;
+	border:1px solid #fa6900;
+	border-radius:5px;
+	cursor: pointer;
+}
+.btn-query{
+	width: 130px;
+	background: #e60012;
+	height: 36px;
+	border-radius: 2px;
+	border: none;
+	color: #fff;
+	font-size: 14px;
+	cursor:pointer;
+}
+.btn-edit,.btn-cancel{
+	color: #2b82f8;
+	margin-right: 5px;
+	display: inline-block;
+}
+.btn-done{
+	display: block;
+	width: 50px;
+	color: #aaa;
+    margin: 15px auto;
+}

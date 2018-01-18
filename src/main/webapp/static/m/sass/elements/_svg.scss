@@ -1,0 +1,60 @@
+.svg-heart{
+    width: .18rem;
+    height: .15rem;
+    fill: transparent;
+    stroke: #c9443e;
+    stroke-width: 50;
+    &._active{
+        animation-name: starAnim;
+        animation-duration: .8s;
+        animation-timing-function: ease;
+        fill: $color-secondary;
+    }
+}
+.svg-search{
+    width: .14rem;
+    height: .14rem;
+    fill: #acacac;
+}
+.svg-arrow{
+    width: .12rem;
+    height: .15rem;
+    fill: #f2f2f2;
+    &._left{
+        transform: rotate(180deg);
+    }
+    &._up{
+        transform: rotate(270deg);
+    }
+    &._down{
+        transform: rotate(90deg);
+    }
+}
+.item-sort{
+    &._asc{
+       .svg-asc{
+            fill: #9c9e9f;
+        }
+        .svg-desc{
+            fill: #bebfbf;
+        }
+    }
+}
+.svg-sort{
+    width: .05rem;
+    height: .115rem;
+    margin-left: .01rem;
+    fill: #bebfbf;
+    .svg-asc{
+        fill: #bebfbf;
+    }
+    .svg-desc{
+        fill: #9c9e9f;
+    }
+}
+.svg-wish{
+    width: .16rem;
+    height: .18rem;
+    fill: #f2f2f2;
+    margin-top: 4px;
+}

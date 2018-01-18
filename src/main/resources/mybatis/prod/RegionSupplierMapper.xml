@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mdni.scm.repository.prod.RegionSupplierDao">
+    <resultMap id="BaseResultMap" type="RegionSupplier">
+        <id column="id" property="id"/>
+        <result column="region_name" property="name"/>
+        <result column="store_code" property="store.code"/>
+        <result column="store_name" property="store.name"/>
+        <result column="status" property="status"/>
+    </resultMap>
+    
+     <resultMap id="baseWithSupplierListResultMap" extends="BaseResultMap" type="RegionSupplier">
+       	<collection property="supplierList"  javaType="list"  ofType="com.mdni.scm.entity.prod.Supplier">
+       		    <id column="supplier_id" property="id"/>
+		        <result column="code" property="code"/>
+		        <result column="name" property="name"/>
+		        <result column="pinyin_initial" property="pinyinInitial"/>
+		        <result column="contactor" property="contactor"/>
+		        <result column="mobile" property="mobile"/>
+		        <result column="company_phone" property="phone"/>
+		        <result column="company_address" property="address"/>
+		        <result column="description" property="description"/>
+		        <result column="status" property="status"/>
+       	</collection>
+    </resultMap>
+    
+    <sql id="Base_Column_List">
+        rs.id, rs.region_name,rs.store_code,rs.status
+    </sql>
+
+    <select id="getById" resultMap="BaseResultMap" parameterType="long">
+        select
+        <include refid="Base_Column_List"/>
+        from region_supplier rs
+        where id = #{id}
+    </select>
+    
+    <select id="getByName" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from region_supplier rs
+        where rs.region_name = #{name}
+        <if test="excludeId!=null">
+        	and rs.id!=#{excludeId}
+        </if>
+        limit 1
+    </select>
+	
+    <select id="findAll" resultMap="BaseResultMap">
+        SELECT <include refid="Base_Column_List"/>,s.name as store_name
+        FROM region_supplier rs left join store s on rs.store_code = s.code
+        ORDER BY  rs.id
+    </select>
+    
+    
+     <select id="findRegionWithSuppliers"  resultMap="baseWithSupplierListResultMap">
+       SELECT region.*,supplier.id as supplier_id ,supplier.name from region_supplier region join
+   	   prod_supplier supplier on (region.id = supplier.region_supplier_id)
+   	   <if test="status!=null">
+   	   		where  region.status = #{status}
+   	   </if>
+    </select>
+    
+    
+    <select id="findRegionSuppliersByStoreCode" resultMap="BaseResultMap">
+    	select
+        <include refid="Base_Column_List"/>
+        from region_supplier rs
+        <where>
+        	<if test="storeCode!=null">
+        		rs.store_code = #{storeCode}
+        	</if>
+        </where>
+		order by rs.id
+    </select>
+
+    <!--根据区域供应商ID查询同一门店下的区域供应商列表-->
+    <select id="findSameStoreIdRegionSuppliersById" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from region_supplier rs
+        where rs.store_code = ( select store_code from region_supplier where id = #{id})
+        order by rs.id desc
+    </select>
+    
+    <select id="findByIdIn"  parameterType="list" resultMap="BaseResultMap">
+        SELECT <include refid="Base_Column_List"/> FROM region_supplier rs
+        <foreach collection="list"  index="idx"  item="id" open="where rs.id in (" separator=","  close=")">
+        	#{id}
+        </foreach>
+         ORDER BY  id
+    </select>
+    
+
+    <delete id="deleteById" parameterType="long">
+        delete from region_supplier
+        where id = #{id}
+    </delete>
+    
+    <insert id="insert" parameterType="RegionSupplier" useGeneratedKeys="true" keyProperty="id">
+        insert into region_supplier
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="name != null">
+                region_name,
+            </if>
+            <if test="store != null">
+                store_code,
+            </if>
+            <if test="status != null">
+                status,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="name != null">
+                #{name},
+            </if>
+            <if test="store != null">
+                #{store.code},
+            </if>
+            <if test="status != null">
+                #{status},
+            </if>
+        </trim>
+    </insert>
+    
+    
+    <update id="update" parameterType="RegionSupplier">
+        update region_supplier set region_name = #{name},store_code = #{store.code}
+        where id = #{id}
+    </update>
+
+    <select id="searchTotal" parameterType="map" resultType="long">
+        SELECT COUNT(*)
+        <include refid="searchFromWhere"/>
+    </select>
+
+    <select id="search" parameterType="map" resultMap="BaseResultMap">
+        SELECT <include refid="Base_Column_List"/>,s.name as store_name
+        <include refid="searchFromWhere"/>
+        <if test="sort != null">
+            ORDER BY
+            <foreach collection="sort" item="order" separator=",">
+                ${order.property} ${order.direction}
+            </foreach>
+        </if>
+        limit #{offset},#{pageSize}
+    </select>
+
+    <update id="updateStatus" parameterType="RegionSupplier">
+        update region_supplier set status = #{status} where id = #{id}
+    </update>
+
+    <sql id="searchFromWhere">
+        from region_supplier rs left join store s on rs.store_code = s.code
+        <where>
+        <if test="keyword != null">
+           rs.region_name LIKE concat('%',#{keyword},'%')
+        </if>
+        <if test="storeCode != null">
+           AND rs.store_code = #{storeCode}
+        </if>
+        <if test="regionId != null">
+           AND rs.id = #{regionId}
+        </if>
+        <if test="status != null">
+            AND rs.status = #{status}
+        </if>
+        </where>
+    </sql>
+
+</mapper>

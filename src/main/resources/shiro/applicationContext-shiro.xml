@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:util="http://www.springframework.org/schema/util" xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+       http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd"
+       default-lazy-init="true">
+
+    <description>Shiro安全配置</description>
+
+    <!-- shiro's main business-tier object for web-enabled applications -->
+    <bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
+        <property name="sessionManager" ref="defaultWebSessionManager"/>
+        <property name="realms">
+            <util:set>
+                <ref bean="shiroSSORealm"/>
+                <ref bean="shiroDbRealm"/>
+            </util:set>
+        </property>
+        <property name="cacheManager" ref="shiroEhcacheManager"/>
+    </bean>
+
+    <!-- custom shiro session listener -->
+    <bean id="customSessionListener" class="com.mdni.scm.shiro.listener.CustomSessionListener"/>
+
+    <!-- custom realm -->
+    <bean id="shiroDbRealm" class="com.mdni.scm.shiro.ShiroDbRealm">
+        <property name="credentialsMatcher" ref="customCredentialsMather"/>
+        <property name="userService" ref="userService"/>
+    </bean>
+
+    <bean id="shiroSSORealm" class="com.mdni.scm.shiro.ShiroSSORealm">
+        <property name="userService" ref="userService"/>
+    </bean>
+
+
+    <!-- custom validate password -->
+    <bean id="customCredentialsMather" class="com.mdni.scm.shiro.CustomShiroCredentialsMatherFactoryBean"/>
+
+    <!-- ...AUTHENTICATION INFO CACHE BEGIN... -->
+    <bean id="sessionDao" class="com.mdni.scm.shiro.session.CachingShiroSessionDao">
+        <property name="shiroSessionRepository" ref="jedisShiroSessionRepository"/>
+    </bean>
+
+    <bean id="jedisShiroSessionRepository"
+          class="com.mdni.scm.shiro.session.JedisShiroSessionToStringRepository">
+        <property name="jedisManager" ref="jedisManager"/>
+        <property name="sessionTimeOut" value="${session.timeout}"/>
+    </bean>
+
+
+    <bean id="shiroEhcacheManager" class="org.apache.shiro.cache.ehcache.EhCacheManager">
+        <property name="cacheManagerConfigFile" value="classpath:shiro/ehcache-shiro.xml"/>
+    </bean>
+
+
+    <!-- redis manager class -->
+    <bean id="jedisManager" class="com.mdni.scm.shiro.JedisManager">
+        <property name="jedisPool" ref="jedisPool"/>
+        <property name="database" value="${redis.database}"/>
+    </bean>
+
+    <!-- 自定义Session工厂方法 返回会标识是否修改主要字段的自定义Session-->
+    <bean id="sessionFactory" class="com.mdni.scm.shiro.session.ShiroSessionFactory"/>
+
+    <!-- default web session manager，session expire time 4 hours -->
+    <bean id="defaultWebSessionManager" class="org.apache.shiro.web.session.mgt.DefaultWebSessionManager">
+        <property name="globalSessionTimeout" value="${session.timeout}"/>
+        <property name="sessionDAO" ref="sessionDao"/>
+        <property name="sessionFactory" ref="sessionFactory"/>
+        <property name="sessionIdCookie" ref="simpleCookie"/>
+        <property name="sessionListeners">
+            <list>
+                <ref bean="customSessionListener"/>
+            </list>
+        </property>
+        <property name="sessionValidationScheduler" ref="sessionValidationScheduler"/>
+        <property name="sessionValidationSchedulerEnabled" value="true"/>
+        <property name="deleteInvalidSessions" value="true"/>
+    </bean>
+
+    <bean id="sessionValidationScheduler"
+          class="org.apache.shiro.session.mgt.ExecutorServiceSessionValidationScheduler">
+        <property name="sessionManager" ref="defaultWebSessionManager"/>
+        <property name="interval" value="${session.validate.timespan}"/>
+    </bean>
+
+    <bean id="simpleCookie" class="org.apache.shiro.web.servlet.SimpleCookie">
+        <constructor-arg index="0" value="JSESSIONID_COOKIE"/>
+        <property name="httpOnly" value="true"/>
+    </bean>
+
+    <!-- Shiro Filter -->
+    <bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
+        <property name="securityManager" ref="securityManager"/>
+        <property name="loginUrl" value="/admin/login"/>
+        <property name="successUrl" value="/admin/index"/>
+        <property name="unauthorizedUrl" value="/admin/login"/>
+        <property name="filters">
+            <util:map>
+                <entry key="user" value-ref="multipleViewUserFilter"/>
+            </util:map>
+        </property>
+
+        <property name="filterChainDefinitions">
+            <value>
+            	/oauthCallBackAutoLogin = anon
+            	/admin/logout = anon
+                /static/** = anon
+                /imgFile/** = anon
+                /externalApi/** = anon
+            	/ = user
+            	/index = user
+            	/api/** = user
+                /admin/** = user
+            </value> 
+        </property>
+
+    </bean>
+
+
+    <!-- 保证实现了Shiro内部lifecycle函数的bean执行 -->
+    <bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor"/>
+</beans>

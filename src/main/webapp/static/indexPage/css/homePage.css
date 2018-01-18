@@ -1,0 +1,46 @@
+.bg_f3f3f4{background: #f3f3f4;}
+.bg_f{background: #fff;}
+.pt24{padding-top: .24rem;}
+.pl20{padding-left: 20px;}
+.mb24{margin-bottom: .24rem;}
+.pr28{padding-right: 28px;}
+.bor_dee1e7{border: 1px solid #dee1e7;}
+.headerSec{border-bottom: 1px solid #dee1e7;padding-top: 7px;padding-bottom: 7px;}
+.headerTit{font-size: 18px;color: #596679;line-height: 36px;float: left;}
+.icon-left {
+    background: url(../images/introIcon.png);
+    width: 36px;
+    height: 36px;
+    background-size: 36px 36px;
+    margin-left: 24px;
+    margin-right: 20px;
+    float: left;
+}
+.icon-explain{
+	background: url(../images/explainIcon.png);
+    width: 36px;
+    height: 36px;
+    background-size: 36px 36px;
+    margin-left: 24px;
+    margin-right: 20px;
+    float: left;
+}
+.icon-procedure{
+	background: url(../images/procedureIcon.png);
+    width: 36px;
+    height: 36px;
+    background-size: 36px 36px;
+    margin-left: 24px;
+    margin-right: 20px;
+    float: left;
+}
+.introP{font-size: 14px;color: #596679;padding-left: 32px;padding-right: 30px;padding-top: 20px;
+	padding-bottom: 20px;text-indent: 2em;line-height: 2.14em;}
+.wid_per62{width: 62.5%;}
+.wid_per36{width: 36.5%;}
+.hgt{height: 320px;overflow-y: auto;}
+
+ul.circle{list-style-position:inside; list-style-type:disc;}
+.circle li{padding-left: 30px;font-size: 14px;color: #596679;padding-top: 10px;padding-bottom: 10px;border-bottom: 1px solid #dee1e7;}
+.circle li:last-child{border: none;}
+.circle li:hover{background: #f6f7f9;}

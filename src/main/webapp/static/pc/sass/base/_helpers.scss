@@ -1,0 +1,232 @@
+//== set helpers.scss
+//
+
+/* 特殊约定 下划线「_***」的样式是不能单独使用的，它们都必须配合父亲，或者兄弟元素使用 */
+
+
+/* 基础样式，放在最后 */
+
+._fullwidth {
+    width: 100%;
+    text-align: center;
+}
+
+.aaa {
+    width: 1000000px;
+}
+
+._space {
+    letter-spacing: .3rem;
+    text-indent: .3rem;
+}
+
+// nihao
+._disabled {
+    cursor: not-allowed;
+    opacity: .5;
+    filter: alpha(opacity=50);
+}
+
+._ellipsis {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+._ellipsis2 {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+
+._block {
+    display: block;
+}
+
+.circle {
+    border-radius: 50%;
+}
+
+// Border 
+.border-bottom {
+    border-bottom: 1px solid #d8d8d8;
+}
+
+.border-top {
+    border-top: 1px solid #d8d8d8;
+}
+
+// Float
+.clearfix {
+    @extend %clearfix;
+}
+
+.pull-left {
+    @extend %float-left;
+}
+
+.pull-right {
+    @extend %float-right;
+}
+
+// Text
+.text-center {
+    text-align: center;
+}
+
+.text-left {
+    text-align: left;
+}
+
+.text-right {
+    text-align: right;
+}
+
+.text-space {
+    span {
+        margin-left: .2rem;
+        margin-right: .2rem;
+    }
+}
+
+// Show Modle
+.hidden {
+    visibility: hidden;
+}
+
+.show {
+    visibility: visible;
+}
+
+.disB {
+    display: block;
+}
+
+.disN {
+    display: none !important;
+}
+
+.disI {
+    display: inline-block;
+}
+
+.tdn {
+    text-decoration: none !important;
+}
+
+.posA {
+    position: absolute !important;
+}
+
+.posR {
+    position: relative !important;
+}
+
+.fixed {
+    position: fixed !important;
+}
+
+
+/* float */
+
+.fl {
+    float: left;
+}
+
+.fr {
+    float: right;
+}
+
+.agc {
+    margin: 0 auto !important;
+}
+
+.spc20 {
+    height: 20px;
+    overflow: hidden;
+}
+
+// Padding
+.pd-20 {
+    padding: .2rem;
+}
+
+//Size
+.font15 {
+    font-size: 15px;
+}
+
+.font18 {
+    font-size: 18px;
+}
+
+.font24 {
+    font-size: 24px;
+}
+
+//Border
+.border-top {
+    border-top: 1px solid #e8e8e8;
+}
+
+//Background
+.bg-grey {
+    background: #aaaaaa;
+}
+
+.bg-primary {
+    background: #d2d2d2;
+}
+
+.bg-white {
+    background: #fff
+}
+
+// 全局样式,Vue编辑结束前不显示
+[v-cloak] {
+    display: none;
+}
+
+.mr10 {
+    margin-right: 10px;
+}
+
+.mr20 {
+    margin-right: 20px;
+}
+
+.mr30 {
+    margin-right: 30px;
+}
+
+.ml10 {
+    margin-left: 10px;
+}
+
+.ml30 {
+    margin-left: 30px;
+}
+
+.mb10 {
+    margin-bottom: 10px !important;
+}
+
+.mt10 {
+    margin-top: 10px;
+}
+
+.mt20 {
+    margin-top: 20px;
+}
+
+em {
+    color: #ca4340;
+}
+
+.cnzz {
+        img {
+            margin: 10px auto 0;
+        }
+}

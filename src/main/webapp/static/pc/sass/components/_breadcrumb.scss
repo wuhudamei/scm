@@ -1,0 +1,14 @@
+.breadcrumb { 
+	width: 100%;
+	overflow: hidden; 
+	line-height: 2;
+	li{
+		display: inline-block;
+		color: $color-primary;
+		font-size: 14px;
+		a{
+			color: #919191;
+		}
+	}
+	
+}

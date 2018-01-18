@@ -1,0 +1,63 @@
+/* css for content */
+
+.content {
+    width: $page-w;
+    margin: 0 auto;
+    overflow: hidden;
+    .index-list {
+        position: absolute;
+        top: 402px;
+        z-index: 100;
+        width: 100%;
+        .index-list-pro {
+            width: 100%;
+            .index-list-box {
+                float: left;
+                .index-list-img {
+                    div {
+                        position: relative;
+                        z-index: 100;
+                        .active {
+                            background-color: #dbdee2;
+                            filter: alpha(opacity=80) \0;
+                            opacity: 0.8 \0;
+                            background-color: rgba(80, 80, 80, 0.2);
+                            display: block;
+                            position: absolute;
+                            top: 0;
+                            z-index: 122;
+                            width: 100%;
+                            height: 100%;
+                            text-align: center;
+                            .pro-txt {
+                                position: absolute;
+                                z-index: 123;
+                                top: 50%;
+                                left: 50%;
+                                margin-top: -40px;
+                                margin-left: -60px;
+                                height: 100%;
+                                width: 120px;
+                                line-height: 1.5;
+                                color: #fff;
+                                text-align: center;
+                                h1 {
+                                    font-size: 28px;
+                                    padding: 10px 0;
+                                }
+                                h2 {
+                                    font-size: 16px;
+                                    border: 1px solid #fff;
+                                    width: 70px;
+                                    height: 30px;
+                                    line-height: 30px;
+                                    margin: 0 auto;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

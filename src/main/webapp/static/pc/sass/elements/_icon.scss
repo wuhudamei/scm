@@ -1,0 +1,117 @@
+//== set icon.scss
+//
+//## css for icon 字体大小不会影响icon的垂直居中的位置,注意 icon 父元素必须设置line-height值为图片高
+.icon {
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    display: inline-block;
+    white-space: nowrap;
+    letter-spacing: -1em;
+    text-indent: -99em;
+    color: transparent;
+    padding: 0;
+    margin: 0;
+    &.icon-search {
+        margin: 5px 5px 0 0;
+        width: 22px;
+        height: 23px;
+        background-image: url('../images/icon/icon-search.png');
+    }
+    &.icon-wishlist {
+        margin-right: 5px;
+        width: 16px;
+        height: 17px;
+        background-image: url('../images/icon/icon-wishlist.png');
+        position: relative;
+        z-index: 10;
+        vertical-align: middle;
+    }
+    &.icon-del {
+        position: absolute;
+        right: 1px;
+        top: 1px;
+        width: 9px;
+        height: 9px;
+        background-image: url('../images/icon/icon-del.png');
+    }
+    &.icon-del-sh {
+        margin: 7px 5px 0 0;
+        width: 18px;
+        height: 18px;
+        background-image: url('../images/icon/icon-del-sh.png');
+    }
+    &.icon-del-ch {
+        position: absolute;
+        right: 0px;
+        top: 12px;
+        width: 17px;
+        height: 12px;
+        background-image: url('../images/icon/icon-del-ch.png');
+        background-position: center right;
+    }
+    &.icon-num {
+        position: absolute;
+        z-index: 11;
+        top: -10px;
+        right: -10px;
+        text-align: center;
+        font-size: 12px;
+        width: 18px;
+        height: 18px;
+        line-height: 18px;
+        overflow: hidden;
+        white-space: nowrap;
+        background-image: url('../images/icon/icon-circle-red.png');
+        background-position: right top;
+        text-indent: 0 !important;
+        letter-spacing: 0 !important;
+        color: #fff;
+    }
+    &.icon-follow,
+    &.icon-unfollow {
+        position: absolute;
+        z-index: 11;
+        right: 10px;
+        top: 10px;
+        width: 21px;
+        height: 18px;
+        &.recommend{
+            top: 9px;
+            right: none;
+            left: 28px;
+            width: 27px;
+            height: 24px;
+            background-image: url('../images/icon/icon-disfollow.png');
+            background-position: left top;
+
+        }
+    }
+    &.icon-follow {
+        background-image: url('../images/icon/icon-follow.png');
+    }
+    &.icon-unfollow {
+        background-image: url('../images/icon/icon-unfollow.png');
+        background-repeat: no-repeat;
+    }
+    &.ico-follow-des {
+        position: absolute;
+        top: 4px;
+        right: 38px;
+        width: 17px;
+        height: 8px;
+        background-image: url('../images/icon/icon-arrow-down.png');
+    }
+    &.icon-fail {
+        width: 54px;
+        height: 54px;
+        background-image: url('../images/icon/icon-fail.png');
+    }
+    &.icon-arrow-solid{
+        position: absolute;
+        top: -5px;
+        left: 49px;
+        width: 9px;
+        height: 4px;
+        background-image: url('../images/icon/icon-arrow-solid.png');
+    }
+}

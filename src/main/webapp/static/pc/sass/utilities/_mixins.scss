@@ -1,0 +1,84 @@
+%clearfix {
+  @if $lte7 {
+    *zoom: 1;
+  }
+  &:before,
+  &:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+}
+@mixin float($float:left) {
+	float: $float;
+	@if $lte7 {
+		display: inline;
+	}
+}
+%float-left{
+	@include float;
+}
+%float-right{
+  @include float(right);
+}
+// 垂直居中 
+@mixin middle($width,$height){
+	width: $width;
+	height: $height;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	margin-left: (- $width / 2);
+	margin-top: (- $height / 2);
+}
+// 多行文字垂直居中
+@mixin middle-box($boxWidth,$boxHeight){
+	width: $boxWidth;
+	height: $boxHeight;
+	position: relative;
+	display: table;
+	.middle-inner{
+		display: table-cell;
+		vertical-align: middle;
+		text-align: center;
+        // ie6-7
+		@if $lte7 {
+			*position: absolute; 
+			*top: 50%; 
+			*left: 50%;
+			p{
+				position:relative; 
+				*top:-50%; 
+				*left:-50%;
+			}
+		}
+		
+	}
+}
+// Triangle
+@mixin triangle($direction, $size, $borderColor ) {
+	content:"";
+	height: 0;
+	width: 0;
+
+	@if $direction == top {
+		border-bottom:$size solid $borderColor;
+		border-left:$size dashed transparent;
+		border-right:$size dashed transparent;
+	} 
+	@else if $direction == right {
+		border-left:$size solid $borderColor;
+		border-top:$size dashed transparent;
+		border-bottom:$size dashed transparent;
+	} 
+	@else if $direction == bottom {
+		border-top:$size solid $borderColor;
+		border-left:$size dashed transparent;
+		border-right:$size dashed transparent;
+	} 
+	@else if $direction == left {
+		border-right:$size solid $borderColor;
+		border-top:$size dashed transparent;
+		border-bottom:$size dashed transparent;
+	}
+}

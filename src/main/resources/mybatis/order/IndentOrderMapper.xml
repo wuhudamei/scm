@@ -1,0 +1,358 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mdni.scm.repository.order.IndentOrderDao">
+    <resultMap id="BaseResultMap" type="IndentOrder">
+        <id column="id" property="id"/>
+        <result column="order_code" property="code"/>
+        <result column="contract_code" property="contractCode"/>
+        <result column="status" property="status"/>
+        <result column="note" property="note"/>
+        <result column="reason" property="reason"/>
+        <result column="creator" property="creator.id"/>
+        <result column="creator_name" property="creator.name"/>
+        <result column="creator_username" property="creator.username"/>
+        <result column="create_time" property="createTime"/>
+        <result column="editor" property="editor.id"/>
+        <result column="edit_time" property="editTime"/>
+        <result column="place_status" property="placeEnum"/>
+        <result column="branch_no" property="branchNo"/>
+        <result column="name" property="customerName"/>
+        <result column="customer_phone" property="customerPhone"/>
+        <result column="brand_name" property="brandName"/>
+        <result column="house_addr" property="houseAddr"/>
+        <result column="designer" property="designer"/>
+        <result column="designer_mobile" property="designerMobile"/>
+        <result column="supervisor" property="supervisor"/>
+        <result column="supervisor_mobile" property="supervisorMobile"/>
+        <result column="project_manager" property="projectManager"/>
+        <result column="pm_mobile" property="pmMobile"/>
+        <result column="contract_id" property="contractId"/>
+        <result column="orderItem_id" property="orderItem.id"/>
+        <result column="pay_status" property="orderItem.payStatus"/>
+        <result column="item_status" property="orderItem.status"/>
+        <result column="notice_install_time" property="noticeInstallTime"/>
+        <result column="download_date" property="downloadDate"/>
+        <result column="download_number" property="downloadNumber"/>
+        <result column="accept_status" property="acceptStatus"/>
+        <result column="accept_date" property="acceptDate"/>
+        <result column="reconciliation_time" property="reconciliationTime"/>
+        <result column="reconciliation_remarks" property="reconciliationRemarks"/>
+        <result column="actual_installation_time" property="actualInstallationTime"/>
+        <!--当前item下其他费用总和-->
+        <result column="otherFee" property="orderItem.otherFee"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        io.id, io.order_code,io.contract_code,io.status,io.note,io.reason,io.creator,io.create_time,io.editor,io.edit_time,io.download_number
+        ,io.notice_install_time,usr.name as creator_name,usr.username as creator_username,
+        io.reconciliation_time,io.reconciliation_remarks,io.actual_installation_time
+    </sql>
+    
+    <select id="getById" resultMap="BaseResultMap" parameterType="long">
+        select
+        <include refid="Base_Column_List"/>
+        from indent_order io left join acct_user usr on creator = usr.id
+        where io.id = #{id}
+    </select>
+    
+    <delete id="deleteById" parameterType="long">
+        delete from indent_order
+        where id = #{id}
+    </delete>
+    
+    <insert id="insert" parameterType="IndentOrder" useGeneratedKeys="true" keyProperty="id">
+        insert into indent_order
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="code != null">
+                order_code,
+            </if>
+            <if test="contractCode != null">
+                contract_code,
+            </if>
+            <if test="status != null">
+                status,
+            </if>
+            <if test="note != null">
+                note,
+            </if>
+            <if test="reason != null">
+                reason,
+            </if>
+            <if test="creator != null">
+                creator,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="editor != null">
+                editor,
+            </if>
+            <if test="editTime != null">
+                edit_time,
+            </if>
+            <if test="placeEnum != null">
+                place_status,
+            </if>
+            <if test="branchNo != null">
+                branch_no,
+            </if>
+            <if test="noticeInstallTime != null">
+                notice_install_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="code != null">
+                #{code},
+            </if>
+            <if test="contractCode != null">
+                #{contractCode},
+            </if>
+            <if test="status != null">
+                #{status},
+            </if>
+            <if test="note != null">
+                #{note},
+            </if>
+             <if test="reason != null">
+                #{reason},
+            </if>
+            <if test="creator != null">
+                #{creator.id},
+            </if>
+            <if test="createTime != null">
+                #{createTime},
+            </if>
+            <if test="editor != null">
+                #{editor.id},
+            </if>
+            <if test="editTime != null">
+                #{editTime},
+            </if>
+            <if test="placeEnum != null">
+                #{placeEnum},
+            </if>
+            <if test="branchNo != null">
+                #{branchNo},
+            </if>
+            <if test="noticeInstallTime != null">
+                #{noticeInstallTime},
+            </if>
+        </trim>
+    </insert>
+    
+    <update id="update" parameterType="IndentOrder">
+        update indent_order
+        <set>
+            <if test="status != null">
+                status = #{status},
+            </if>
+            <if test="note != null">
+                note = #{note},
+            </if>
+            <if test="reason != null">
+                reason= #{reason},
+            </if>
+            <if test="editor != null">
+                editor = #{editor.id},
+            </if>
+            <if test="editTime != null">
+                edit_time = #{editTime},
+            </if>
+            <if test="noticeInstallTime != null">
+                notice_install_time = #{noticeInstallTime},
+            </if>
+
+            <if test="reconciliationTime != null">
+                reconciliation_time = #{reconciliationTime},
+            </if>
+            <if test="reconciliationRemarks != null">
+                reconciliation_remarks = #{reconciliationRemarks},
+            </if>
+            <if test="actualInstallationTime != null">
+                actual_installation_time = #{actualInstallationTime},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <select id="searchTotal" parameterType="map" resultType="long">
+        select count(DISTINCT order_code)
+        <include refid="searchFromWhere"/>
+    </select>
+
+    <select id="search" parameterType="map" resultMap="BaseResultMap">
+        select DISTINCT io.*,usr.name as creator_name,usr.username as creator_username,
+            place_status,cus.name,cucs.house_addr,pb.brand_name,cucs.designer,
+            cucs.designer_mobile, insert(cus.mobile, 4, 4, '****') AS customer_phone,cucs.supervisor, cucs.supervisor_mobile,
+            cucs.project_manager,cucs.pm_mobile,cucs.id AS contract_id
+        <include refid="searchFromWhere"/>
+        <if test="sort != null">
+            order by
+            <foreach collection="sort" item="order" separator=",">
+                ${order.property} ${order.direction}
+            </foreach>
+        </if>
+        limit #{offset}, #{pageSize}
+    </select>
+
+    <select id="getByOrderCode" resultMap="BaseResultMap" parameterType="long">
+        select * from indent_order
+        <where>
+            <if test="_parameter != null">
+                id=#{_parameter}
+            </if>
+        </where>
+    </select>
+
+    <update id="updateStatus">
+        update indent_order set status = #{reject} where id = #{id}
+    </update>
+    
+    <sql id="searchFromWhere">
+        from indent_order io
+        LEFT JOIN indent_order_item item ON (io.id= item.order_id)
+        LEFT JOIN acct_user  usr ON (usr.id = io.creator)
+        LEFT JOIN prod_brand pb ON (item.brand_id = pb.id)
+        LEFT JOIN customer_contract cucs ON (cucs.contract_code = io.contract_code)
+        LEFT JOIN customer cus ON (cucs.customer_id = cus.id)
+        <where>
+            <if test="keyword != null">
+                (io.order_code like CONCAT('%', #{keyword}, '%')
+                or io.contract_code like CONCAT('%', #{keyword}, '%')
+                or usr.name like CONCAT('%', #{keyword}, '%')
+                or cus.name like CONCAT('%', #{keyword}, '%')
+                or cus.mobile like CONCAT('%', #{keyword}, '%')
+                )
+            </if>
+            <if test="status!=null">
+                AND io.status=#{status}
+            </if>
+
+            <if test="statusList!=null">
+                AND io.status IN
+                <foreach collection="statusList" index="idx" item="stu" open=" (" close=")" separator=",">
+                    #{stu}
+                </foreach>
+            </if>
+            <if test="acceptStatus!=null and acceptStatus!=''">
+                AND io.accept_status=#{acceptStatus}
+            </if>
+            <if test="download!=null and acceptStatus!=''">
+                  <if test="download==&quot;YES&quot;">
+                    AND io.download_number&gt;0
+                  </if>
+                <if test="download==&quot;NO&quot;">
+                    AND io.download_number=0
+                </if>
+            </if>
+			<if test="managedSupplierIdList!=null">
+	        	AND item.supplier_id  in
+	        	<foreach collection="managedSupplierIdList" index="idx" item="supplierId" open=" (" close=")" separator=",">
+					${supplierId}
+	        	</foreach>
+		    </if>
+            <if test="startDate != null">
+				AND io.create_time >= #{startDate,jdbcType=DATE}
+			</if>
+			<if test="endDate != null">
+				AND DATE_FORMAT(io.create_time,'%Y-%m-%d') &lt;= #{endDate,jdbcType=DATE}
+			</if>
+			<if test="contractCode != null">
+				AND io.contract_code = #{contractCode}
+			</if>
+            <if test="brandId != null and brandId != ''">
+                AND pb.id = #{brandId}
+            </if>
+            <if test="id != null and id != ''">
+                AND io.id = #{id}
+            </if>
+            <if test="MaterialClerkId != null and MaterialClerkId != ''">
+                AND usr.id = #{MaterialClerkId}
+            </if>
+        </where>
+    </sql>
+
+
+    <update id="accept" >
+        update indent_order
+        <set>
+            <if test="acceptStatus != null and acceptStatus!=''">
+                accept_status = #{acceptStatus},
+            </if>
+            <if test="acceptDate != null and acceptDate!=''">
+                accept_date = #{acceptDate},
+            </if>
+            <if test="downloadNumber != null and downloadNumber!=''">
+                download_number = #{downloadNumber},
+            </if>
+            <if test="downloadDate != null and downloadDate!=''">
+                download_date = #{downloadDate},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <select id="getOrderDetailById" resultMap="BaseResultMap">
+        select DISTINCT io.*,usr.name as creator_name,usr.username as creator_username,
+            place_status,cus.name,cucs.house_addr,pb.brand_name,cucs.designer,
+            cucs.designer_mobile, cus.mobile AS customer_phone,cucs.supervisor, cucs.supervisor_mobile,
+            cucs.project_manager,cucs.pm_mobile,cucs.id AS contract_id
+        from indent_order io
+        LEFT JOIN indent_order_item item ON (io.id= item.order_id)
+        LEFT JOIN acct_user usr ON (usr.id = io.creator)
+        LEFT JOIN prod_brand pb ON (item.brand_id = pb.id)
+        LEFT JOIN customer_contract cucs ON (cucs.contract_code = io.contract_code)
+        LEFT JOIN customer cus ON (cucs.customer_id = cus.id)
+        where io.id = #{id}
+    </select>
+
+    <!--批量插入-->
+    <insert id="batchInsertList" parameterType="list" >
+        INSERT INTO indent_order
+          (
+            order_code,
+            contract_code,
+            status,
+            note,
+            reason,
+            creator,
+            create_time,
+            editor,
+            edit_time,
+            place_status,
+            branch_no,
+            notice_install_time
+          )
+        VALUES
+        <foreach collection="list" index="index" item="item" separator=",">
+            (
+                #{item.code},#{item.contractCode},#{item.status},
+                #{item.note},#{item.reason},
+                #{item.creator.id},
+                #{item.createTime},
+                #{item.editor.id},
+                #{item.editTime},
+                #{item.placeEnum},#{item.branchNo},#{item.noticeInstallTime}
+            )
+        </foreach>
+    </insert>
+
+    <select id="findByQuery" resultMap="BaseResultMap" parameterType="map">
+        select
+          <include refid="Base_Column_List"/>
+        FROM indent_order io
+        LEFT JOIN acct_user usr ON io.creator = usr.id
+        <where>
+            <if test="contractCode != null">
+                AND io.contract_code = #{contractCode}
+            </if>
+            <if test="branchNo != null">
+                AND io.branch_no = #{branchNo}
+            </if>
+            <if test="createTime != null">
+                AND io.create_time = #{createTime}
+            </if>
+        </where>
+    </select>
+
+</mapper>

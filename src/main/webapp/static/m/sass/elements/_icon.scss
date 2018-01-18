@@ -1,0 +1,261 @@
+//== set icon.scss
+//
+//## css for icon 字体大小不会影响icon的垂直居中的位置,注意 icon 父元素必须设置line-height值为图片高
+.icon{
+	background-repeat: no-repeat;
+  background-size: 100% 100%;
+	display: inline-block; 
+  white-space: nowrap; 
+  letter-spacing: -1em; 
+  text-indent: -99em; 
+  color: transparent;
+  padding: 0;
+  margin: 0;
+    &.icon-return-top{
+      width: .32rem;
+      height: .32rem;
+      background-image: url('../images/icon-return-top.png');
+    }
+    &.icon-side-btn{
+      width: .21rem;
+      height: .61rem;
+      background-image: url('../images/icon-side-btn.png');
+    }
+    &.icon-search{
+      width: .12rem;
+      height: .13rem;
+      background-image: url('../images/icon-search.png');
+    }
+    &.icon-close{
+      width: .13rem;
+      height: .13rem;
+      background-image: url('../images/icon-close.png');
+    }
+    &.icon-close-normal{
+      width: .12rem;
+      height: .12rem;
+      background-image: url('../images/icon-close-normal.png');
+    }
+    &.icon-cry{
+      width: .5rem;
+      height: .5rem;
+      margin-bottom: .25rem;
+      margin-top: .25rem;
+      background-image: url('../images/icon-cry.png');
+    }
+    &.icon-side-01,
+    &.icon-side-02,
+    &.icon-side-03,
+    &.icon-side-04,
+    &.icon-side-05,
+    &.icon-side-06,
+    &.icon-side-07,
+    &.icon-side-08,
+    &.icon-side-09,
+    &.icon-side-10,
+    &.icon-side-11,
+    &.icon-side-12,
+    &.icon-side-13,{
+      width: .23rem;
+      height: .23rem;
+    }
+    &.icon-side-01{
+      background-image: url('../images/icon-side-01.png');
+    }
+    &.icon-side-02{
+      background-image: url('../images/icon-side-02.png');
+    }
+    &.icon-side-03{
+      background-image: url('../images/icon-side-03.png');
+    }
+    &.icon-side-04{
+      background-image: url('../images/icon-side-04.png');
+    }
+    &.icon-side-05{
+      background-image: url('../images/icon-side-05.png');
+    }
+    &.icon-side-06{
+      background-image: url('../images/icon-side-06.png');
+    }
+    &.icon-side-07{
+      background-image: url('../images/icon-side-07.png');
+    }
+    &.icon-side-08{
+      background-image: url('../images/icon-side-08.png');
+    }
+    &.icon-side-09{
+      background-image: url('../images/icon-side-09.png');
+    }
+    &.icon-side-10{
+      background-image: url('../images/icon-side-10.png');
+    }
+    &.icon-side-11{
+      background-image: url('../images/icon-side-11.png');
+    }
+    &.icon-side-12{
+      background-image: url('../images/icon-side-12.png');
+    }
+    &.icon-side-13{
+      background-image: url('../images/icon-side-13.png');
+    }
+}
+.icon-help{ 
+  display: inline-block;
+  border: 1px solid #9c9c9c;
+  width: .15rem;
+  height: .15rem;
+  line-height: .15rem;
+  text-align: center;
+  border-radius: 50%;
+  margin-right: .05rem;
+}
+/* 箭头 */
+.icon-arrow{
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+	display: inline-block; 
+  white-space: nowrap; 
+  letter-spacing: -1em; 
+  text-indent: -99em; 
+  color: transparent;
+  padding: 0;
+  margin: 0;
+  width: .11rem;
+  height: .2rem;
+  background-image: url('../images/icon-arrow-left.png');
+  &._arrow-white{
+    background-image: url('../images/icon-arrow-left-white.png');
+  }
+  &._up{
+    transform: rotate(90deg);
+  }
+  &._down{
+    transform: rotate(270deg);
+  }
+  &._right{
+    transform: rotate(180deg);
+  } 
+  &._sm{
+    width: .08rem;
+    height: .12rem;
+  }
+  &._xs{
+    width: .05rem;
+    height: .08rem;
+  }
+}  
+/* 倒三角 */
+.triangle{
+	position: relative;
+  text-indent: -99999;
+  font-size: 0;
+	&:after{
+		display: inline-block;
+		content: '';
+		border: solid transparent;
+		border-width: 11px;
+		position: absolute;
+		left: -2px;
+		top: 1px;
+		z-index: 2;
+	}
+	&:before{
+		display: inline-block;
+		content: '';
+		border: solid transparent;
+		border-width: 12px;
+		position: absolute;
+		left: -4px;
+		top: 0px;
+		z-index: 1;
+	}
+  &._all{
+    &:after{
+      border-top-color: #888888;
+      border-right-color: #888888;
+      border-bottom-color: #888888;
+      border-left-color: #888888;
+    }
+  }
+  &._left{
+    &:after{
+      border-right-color: #888888;
+    }
+    &:before{
+      border-right-color: #222222;
+    }
+  }
+  &._right{
+    &:after{
+      border-left-color: #888888;
+    }
+    &:before{
+      left: -2px;
+      border-left-color: #222222;
+    }
+  }
+  &._up{
+    &:after{
+      top: 2px;
+      left: -3px;
+      border-bottom-color: #888888;
+    }
+    &:before{
+      border-bottom-color: #222222;
+    }
+  }
+  &._down{
+    &:after{
+      top: 0px;
+      left: -3px;
+      border-top-color: #888888;
+    }
+    &:before{
+      border-top-color: #222222;
+    }
+  } 
+}
+
+.icon-menu{
+  display: inline-block;
+  width: .15rem;
+  height: 1.5px;
+  background: #454545;
+  position: relative;
+  &:before{
+    content: '';
+    display: inline-block;
+    width: .15rem;
+    height: 1.5px;
+    background: #454545;
+    position: absolute;
+    top: -4px;
+    left: 0;
+  }
+  &:after{
+    content: '';
+    display: inline-block;
+    width: .15rem;
+    height: 1.5px;
+    background: #454545;
+    position: absolute;
+    top: 4px;
+    left: 0;
+  }
+}
+
+
+/*
+.icon-filter{
+  display: inline-block;
+  overflow: hidden;
+}
+//## 滤镜改变icon的颜色，使用时放在需要改变的图标类下边
+.icon-filter > .icon {
+  position: relative;
+  left: -.15rem;
+  border-right: 20px solid transparent;
+  -webkit-filter: drop-shadow(#e15440 20px 0);
+  filter: drop-shadow(20px 0);    
+}
+*/

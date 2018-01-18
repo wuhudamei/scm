@@ -1,0 +1,51 @@
+.wrap-index{
+    .bar-search{
+        .svg-wish{
+            fill: #454545;
+        }
+    }
+    .swiper-container-love{
+       .item-goods{
+           width: 1.3rem;
+           img{
+               width: 1.3rem;
+           }
+       }
+       .item-more{
+           width: 1.32rem;
+           height: 1.42rem;
+       }
+   }
+}
+.banner-box{
+    margin-top: -.04rem;
+	.banner-section{
+		flex-wrap: wrap;
+	}  
+	.banner{
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+		img{
+			width: 100%;
+			height: 100%;
+		} 
+	} 
+    .banner-text{
+        width: 100%;
+        height: 100%; 
+        position: absolute; 
+        top: 0; 
+        left: 0; 
+        z-index: 1;
+        font-size: .14rem;
+        color: #f9fafc;
+        // background: rgba(0, 0, 0, 0.36);
+        span{
+            width: 100%;
+            height: 100%;
+        }
+    }
+}
+

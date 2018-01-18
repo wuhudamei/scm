@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mdni.scm.repository.dataArrangement.MaterialHouseReformDao">
+  <resultMap id="BaseResultMap" type="com.mdni.scm.entity.dataArrangement.MaterialHouseReform">
+    <id column="id" property="id" />
+    <result column="contract_id" property="contractId"/>
+    <result column="refom_project_name" property="refomProjectName" />
+    <result column="unit"  property="unit" />
+    <result column="quantity"  property="quantity" />
+    <result column="wastage_quantity"  property="wastageQuantity" />
+    <result column="material_master_fee"  property="materialMasterFee" />
+    <result column="matrial_assist_fee"  property="matrialAssistFee" />
+    <result column="man_made_fee"  property="manMadeFee" />
+    <result column="price"  property="price" />
+    <result column="amount"  property="amount" />
+    <result column="technology_material_explain"  property="technologyMaterialExplain" />
+    <result column="create_account"  property="createAccount" />
+    <result column="create_date"  property="createDate" />
+    <result column="del_account"  property="delAccount" />
+    <result column="del_date"  property="delDate" />
+    <result column="del_status"  property="delStatus" />
+  </resultMap>
+  <insert id="insert" useGeneratedKeys="true" keyProperty="id" >
+    insert into material_house_reform
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+    <if test="contractId!=null">
+      contract_id,
+    </if>
+    <if test="refomProjectName!=null">
+    refom_project_name,
+    </if>
+    <if test="unit!=null">
+    unit,
+    </if>
+    <if test="quantity!=null">
+    quantity,
+    </if>
+    <if test="wastageQuantity!=null ">
+    wastage_quantity,
+    </if>
+    <if test="materialMasterFee!=null">
+      material_master_fee,
+    </if>
+    <if test="matrialAssistFee!=null">
+      matrial_assist_fee,
+    </if>
+    <if test="manMadeFee!=null">
+      man_made_fee,
+    </if>
+    <if test="price!=null">
+      price,
+    </if>
+    <if test="amount!=null">
+      amount,
+    </if>
+    <if test="technologyMaterialExplain!=null">
+      technology_material_explain,
+    </if>
+    <if test="createAccount!=null">
+      create_account,
+    </if>
+    <if test="createDate!=null">
+      create_date,
+    </if>
+    <if test="delAccount !=null">
+      del_account,
+    </if>
+    <if test="delDate !=null ">
+      del_date,
+    </if>
+    <if test="delStatus !=null">
+      del_status
+    </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+    <if test="contractId!=null">
+      #{contractId},
+    </if>
+    <if test="refomProjectName!=null">
+      #{refomProjectName},
+    </if>
+    <if test="unit!=null">
+      #{unit},
+    </if>
+    <if test="quantity!=null">
+      #{quantity},
+    </if>
+    <if test="wastageQuantity!=null">
+      #{wastageQuantity},
+    </if>
+    <if test="materialMasterFee!=null">
+      #{materialMasterFee},
+    </if>
+    <if test="matrialAssistFee!=null">
+      #{matrialAssistFee},
+    </if>
+    <if test="manMadeFee!=null">
+      #{manMadeFee},
+    </if>
+    <if test="price!=null">
+      #{price},
+    </if>
+    <if test="amount!=null">
+      #{amount},
+    </if>
+    <if test="technologyMaterialExplain !=null">
+      #{technologyMaterialExplain},
+    </if>
+    <if test="createAccount!=null">
+      #{createAccount},
+    </if>
+    <if test="createDate!=null">
+      #{createDate},
+    </if>
+    <if test="delAccount !=null">
+      #{delAccount},
+    </if>
+    <if test="delDate !=null">
+      #{delDate},
+    </if>
+    <if test="delStatus !=null">
+      #{delStatus}
+    </if>
+    </trim>
+  </insert>
+  <update id="update">
+    UPDATE material_house_reform set contract_id=#{contractId},refom_project_name=#{refomProjectName},unit=#{unit},
+    quantity=#{quantity},wastage_quantity=#{wastageQuantity}, material_master_fee=#{wastageQuantity},
+    matrial_assist_fee=#{matrialAssistFee},man_made_fee=#{manMadeFee},price=#{price}, amount=#{amount},
+    technology_material_explain=#{technologyMaterialExplain}, create_account=#{createAccount},
+    create_date=#{createDate} WHERE id=#{id}
+  </update>
+  <select id="getById" resultMap="BaseResultMap">
+    select id,contract_id, refom_project_name, unit, quantity, wastage_quantity, material_master_fee,
+    matrial_assist_fee, man_made_fee, price, amount, technology_material_explain, create_account, 
+    create_date
+    from material_house_reform
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="findByContractId" resultMap="BaseResultMap">
+    select id, contract_id,refom_project_name, unit, quantity, wastage_quantity, material_master_fee,
+    matrial_assist_fee, man_made_fee, price, amount, technology_material_explain, create_account, 
+    create_date,del_account,del_date,del_status
+    from material_house_reform
+    WHERE contract_id=#{contractId} and del_status != 1
+    ORDER BY id DESC
+  </select>
+
+  <update id="delete" parameterType="map">
+    update material_house_reform
+    <set>
+      <if test="delAccount != null">
+        del_account = #{delAccount},
+      </if>
+      <if test="delDate != null">
+        del_date = #{delDate},
+      </if>
+      <if test="delStatus != null">
+        del_status = #{delStatus},
+      </if>
+    </set>
+    where id = #{id}
+  </update>
+</mapper>

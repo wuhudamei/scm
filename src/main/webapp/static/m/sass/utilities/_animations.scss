@@ -1,0 +1,13 @@
+@keyframes starAnim { 
+  0% {
+    fill: #ffffff;
+  }
+  100% { 
+    fill: #c9443e;
+  } 
+} 
+@keyframes spin {
+    to {
+        transform: rotate(1turn);
+    }
+}

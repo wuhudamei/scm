@@ -1,0 +1,356 @@
+.item-goods{
+	margin-bottom: .09rem;
+	position: relative;
+	.item-media{
+		background: #ffffff;
+		img{
+			min-height: 1.4rem; 
+		}
+	}
+	&._active{
+		.item-media{
+			border: 1px solid $color-secondary;
+		}
+		.svg-heart{
+			animation-name: starAnim;
+			animation-duration: .8s;
+			animation-timing-function: ease;
+			fill: $color-secondary;
+		}
+	}
+	.click-heart{
+		position: absolute;
+		top: 0rem;
+		right: 0rem;
+		padding: .2rem; 
+	}
+	.svg-heart{
+		position: absolute;
+		top: .07rem;
+		right: .07rem;
+	}
+	.item-inner{
+		padding: .05rem .02rem .05rem .04rem;
+		line-height: 2;
+	} 
+} 
+.item-more{
+	background: #d2d2d2;
+	color: $color-primary;
+	height: inherit;
+	font-size: .17rem;
+}
+.item-media { 
+	display: inline-block;
+	img{
+		width: 100%;
+		height: 100%;
+		float: left;
+		margin-right: .15rem;
+		&:last-child{
+			margin-right: 0;
+		}
+	}
+}
+.item-inner{
+	width: 100%;
+	position: relative;
+}
+.item-title {
+	color: $color-title;
+	font-size: .12rem;
+	font-weight: 400;
+	line-height: 1.5;
+}
+.item-subtitle {  
+	color: $color-subtitle;
+	line-height: 1.5;
+	font-size: .13rem;
+} 
+.item-price{
+	color: #6d6e71;
+	font-size: .09rem;
+	em{
+		font-size: .12rem;
+		color: #c51d1f;
+	}
+}
+/*
+	定位
+*/
+.item-bottom{
+	width: 100%;
+	position: absolute;
+	bottom: 0;
+} 
+/*
+	滑动删除
+*/
+.swipeout{
+	position: relative;
+}
+.swipeout-content{
+	//transform: translate3d(-.5rem, 0, 0);
+	//right: .5rem;
+	position: relative;
+	z-index: 5;
+}
+.swipeout-actions{
+	height: 100%;
+	position: absolute;
+	right: 0;
+	top: 0;
+	z-index: 1;
+	background: $bg-primary;
+	padding: 0 .1rem;
+	font-size: .15rem;
+	color: #ffffff;
+	text-align: center;
+} 
+/*
+	列表
+*/
+.list-disabled{
+	background: #d0d0d0 !important;
+	opacity: .6;
+	.plus,
+	.minus{
+		border: 1px solid #a3a3a3;
+		color: #a3a3a3;
+	} 
+	.num{
+		color: #a3a3a3;
+		border-top: 1px solid #a3a3a3;
+		border-bottom: 1px solid #a3a3a3;
+		input{
+			color: #a3a3a3;
+		}
+	} 
+	.label-checkbox{
+		visibility: hidden;
+		opacity: 0;
+	}
+}
+.list-block{
+	position: relative;
+} 
+.list-normal{
+	.item{
+		display: block;
+		line-height: .15rem;
+		font-size: .15rem;
+		padding: .2rem .15rem;
+		color: #9c9c9c;
+		background: #ffffff;
+		border-bottom: 1px solid #e8e8e8;
+	}
+} 
+/*
+	菜单-个人中心
+*/
+.list-menu{
+	padding: .24rem .15rem;
+	line-height: 2;
+	.item{
+		font-size: .15rem;
+		text-align: center;
+		border-right: 1px solid #dddddd;
+		&:last-child{
+			border-right: 0;
+		}
+	}
+	.font-large{
+		font-size: .2rem;
+	}
+	.menu-icon{
+		height: .23rem;
+		line-height: .23rem;
+	}
+}
+ /*
+ 	优惠券
+ */
+.list-coupons{  
+	margin: 0 .15rem .15rem .15rem;
+	border-radius: .1rem;
+	border-top: .07rem solid #d2d2d2;
+	border-bottom: .07rem solid #ffffff;
+	&.active{
+		border-top: .07rem solid $color-primary;
+		.item-price{
+			em{
+				color: $color-primary;
+			}
+		}
+		.coupons-state{
+			color: $color-primary;
+		}
+		.coupons-body .coupons-bg{
+			background: image-url('bg-coupons-active.png');
+			background-size: 100% 100%;
+		}
+		.item-subtitle,
+		.coupons-footer{
+			color: #414141;
+		}
+	}
+	.item-price{
+		font-size: .42rem;
+		em{
+			color: #9c9c9c;
+		}
+		i{
+			font-size: .18rem;
+		}
+	}
+	.coupons-body{
+		position: relative;
+		padding: .25rem .15rem .2rem .15rem;
+		background:	radial-gradient(circle at bottom right, transparent .05rem, #ffffff 0) bottom right,
+		            radial-gradient(circle at bottom left, transparent .05rem, #ffffff 0) bottom left;
+		background-size: 50% 100%;
+		background-repeat: no-repeat;
+		.coupons-bg{
+			width: .82rem;
+			height: .78rem;
+			background: image-url('bg-coupons.png');
+			background-size: 100% 100%;
+			position: absolute;
+			left: 0;
+			bottom: 0;
+		}
+	}
+	.coupons-footer{
+		position: relative;
+		line-height: 1.5;
+		color: #9b9b9b;
+		padding: .12rem .15rem 0 .15rem;
+		background:	radial-gradient(circle at top left, transparent .05rem, #ffffff 0) top left,
+	            	radial-gradient(circle at top right, transparent .05rem, #ffffff 0) top right;
+		background-size: 50% 100%;
+		background-repeat: no-repeat;
+		&:before{
+			content: '..........................................................................................................................................................................................................';
+			width: 98%;
+			height: .1rem;
+			overflow: hidden;
+			margin-left: .05rem;
+			line-height: 1px;
+			position: absolute;
+			top: -.04rem;
+			left: 0;
+			color: #d2d2d2;
+			letter-spacing: .05rem;
+			font-size: .18rem;
+		}
+		.coupons-state{
+			white-space: nowrap;
+			font-size: .16rem;
+		}
+	}
+}
+/*
+	table
+*/
+.list-table{
+	border-bottom: 1px solid #d2d2d2;
+	.item{
+		text-align: center;
+	}
+}
+.t-head .item{
+	height: .44rem;
+	line-height: .44rem;
+	background: #ffffff;
+	color: #414141;
+	border-bottom:  1px solid #d2d2d2;
+	border-right: 1px solid #d2d2d2;
+	font-size: .16rem;
+	&:last-child{
+		border-right: 0
+	}
+}
+.t-body .item{
+	font-size: .15rem;
+	padding: .08rem 0;
+	line-height: 1.5;
+	&:first-child{
+		font-size: .12rem;
+	}  
+}
+.t-body:nth-child(odd){
+	background: #ffffff;
+}
+.t-body:nth-child(even){
+	background: #f0f0f0; 
+} 
+/*
+	个人中心头部
+*/
+.card-header{ 
+	color: #ffffff;
+	padding-top: .15rem;
+	padding-bottom: .15rem;
+	background-color: #f15b39;
+	/*min-height: 1.24rem;*/
+	.icon-arrow{
+		width: .08rem;
+		height: .15rem;
+		margin-left: .05rem;
+		margin-right: .05rem;
+	}
+}
+/* 
+	waterfal-flow 流布局
+ */
+.waterfal-flow{
+	margin-left: .1rem;
+	position: relative;
+	.aside{
+		margin-right: .1rem;
+	}
+	.item-goods{
+		display: inherit;
+		border-bottom: 1px dashed #dbd9d9;
+		&:last-child{
+			border-bottom: 0;
+		}
+	}
+}
+.col-4{
+	margin-right: -.15rem;
+	.item-goods{
+		width: 2.1rem;
+		margin-right: .15rem;
+	}
+}
+.col-2{
+	margin-right: -.1rem;
+	.item-goods{
+		width: 1.7rem;
+		margin-right: .1rem;
+	}
+}
+/* 分类列表 */
+.list-classify{
+	a{
+		padding-top: .1rem;
+		padding-bottom: .1rem;
+		// height: .43rem;
+		color: #f2f2f2;
+		padding-left: .15rem;
+		padding-right: .24rem;
+		font-size: .16rem;
+		&._active{
+			background: #252429;
+		}
+	} 
+	.icon{
+		margin-right: .15rem;
+	}
+	.svg-arrow{
+		width: .1rem;
+		height: .11rem;
+		fill: #8d8c8f;
+	}
+}

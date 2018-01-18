@@ -1,0 +1,28 @@
+    .banner {
+        position: absolute;
+        width: 100%;
+        z-index: 10;
+        top: 152px;
+        .swiper-container {
+            width: 1000px;
+            height: 220px;
+            margin: 20px auto 10px;
+            overflow: hidden;
+            .swiper-button-prev,
+            .swiper-button-next {
+                width: 25px;
+                height: 51px;
+                z-index: 111px;
+                position: absolute;
+                top: 42%;
+            }
+            .swiper-button-prev {
+                background: url('../images/icon/icon-arrow-left.png') no-repeat;
+                left: 30px;
+            }
+            .swiper-button-next {
+                background: url('../images/icon/icon-arrow-right.png') no-repeat;
+                right: 30px;
+            }
+        }
+    }

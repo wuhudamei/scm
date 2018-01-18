@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+         version="2.5">
+    <display-name>美得你供应链系统</display-name>
+    <context-param>
+        <param-name>contextConfigLocation</param-name>
+        <param-value>
+            classpath*:/applicationContext.xml
+        </param-value>
+    </context-param>
+    <context-param>
+        <param-name>spring.profiles.default</param-name>
+        <param-value>production</param-value>
+    </context-param>
+    <!-- 解决在Windows运行Jetty，静态文件(如：js)无法修改的问题 -->
+    <context-param>
+        <param-name>org.eclipse.jetty.servlet.Default.useFileMappedBuffer</param-name>
+        <param-value>false</param-value>
+    </context-param>
+
+    <!-- Java Simple Monitoring Console Servlet -->
+    <servlet>
+        <servlet-name>SimonConsoleServlet</servlet-name>
+        <servlet-class>org.javasimon.console.SimonConsoleServlet</servlet-class>
+        <init-param>
+            <param-name>url-prefix</param-name>
+            <param-value>/javasimon</param-value>
+        </init-param>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>SimonConsoleServlet</servlet-name>
+        <url-pattern>/javasimon/*</url-pattern>
+    </servlet-mapping>
+
+    <listener>
+        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+    </listener>
+
+    <filter>
+        <filter-name>encodingFilter</filter-name>
+        <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+        <init-param>
+            <param-name>encoding</param-name>
+            <param-value>UTF-8</param-value>
+        </init-param>
+        <init-param>
+            <param-name>forceEncoding</param-name>
+            <param-value>true</param-value>
+        </init-param>
+    </filter>
+    <filter-mapping>
+        <filter-name>encodingFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+
+    <!-- 防sql注入，跨站点脚本编制-->
+    <filter>
+        <filter-name>xssFilter</filter-name>
+        <filter-class>com.mdni.scm.web.filter.XSSFilter</filter-class>
+        <init-param>
+            <param-name>stopWords</param-name>
+            <param-value>exec|insert|select|delete|update|drop|mid|master|truncate|declare|or|and|sleep</param-value>
+        </init-param>
+
+        <!-- 半角字符转义成全角字符 -->
+        <init-param>
+            <param-name>escapeChars</param-name>
+            <param-value><![CDATA[>'&\#"<]]></param-value>
+        </init-param>
+        <init-param>
+            <param-name>escapeTo</param-name>
+            <param-value><![CDATA[＞‘＆＼＃“＜]]></param-value>
+        </init-param>
+        <init-param>
+        	 <!-- 不需要执行xss转义的servletPath,多个路径用半角逗号分隔 -->
+        	 <param-name>excludeXssPath</param-name>
+            <param-value>/api/product/edit</param-value>
+        </init-param>
+    </filter>
+    <filter-mapping>
+        <filter-name>xssFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+
+    <filter>
+        <filter-name>shiroFilter</filter-name>
+        <filter-class>com.mdni.scm.shiro.filter.MyDelegatingShiroFilterProxy</filter-class>
+        <init-param>
+            <param-name>targetFilterLifecycle</param-name>
+            <param-value>true</param-value>
+        </init-param>
+    </filter>
+
+    <filter-mapping>
+        <filter-name>shiroFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+    <filter>
+        <filter-name>sitemeshFilter</filter-name>
+        <filter-class>com.opensymphony.sitemesh.webapp.SiteMeshFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>sitemeshFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+
+    <servlet-mapping>
+        <!-- 静态资源不走mvc -->
+        <servlet-name>default</servlet-name>
+        <url-pattern>/static/*</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>springServlet</servlet-name>
+        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+        <init-param>
+            <param-name>contextConfigLocation</param-name>
+            <param-value>/WEB-INF/spring-mvc.xml</param-value>
+        </init-param>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>springServlet</servlet-name>
+        <url-pattern>/</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>staticContentServlet</servlet-name>
+        <servlet-class>com.mdni.scm.web.servlet.StaticContentServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>staticContentServlet</servlet-name>
+        <url-pattern>/imgFile/*</url-pattern>
+    </servlet-mapping>
+
+    <session-config>
+        <session-timeout>30</session-timeout>
+    </session-config>
+
+    <error-page>
+        <exception-type>java.lang.Exception</exception-type>
+        <location>/error/exception</location>
+    </error-page>
+    <error-page>
+        <error-code>502</error-code>
+        <location>/error/exception</location>
+    </error-page>
+    <error-page>
+        <error-code>404</error-code>
+        <location>/error/404</location>
+    </error-page>
+</web-app>

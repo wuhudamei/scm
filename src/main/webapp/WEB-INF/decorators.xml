@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<decorators defaultdir="/WEB-INF/layouts/">
+    <excludes>
+        <pattern>/ueditor/config</pattern>
+        <pattern>/ueditor/*</pattern>
+        <pattern>/admin/logout</pattern>
+    </excludes>
+    <decorator name="admin_sign_in" page="admin/signin.jsp">
+        <pattern>/admin</pattern>
+        <pattern>/admin/</pattern>
+        <pattern>/admin/*</pattern>
+    </decorator>
+    <decorator name="admin_sign_out" page="admin/signout.jsp">
+        <pattern>/admin/login</pattern>
+    </decorator>
+    <decorator name="ipad" page="ipad-default.jsp">
+        <pattern>**/ipad</pattern>
+        <pattern>/ipad/**</pattern>
+        <pattern>**/ipad/**</pattern>
+    </decorator>
+
+    <decorator name="m" page="m-default.jsp">
+        <pattern>**/m</pattern>
+        <pattern>/m/**</pattern>
+        <pattern>**/m/**</pattern>
+    </decorator>
+
+    <decorator name="pc" page="pc-default.jsp">
+        <pattern>/</pattern>
+        <pattern>/list</pattern>
+        <pattern>/brandlist</pattern>
+        <pattern>/detail</pattern>
+        <pattern>/feedback</pattern>
+        <pattern>/follow</pattern>
+        <pattern>/recommend</pattern>
+    </decorator>
+
+
+</decorators>

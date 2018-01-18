@@ -1,0 +1,28 @@
+//== set side-content.scss
+//
+//##
+.side-content{
+  width: 252px;
+  .side-img{
+      margin: 18px 0;
+      display: block;
+      border: 1px solid #dcdcdc;
+      position: relative;
+      z-index: 1;
+      &.qr{
+        border:none;
+      }
+    img{
+      width: 100%;
+      height: auto;
+    }
+  }
+} 
+.side-content-detail{
+  .side-img{
+    margin-bottom: 13px;
+    margin-top: 0;
+    position: relative;
+    z-index: 1;
+  }
+}
