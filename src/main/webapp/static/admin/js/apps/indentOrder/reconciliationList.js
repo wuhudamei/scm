@@ -10,12 +10,11 @@
             breadcrumbs: [{
                 path: '/admin',
                 name: '主页'
-            },
-                {
-                    path: '/',
-                    name: '订货单',
-                    active: true
-                }],
+            }, {
+                path: '/',
+                name: '对账列表',
+                active: true
+            }],
             form: {
                 keyword: '',
                 status: '',
@@ -99,7 +98,7 @@
                         {
                             field: 'creator',
                             title: '制单人',
-                            visible:false,
+                            visible: false,
                             orderable: false,
                             align: 'center',
                             formatter: function (val) {
@@ -109,7 +108,7 @@
                             field: 'placeEnum',
                             title: '制单类型',
                             orderable: false,
-                            visible:false,
+                            visible: false,
                             align: 'center',
                             formatter: function (value) {
                                 switch (value) {
@@ -127,7 +126,7 @@
                             title: '接单状态',
                             orderable: false,
                             align: 'center',
-                            visible:false,
+                            visible: false,
                             formatter: function (value) {
                                 switch (value) {
                                     case "YES":
@@ -138,17 +137,17 @@
                                         break;
                                 }
                             }
-                        },{
+                        }, {
                             field: 'acceptDate',
                             title: '接单时间',
                             orderable: false,
-                            visible:false,
+                            visible: false,
                             align: 'center'
-                        },{
+                        }, {
                             field: 'downloadNumber',
                             title: '下载状态',
                             orderable: false,
-                            visible:false,
+                            visible: false,
                             align: 'center',
                             formatter: function (value) {
                                 switch (value) {
@@ -156,7 +155,7 @@
                                         return "未下载";
                                         break;
                                     default:
-                                        return "已下载（"+value+"）";
+                                        return "已下载（" + value + "）";
                                         break;
                                 }
                             }
@@ -164,7 +163,7 @@
                         {
                             field: 'downloadDate',
                             title: '下载时间',
-                            visible:false,
+                            visible: false,
                             orderable: false,
                             align: 'center'
                         },
@@ -219,7 +218,7 @@
                             title: '创建时间',
                             orderable: false,
                             align: 'center',
-                            visible:false
+                            visible: false
                         }, {
                             field: 'noticeInstallTime',
                             title: '通知安装时间',
@@ -243,7 +242,7 @@
                             title: '对账备注',
                             orderable: false,
                             align: 'center'
-                        },{
+                        }, {
                             field: 'id',
                             title: '操作',
                             orderable: false,
@@ -253,7 +252,7 @@
                                     var html = '';
                                     //对账操作
                                     if (RocoUtils.hasPermission('reconciliation:edit')) {
-                                        if(row.status!='HASBEENRECONCILED'){
+                                        if (row.status != 'HASBEENRECONCILED') {
                                             html += '<button data-handle="data-reconciliation" data-id="' + row.id + '"  data-code="' + row.contractCode + '" data-status="' + row.status + '"  data-ordercode="' + row.code + '"class="m-r-xs btn btn-xs btn-primary" type="button">标记对账</button>';
                                         }
                                     }
@@ -268,10 +267,10 @@
                 self.$dataTable.on('click', '[data-handle="data-download"]',
                     function () {
                         var id = $(this).data("id");
-                        window.location.href = '/api/order/export?id='+id;
+                        window.location.href = '/api/order/export?id=' + id;
                         setTimeout(function () {
                             self.$dataTable.bootstrapTable('refresh');
-                        },1000);
+                        }, 1000);
 
                     }
                 );
@@ -316,11 +315,11 @@
                         this.findCustomerContract();
                     },
                     data: {
-                        remarks:'',
+                        remarks: '',
                         id: model.id,
-                        contractCode:model.code,
-                        code:model.ordercode,
-                        status:model.status,
+                        contractCode: model.code,
+                        code: model.ordercode,
+                        status: model.status,
                         table: '',
                         customerContract: {
                             customerName: '',
@@ -427,11 +426,11 @@
                                                 return val.quantity + "m²" + "/" + val.tabletNum + "片";
                                             } else {
                                                 var unit = "";
-                                                if(val.specUnit != null){
+                                                if (val.specUnit != null) {
                                                     var str = val.specUnit.toString().split("/");
                                                     unit = str[1];
                                                 }
-                                                return val.quantity + " "+unit;
+                                                return val.quantity + " " + unit;
                                             }
                                         }
                                     }, {
@@ -462,7 +461,7 @@
                                         field: 'payStatus',
                                         title: '支付状态',
                                         width: '5%',
-                                        visible:false,
+                                        visible: false,
                                         orderable: false,
                                         align: 'center',
                                         formatter: function (value, row) {
@@ -477,7 +476,7 @@
                                         title: '安装状态',
                                         width: '5%',
                                         align: 'center',
-                                        visible:false,
+                                        visible: false,
                                         orderable: false,
                                         formatter: function (data) {
                                             switch (data) {
@@ -515,7 +514,7 @@
                             self.$http.get('/api/order/' + self.id + '/detail').then(function (res) {
                                 if (res.data.code == 1) {
                                     self.table = res.data.data.orderItemList;
-                                    self.remarks=res.data.data.reconciliationRemarks;
+                                    self.remarks = res.data.data.reconciliationRemarks;
                                     self.$dataTable.bootstrapTable('load', self.table);
                                 } else {
                                 }
@@ -525,10 +524,10 @@
                             });
                         },
                         //保存对账信息
-                        save:function (val) {
+                        save: function (val) {
                             var self = this;
-                            if(val=="PARTIALRECONCILIATION"){
-                                if(self.remarks==''||self.remarks==undefined){
+                            if (val == "PARTIALRECONCILIATION") {
+                                if (self.remarks == '' || self.remarks == undefined) {
                                     swal({
                                             title: '提示',
                                             text: '部分对账必须填写备注？',
@@ -542,18 +541,19 @@
                                             closeOnConfirm: true
                                         },
                                         function () {
-                                                swal.close();
+                                            swal.close();
                                         });
                                     return;
                                 }
                             }
-                            var indentOrder={ id:self.id,
-                                status:val,
-                                reconciliationRemarks:self.remarks,
-                                contractCode:self.contractCode,
-                                code:self.code
+                            var indentOrder = {
+                                id: self.id,
+                                status: val,
+                                reconciliationRemarks: self.remarks,
+                                contractCode: self.contractCode,
+                                code: self.code
                             };
-                            self.$http.post('/api/order/reconciliation',indentOrder).then(function (res) {
+                            self.$http.post('/api/order/reconciliation', indentOrder).then(function (res) {
                                 if (res.data.code == 1) {
                                     toastr.success(res.data.message);
                                     $el.modal('hide');
@@ -566,7 +566,7 @@
                             }).finally(function () {
                             });
                         }
-                        
+
                     },
                 });
                 // 创建的Vue对象应该被返回
@@ -596,11 +596,11 @@
                         this.findCustomerContract();
                     },
                     data: {
-                        remarks:'',
+                        remarks: '',
                         id: model.id,
-                        contractCode:model.code,
-                        code:model.ordercode,
-                        status:model.status,
+                        contractCode: model.code,
+                        code: model.ordercode,
+                        status: model.status,
                         table: '',
                         customerContract: {
                             customerName: '',
@@ -707,11 +707,11 @@
                                                 return val.quantity + "m²" + "/" + val.tabletNum + "片";
                                             } else {
                                                 var unit = "";
-                                                if(val.specUnit != null){
+                                                if (val.specUnit != null) {
                                                     var str = val.specUnit.toString().split("/");
                                                     unit = str[1];
                                                 }
-                                                return val.quantity + " "+unit;
+                                                return val.quantity + " " + unit;
                                             }
                                         }
                                     }, {
@@ -742,7 +742,7 @@
                                         field: 'payStatus',
                                         title: '支付状态',
                                         width: '5%',
-                                        visible:false,
+                                        visible: false,
                                         orderable: false,
                                         align: 'center',
                                         formatter: function (value, row) {
@@ -757,7 +757,7 @@
                                         title: '安装状态',
                                         width: '5%',
                                         align: 'center',
-                                        visible:false,
+                                        visible: false,
                                         orderable: false,
                                         formatter: function (data) {
                                             switch (data) {
@@ -795,7 +795,7 @@
                             self.$http.get('/api/order/' + self.id + '/detail').then(function (res) {
                                 if (res.data.code == 1) {
                                     self.table = res.data.data.orderItemList;
-                                    self.remarks=res.data.data.reconciliationRemarks;
+                                    self.remarks = res.data.data.reconciliationRemarks;
                                     self.$dataTable.bootstrapTable('load', self.table);
                                 } else {
                                 }
@@ -805,10 +805,10 @@
                             });
                         },
                         //保存对账信息
-                        save:function (val) {
+                        save: function (val) {
                             var self = this;
-                            if(val=="PARTIALRECONCILIATION"){
-                                if(self.remarks==''||self.remarks==undefined){
+                            if (val == "PARTIALRECONCILIATION") {
+                                if (self.remarks == '' || self.remarks == undefined) {
                                     swal({
                                             title: '提示',
                                             text: '部分对账必须填写备注？',
@@ -827,13 +827,14 @@
                                     return;
                                 }
                             }
-                            var indentOrder={ id:self.id,
-                                status:val,
-                                reconciliationRemarks:self.remarks,
-                                contractCode:self.contractCode,
-                                code:self.code
+                            var indentOrder = {
+                                id: self.id,
+                                status: val,
+                                reconciliationRemarks: self.remarks,
+                                contractCode: self.contractCode,
+                                code: self.code
                             };
-                            self.$http.post('/api/order/reconciliation',indentOrder).then(function (res) {
+                            self.$http.post('/api/order/reconciliation', indentOrder).then(function (res) {
                                 if (res.data.code == 1) {
                                     toastr.success(res.data.message);
                                     $el.modal('hide');

@@ -1,4 +1,4 @@
-var skuModal=null;
+var skuModal = null;
 +(function () {
     $('#applyManage').addClass('active');
     $('#productApplyList').addClass('active');
@@ -10,14 +10,13 @@ var skuModal=null;
             allOrganization: null,
             applyStatusList: null,
             breadcrumbs: [{
-                path: '/',
+                path: '/admin',
                 name: '主页'
-            },
-                {
-                    path: '/',
-                    name: '商品管理',
-                    active: true
-                }],
+            }, {
+                path: '/',
+                name: '商品管理',
+                active: true
+            }],
             form: {
                 keyword: '',
                 supplierCodeName: '',
@@ -73,8 +72,8 @@ var skuModal=null;
                     }
                 });
             },
-            showSku:function (val,status) {
-                showSkuModal(val,status);
+            showSku: function (val, status) {
+                showSkuModal(val, status);
             },
             drawTable: function () {
                 var self = this;
@@ -127,7 +126,7 @@ var skuModal=null;
                             field: 'processStatus',
                             title: '是否可以作废',
                             align: 'center',
-                            visible:false
+                            visible: false
                         },
                         {
                             field: 'catalog',
@@ -166,7 +165,7 @@ var skuModal=null;
                             field: 'shelfMark',
                             title: '是否显示批量下架',
                             align: 'center',
-                            visible:false
+                            visible: false
                         },
                         {
                             field: 'status',
@@ -193,14 +192,14 @@ var skuModal=null;
                                 var html = '';
                                 if (RocoUtils.hasPermission('product:edit')) {
                                     //可编辑
-                                    if (acctType == 'PROD_SUPPLIER' && row.processStatus=='1'&&row.status=='LIST') {
+                                    if (acctType == 'PROD_SUPPLIER' && row.processStatus == '1' && row.status == 'LIST') {
                                         html += '<button data-handle="edit-click" data-id="' + row.id + '" type="button" class="m-r-xs btn btn-xs btn-primary">编辑</button>';
                                         // ke作废
-                                         html += '<button data-handle="edit-void" data-id="' + row.id + '" type="button" class="m-r-xs btn btn-xs btn-danger">作废</button>';
+                                        html += '<button data-handle="edit-void" data-id="' + row.id + '" type="button" class="m-r-xs btn btn-xs btn-danger">作废</button>';
                                     }
                                     html += '<button data-handle="edit-sku_manager" data-id="' + row.id + '"  data-status="' + row.status + '"  type="button" class="m-r-xs btn btn-xs btn-primary">SKU管理</button>';
                                 }
-                                if (acctType == 'MATERIAL_MANAGER' && row.shelfMark=='1') {
+                                if (acctType == 'MATERIAL_MANAGER' && row.shelfMark == '1') {
                                     html += '<button data-handle="edit-sku" data-id="' + row.id + '" type="button" class="m-r-xs btn btn-xs btn-primary">批量下架sku</button>';
                                 }
                                 return html;
@@ -212,7 +211,7 @@ var skuModal=null;
                     function (e) {
                         var productId = $(this).data('id');
                         var status = $(this).data('status');
-                        self.showSku(productId,status);
+                        self.showSku(productId, status);
                     });
                 // 批量下架sku
                 self.$dataTable.on('click', '[data-handle="edit-sku"]',
@@ -361,27 +360,27 @@ var skuModal=null;
     };
 
     // 管理sku 界面
-    function showSkuModal(productId,status) {
+    function showSkuModal(productId, status) {
         var _modal = $('#manageSku').clone();
         var $el = _modal.modal({
             height: 600,
             maxHeight: 800,
-            width:1300
+            width: 1300
         });
         $el.on('shown.bs.modal',
             function () {
                 var el = $el.get(0);
-                 skuModal = new Vue({
+                skuModal = new Vue({
                     el: el,
                     $modal: $el,
                     created: function () {
                     },
                     data: {
-                        status:status,
-                        addFlag:status=='DELIST'?false:true,
-                        form:{
-                            keyword:null,
-                            productId:productId
+                        status: status,
+                        addFlag: status == 'DELIST' ? false : true,
+                        form: {
+                            keyword: null,
+                            productId: productId
                         }
                     },
                     ready: function () {
@@ -492,10 +491,10 @@ var skuModal=null;
                                         orderable: true,
                                         formatter: function (value, row) {
                                             var label = '';
-                                            if( value!=undefined && value.indexOf("SUPPLY")>=0){
-                                                label='已填写';
-                                            }else{
-                                                label='未填写';
+                                            if (value != undefined && value.indexOf("SUPPLY") >= 0) {
+                                                label = '已填写';
+                                            } else {
+                                                label = '未填写';
                                             }
                                             return label;
                                         }
@@ -585,7 +584,7 @@ var skuModal=null;
                                             var html = '';
                                             var class_val = "m-r-xs btn btn-xs btn-danger";
                                             var nostatus = '';
-                                            if (acctType == 'PROD_SUPPLIER'&& row.processStatus!='sku_void'&&(row.processStatus=='sku_draft')) {
+                                            if (acctType == 'PROD_SUPPLIER' && row.processStatus != 'sku_void' && (row.processStatus == 'sku_draft')) {
                                                 html += '<button style="margin-left:10px;"';
                                                 html += 'data-handle="set"';
                                                 html += 'data-id="' + value + '"';
@@ -638,7 +637,7 @@ var skuModal=null;
             });
 
     };
-    Vue.validator('stock', function(val) {
+    Vue.validator('stock', function (val) {
         var g = /^[1-9]*[1-9][0-9]*$/;
         return g.test(val);
     })
@@ -648,7 +647,7 @@ var skuModal=null;
         var $el = _modal.modal({
             height: 300,
             maxHeight: 600,
-            width:600
+            width: 600
         });
         $el.on('shown.bs.modal',
             function () {
@@ -659,28 +658,28 @@ var skuModal=null;
                     created: function () {
                         this.getMate();
                     },
-                    components : {
-                        'web-uploader' : RocoVueComponents.WebUploaderComponent
+                    components: {
+                        'web-uploader': RocoVueComponents.WebUploaderComponent
                     },
                     data: {
                         //删除的路径
-                        path:null,
-                        sku:{
+                        path: null,
+                        sku: {
                             //展示的路径
-                            fullPath:null,
-                            productId:productId,
-                            attribute1:null,
-                            attribute2:null,
-                            attribute3:null,
-                            stock:null
-                            },
-                        mate:{
-                            attribute1Name:null,
-                            attribute2Name:null,
-                            attribute3Name:null
+                            fullPath: null,
+                            productId: productId,
+                            attribute1: null,
+                            attribute2: null,
+                            attribute3: null,
+                            stock: null
+                        },
+                        mate: {
+                            attribute1Name: null,
+                            attribute2Name: null,
+                            attribute3Name: null
                         },
                         webUploaderMain: {
-                            sku:'forSku',
+                            sku: 'forSku',
                             type: 'main',
                             formData: {
                                 type: 'PRODUCT'
@@ -714,11 +713,11 @@ var skuModal=null;
 
                     },
                     methods: {
-                        getMate:function () {
+                        getMate: function () {
                             var self = this;
-                            self.$http.get('/api/sku//getMate/'+productId).then(function (res) {
+                            self.$http.get('/api/sku//getMate/' + productId).then(function (res) {
                                 if (res.data.code == 1) {
-                                    self.mate= res.data.data;
+                                    self.mate = res.data.data;
                                 }
                             });
                         },
@@ -731,42 +730,43 @@ var skuModal=null;
                                 }
                             }).then(function (res) {
                                 if (res.data.code == 1) {
-                                    self.sku.fullPath= null;
-                                    self.path= null;
+                                    self.sku.fullPath = null;
+                                    self.path = null;
                                     this.$toastr.success('删除成功');
 
                                 }
-                            }).finally(function () {})
+                            }).finally(function () {
+                            })
                         },
-                        submitAdd:function () {
-                                var self = this;
-                                self.$validate(true, function () {
-                                        if (self.$validation.valid) {
-                                            self.$http.post('/api/sku/saveSku',self.sku,{emulateJSON: true} ).then(function (res) {
-                                                    if(res.data.code === '1'){
-                                                        Vue.toastr.success(res.data.message);
-                                                        $el.modal('hide');
-                                                        skuModal.$dataTable.bootstrapTable('selectPage', 1);
-                                                        skuModal.$dataTable.bootstrapTable('refresh');
-                                                        self.$destroy();
-                                                    }
-                                                },
-                                                function (error) {
-                                                    Vue.toastr.error(error.responseText);
-                                                }).catch(function () {
-                                            }).finally(function () {
+                        submitAdd: function () {
+                            var self = this;
+                            self.$validate(true, function () {
+                                if (self.$validation.valid) {
+                                    self.$http.post('/api/sku/saveSku', self.sku, {emulateJSON: true}).then(function (res) {
+                                            if (res.data.code === '1') {
+                                                Vue.toastr.success(res.data.message);
+                                                $el.modal('hide');
+                                                skuModal.$dataTable.bootstrapTable('selectPage', 1);
+                                                skuModal.$dataTable.bootstrapTable('refresh');
+                                                self.$destroy();
+                                            }
+                                        },
+                                        function (error) {
+                                            Vue.toastr.error(error.responseText);
+                                        }).catch(function () {
+                                    }).finally(function () {
 
-                                            });
-                                        }
-                                    })
+                                    });
+                                }
+                            })
                         },
                     },
                     events: {
                         'webupload-upload-success-main': function (file, res) {
-                            var self=this;
+                            var self = this;
                             if (res.code == 1) {
-                                self.sku.fullPath= ctx +res.data.fullPath;
-                                self.path= ctx +res.data.path;
+                                self.sku.fullPath = ctx + res.data.fullPath;
+                                self.path = ctx + res.data.path;
                                 this.$toastr.success('上传成功');
                             } else {
                                 this.$toastr.error(res.message);

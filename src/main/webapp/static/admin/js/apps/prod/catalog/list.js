@@ -8,14 +8,13 @@ var vueModal;
         data: {
             // 面包屑
             breadcrumbs: [{
-                path: '/',
+                path: '/admin',
                 name: '主页'
-            },
-                {
-                    path: '/',
-                    name: '类目管理',
-                    active: true //激活面包屑的
-                }],
+            }, {
+                path: '/',
+                name: '类目管理',
+                active: true //激活面包屑的
+            }],
             // 查询表单
             form: {
                 keyword: '',
@@ -452,7 +451,7 @@ var vueModal;
                         'parentId': function (val) {
                             var self = this;
                             var id;
-                            self.$http.post('/api/catalog/findCatalogParent?parentId='+val).then(function (res) {
+                            self.$http.post('/api/catalog/findCatalogParent?parentId=' + val).then(function (res) {
                                 if (res.data.code == "1") {
                                     //给数组赋值
                                     id = res.data.data;
@@ -460,7 +459,7 @@ var vueModal;
                                     if (id == 0) {
                                         self.show = false;
                                         self.showCataLog = true;
-                                    }else{
+                                    } else {
                                         self.show = true;
                                         self.showCataLog = false;
                                     }

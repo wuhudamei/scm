@@ -8,14 +8,13 @@ var vueIndex;
         mixins: [RocoVueMixins.DataTableMixin],
         data: {
             breadcrumbs: [{
-                path: '/',
+                path: '/admin',
                 name: '主页'
-            },
-                {
-                    path: '/',
-                    name: '预备单',
-                    active: true
-                }],
+            }, {
+                path: '/',
+                name: '预备单',
+                active: true
+            }],
             form: {
                 keyword: '',
                 status: '',
@@ -284,18 +283,18 @@ var vueIndex;
                                         orderable: false,
                                         align: 'center',
                                         formatter: function (val, row) {
-                                            if(row.tabletNum > 0){
+                                            if (row.tabletNum > 0) {
                                                 //有片数时, 表示单位是平米
                                                 return val + " " + "㎡";
-                                            }else if(row.specUnit){
+                                            } else if (row.specUnit) {
                                                 //获取specUnit单位
                                                 var i = row.specUnit.indexOf("/");
-                                                if(i != -1){
+                                                if (i != -1) {
                                                     return val + " " + row.specUnit.substring(i + 1, row.specUnit.length)
-                                                }else{
+                                                } else {
                                                     return val + " " + row.specUnit;
                                                 }
-                                            }else{
+                                            } else {
                                                 //没有单位
                                                 return val;
                                             }

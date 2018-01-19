@@ -7,14 +7,13 @@
         mixins: [RocoVueMixins.DataTableMixin],
         data: {
             breadcrumbs: [{
-                path: '/',
+                path: '/admin',
                 name: '主页'
-            },
-                {
-                    path: '/',
-                    name: '用户管理',
-                    active: true
-                }],
+            }, {
+                path: '/',
+                name: '用户管理',
+                active: true
+            }],
             form: {
                 keyword: '',
                 acctType: '',

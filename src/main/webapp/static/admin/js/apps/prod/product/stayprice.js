@@ -9,14 +9,13 @@
             allOrganization: null,
             applyStatusList: null,
             breadcrumbs: [{
-                path: '/',
+                path: '/admin',
                 name: '主页'
-            },
-                {
-                    path: '/',
-                    name: '待设置价格',
-                    active: true
-                }],
+            }, {
+                path: '/',
+                name: '待设置价格',
+                active: true
+            }],
             form: {
                 keyword: '',
                 excludeSkuIdList: '',
@@ -175,7 +174,7 @@
                             title: '库存量',
                             align: 'center',
                             orderable: true
-                        },{
+                        }, {
                             field: 'product',
                             title: '品牌',
                             align: 'center',
@@ -847,7 +846,7 @@
         var _modal = $('#contractModal').clone();
         var atableData = vueModal2.$aDataTable.bootstrapTable('getData');
         var btableData = vueModal2.$bDataTable.bootstrapTable('getData');
-        if(vueModal2.$cDataTable){
+        if (vueModal2.$cDataTable) {
             var ctableData = vueModal2.$cDataTable.bootstrapTable('getData');
         }
         var $el = _modal.modal({

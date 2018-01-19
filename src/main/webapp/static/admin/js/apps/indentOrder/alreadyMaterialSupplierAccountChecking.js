@@ -18,7 +18,7 @@ var queryCount = 0;
         data: {
             // 面包屑
             breadcrumbs: [{
-                path: '/',
+                path: '/admin',
                 name: '主页'
             }, {
                 path: '/',

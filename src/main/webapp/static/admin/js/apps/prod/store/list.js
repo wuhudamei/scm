@@ -10,18 +10,13 @@ var vueIndex;
         mixins: [RocoVueMixins.DataTableMixin],
         data: {
             breadcrumbs: [{
-                path: '/',
+                path: '/admin',
                 name: '主页'
-            },
-                {
-                    path: '/',
-                    name: '商品管理'
-                },
-                {
-                    path: '/',
-                    name: '门店',
-                    active: true
-                }],
+            }, {
+                path: '/',
+                name: '门店',
+                active: true
+            }],
             form: {
                 keyword: '',
                 status: ''
@@ -69,7 +64,7 @@ var vueIndex;
                             width: '30%',
                             orderable: true,
                             align: 'center'
-                        },{
+                        }, {
                             field: 'name',
                             title: '名称',
                             width: '30%',
@@ -194,7 +189,7 @@ var vueIndex;
                     ready: function () {
                         this.fetch();
                     },
-                    data:  model,
+                    data: model,
                     methods: {
                         fetch: function () {
                             var self = this;

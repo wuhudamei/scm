@@ -8,12 +8,9 @@ var queryCount = 0;
         data: {
             // 面包屑
             breadcrumbs: [{
-                path: '/',
+                path: '/admin',
                 name: '主页'
              },{
-                path: '/',
-                name: '订货单'
-            }, {
                 path: '/',
                 name: '操作日志',
                 active: true //激活面包屑的

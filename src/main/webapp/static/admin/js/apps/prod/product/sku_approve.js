@@ -9,14 +9,13 @@
             allOrganization: null,
             applyStatusList: null,
             breadcrumbs: [{
-                path: '/',
+                path: '/admin',
                 name: '主页'
-            },
-                {
-                    path: '/',
-                    name: 'sku未审核',
-                    active: true
-                }],
+            }, {
+                path: '/',
+                name: 'sku未审核',
+                active: true
+            }],
             form: {
                 keyword: '',
                 excludeSkuIdList: '',
@@ -175,7 +174,7 @@
                             title: '型号',
                             align: 'center',
                             orderable: true,
-                            formatter:function (val) {
+                            formatter: function (val) {
                                 return val.model;
                             }
                         },
@@ -205,7 +204,7 @@
                             title: '规格',
                             align: 'center',
                             orderable: true,
-                            formatter:function (val) {
+                            formatter: function (val) {
                                 return val.spec;
                             }
                         },
@@ -219,11 +218,11 @@
                                 var fragment = '';
                                 var processStatus = row.processStatus;
                                 if (processStatus == 'sku_supplier_audit' || processStatus == 'sku_yellow_check' || processStatus == 'sku_check_purchase' || processStatus == 'sku_check_sale') {
-                                    if(processStatus == 'sku_check_purchase'){
+                                    if (processStatus == 'sku_check_purchase') {
                                         fragment += ('<button   data-handle="approval" data-id="' + row.id + '"  data-flag="' + 1 + '"  type="button" class="btn btn-xs btn-primary">审批</button>&nbsp');
-                                    }else if(processStatus == 'sku_check_sale'){
+                                    } else if (processStatus == 'sku_check_sale') {
                                         fragment += ('<button   data-handle="approval" data-id="' + row.id + '"  data-flag="' + 0 + '"  type="button" class="btn btn-xs btn-primary">审批</button>&nbsp');
-                                    }else{
+                                    } else {
                                         fragment += ('<button   data-handle="approval" data-id="' + row.id + '"   type="button" class="btn btn-xs btn-primary">审批</button>&nbsp');
                                     }
                                 }
@@ -236,9 +235,9 @@
                 self.$dataTable.on('click', '[data-handle="approval"]',
                     function (e) {
                         var flag = $(this).data('flag');
-                        if(flag == 1 || flag == 0){
-                            approval($(this).data('id'),flag);
-                        }else {
+                        if (flag == 1 || flag == 0) {
+                            approval($(this).data('id'), flag);
+                        } else {
                             approval($(this).data('id'));
                         }
                         e.stopPropagation();
@@ -259,7 +258,7 @@
         }
     })
     // 审批
-    function approval(id,flag) {
+    function approval(id, flag) {
         var _modal = $('#approval').clone();
         var $el = _modal.modal({
             height: 600,
@@ -287,7 +286,7 @@
                         sku: null,
                         remarks: '',
                         result: 1,
-                        acctType:''
+                        acctType: ''
                     },
                     methods: {
                         // 查询 信息
@@ -337,15 +336,15 @@
                                 }
                                 //店总
                                 if (acctType === 'STORE') {
-                                    if(flag == 1){
+                                    if (flag == 1) {
                                         aa.processStatus = 'sku_store_sale';
                                         aa.node = 'sku_check_purchase';
-                                    }else {
+                                    } else {
                                         aa.processStatus = 'sku_shelf_failure';
                                         aa.node = 'sku_check_sale';
                                     }
                                 }
-                            }else{
+                            } else {
                                 //区域供货商
                                 if (acctType === 'REGION_SUPPLIER') {
                                     aa.processStatus = 'sku_draft';
@@ -358,10 +357,10 @@
                                 }
                                 //店总
                                 if (acctType === 'STORE') {
-                                    if(flag == 1){
+                                    if (flag == 1) {
                                         aa.processStatus = 'sku_store_purchase';
                                         aa.node = 'sku_check_purchase';
-                                    }else {
+                                    } else {
                                         aa.processStatus = 'sku_store_sale';
                                         aa.node = 'sku_check_sale';
                                     }
@@ -369,9 +368,9 @@
 
                             }
                             self.$http.post('/api/sku/updateProcess', aa, {emulateJSON: true}).then(function (res) {
-                                    self.$toastr.success('审批成功');
-                                    $el.modal('hide');
-                                    vueProductList.$dataTable.bootstrapTable('refresh');
+                                self.$toastr.success('审批成功');
+                                $el.modal('hide');
+                                vueProductList.$dataTable.bootstrapTable('refresh');
                             }).catch(function () {
                             }).finally(function () {
                             });

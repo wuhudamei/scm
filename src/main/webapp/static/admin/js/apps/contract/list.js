@@ -9,17 +9,13 @@
         mixins: [RocoVueMixins.DataTableMixin],
         data: {
             breadcrumbs: [{
-                path: '/',
+                path: '/admin',
                 name: '主页'
             }, {
                 path: '/',
-                name: '客户项目'
-            },
-                {
-                    path: '/',
-                    name: '项目列表',
-                    active: true
-                }],
+                name: '项目列表',
+                active: true
+            }],
             form: {
                 keyword: '',
                 customerId: ''

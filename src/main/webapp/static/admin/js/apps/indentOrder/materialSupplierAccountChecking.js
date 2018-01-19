@@ -20,7 +20,7 @@ var idArr = [];
             acctType:acctType,
             // 面包屑
             breadcrumbs: [{
-                path: '/',
+                path: '/admin',
                 name: '主页'
             }, {
                 path: '/',

@@ -10,14 +10,13 @@
         data: {
             acctType: null,
             breadcrumbs: [{
-                path: '/',
+                path: '/admin',
                 name: '主页'
-            },
-                {
-                    path: '/',
-                    name: '客户信息',
-                    active: true
-                }],
+            }, {
+                path: '/',
+                name: '客户信息',
+                active: true
+            }],
             form: {
                 keyword: '',
                 status: ''

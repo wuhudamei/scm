@@ -9,14 +9,13 @@
             allOrganization: null,
             applyStatusList: null,
             breadcrumbs: [{
-                path: '/',
+                path: '/admin',
                 name: '主页'
-            },
-                {
-                    path: '/',
-                    name: 'sku已审核',
-                    active: true
-                }],
+            }, {
+                path: '/',
+                name: 'sku已审核',
+                active: true
+            }],
             form: {
                 keyword: '',
                 excludeSkuIdList: '',
@@ -49,8 +48,8 @@
             // 商品供应商列表
             fetchSuppliers: function (id) {
                 var self = this
-                if(id==null || id==''||id==undefined ){
-                }else {
+                if (id == null || id == '' || id == undefined) {
+                } else {
                     self.$http.get('/api/supplier/filterByRegionIdAndStatus?status=OPEN&regionSupplierId=' + id).then(function (res) {
                         if (res.data.code == 1) {
                             self.suppliers = res.data.data
@@ -62,7 +61,7 @@
                     }).finally(function () {
                     })
                 }
-                },
+            },
             // 区域供应商
             fetchAllSuppliers: function (val) {
                 var self = this
@@ -91,9 +90,9 @@
                 })
             },
             query: function () {
-                var self=this;
-                self.form.allSupplierId=self.allSupplierId;
-                self.form.allStoreCode=self.allStoreCode;
+                var self = this;
+                self.form.allSupplierId = self.allSupplierId;
+                self.form.allStoreCode = self.allStoreCode;
                 this.$dataTable.bootstrapTable('selectPage', 1)
             },
 
@@ -170,7 +169,7 @@
                             title: '型号',
                             align: 'center',
                             orderable: true,
-                            formatter:function (val) {
+                            formatter: function (val) {
                                 return val.model;
                             }
                         },
@@ -179,7 +178,7 @@
                             title: '规格',
                             align: 'center',
                             orderable: true,
-                            formatter:function (val) {
+                            formatter: function (val) {
                                 return val.spec;
                             }
                         },
@@ -191,8 +190,8 @@
                             align: 'center',
                             formatter: function (value, row) {
                                 var fragment = '';
-                                    fragment += ('<button   data-handle="approval" data-id="' + row.id + '"  type="button" class="btn btn-xs btn-primary">查看审批记录</button>&nbsp');
-                                 return fragment;
+                                fragment += ('<button   data-handle="approval" data-id="' + row.id + '"  type="button" class="btn btn-xs btn-primary">查看审批记录</button>&nbsp');
+                                return fragment;
                             }
                         }
                     ]
@@ -200,7 +199,7 @@
                 // 查看审批记录
                 self.$dataTable.on('click', '[data-handle="approval"]',
                     function (e) {
-                       var id = $(this).data('id');
+                        var id = $(this).data('id');
                         approval(id);
                     }
                 );
@@ -241,18 +240,18 @@
                     $modal: $el,
                     created: function () {
                     },
-                    filters:{
+                    filters: {
                         result: function (value) {
                             var label = '';
-                            if(value == 1 ){
+                            if (value == 1) {
                                 label = '<font color="green">通过</font>';
                                 return label;
-                            }else {
+                            } else {
                                 label = '<font color="red">驳回</font>';
                                 return label;
                             }
                         },
-                        node:function (value) {
+                        node: function (value) {
                             var label = '';
                             switch (value) {
                                 case 'sku_draft':
@@ -289,15 +288,15 @@
                         }
                     },
                     data: {
-                        recordList:null
+                        recordList: null
                     },
                     methods: {
                         // 查询 信息
                         app: function () {
-                            var self=this;
-                            self.$http.get('/api/sku/recordList?skuId='+id).then(function (res) {
+                            var self = this;
+                            self.$http.get('/api/sku/recordList?skuId=' + id).then(function (res) {
                                 if (res.data.code == 1) {
-                                    self.recordList=res.data.data;
+                                    self.recordList = res.data.data;
                                 }
                             }).catch(function () {
                             }).finally(function () {

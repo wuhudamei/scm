@@ -15,7 +15,7 @@
         mixins: [RocoVueMixins.DataTableMixin],
         data: {
             breadcrumbs: [{
-                path: '/',
+                path: '/admin',
                 name: '主页'
             }, {
                 path: '/',

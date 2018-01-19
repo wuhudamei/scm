@@ -7,20 +7,19 @@ var tt = null, showBill = null;
         mixins: [RocoVueMixins.DataTableMixin],
         data: {
             breadcrumbs: [{
-                path: '/',
+                path: '/admin',
                 name: '主页'
-            },
-                {
-                    path: '/',
-                    name: '基础数据维护',
-                    active: true
-                }],
+            }, {
+                path: '/',
+                name: '基础数据维护',
+                active: true
+            }],
             form: {
                 keyword: '',
             },
-            dictionary:{
-                id:null,
-                status:1
+            dictionary: {
+                id: null,
+                status: 1
             },
             brands: {},
             $dataTable: null,
@@ -41,7 +40,7 @@ var tt = null, showBill = null;
                 this.$dataTable.bootstrapTable('selectPage', 1);
             },
             //新增
-            createBtnClickHandler:function () {
+            createBtnClickHandler: function () {
                 model2(null);
             },
             drawTable: function () {
@@ -112,8 +111,8 @@ var tt = null, showBill = null;
                             align: 'center',
                             formatter: function (value, row) {
                                 var fragment = '';
-                                if(hasDictionary){
-                                    if(RocoUtils.hasPermission('dict:edit')) {
+                                if (hasDictionary) {
+                                    if (RocoUtils.hasPermission('dict:edit')) {
                                         fragment += ('<button   data-handle="edit" data-id="' + row.id + '"  type="button" class="btn btn-xs btn-primary">编辑</button>&nbsp');
                                     }
                                     fragment += ('<button   data-handle="delete" data-id="' + row.id + '" type="button" class="btn btn-xs btn-danger">删除</button>&nbsp');
@@ -143,7 +142,7 @@ var tt = null, showBill = null;
                         var id = $(this).data("id");
 
                         swal({
-                            title:"是否删除字典类型？" ,
+                            title: "是否删除字典类型？",
                             type: "warning",
                             showCancelButton: true,
                             confirmButtonColor: "#DD6B55",
@@ -152,7 +151,7 @@ var tt = null, showBill = null;
                             closeOnConfirm: false
                         }, function (isConfirm) {
                             if (isConfirm) {
-                                self.$http.get('/api/system/dictionary/'+id+'/del').then(function (res) {
+                                self.$http.get('/api/system/dictionary/' + id + '/del').then(function (res) {
                                     if (res.data.code == 1) {
                                         self.$toastr.success('操作成功');
                                         self.$dataTable.bootstrapTable('refresh');
@@ -172,17 +171,17 @@ var tt = null, showBill = null;
                     function (e) {
                         var id = $(this).data("id");
                         var status = $(this).data("status");
-                        self.dictionary.id=id;
-                        self.dictionary.status=status;
-                        var title='';
-                        if(status===1){
-                            title='是否启用该字典类型？'
+                        self.dictionary.id = id;
+                        self.dictionary.status = status;
+                        var title = '';
+                        if (status === 1) {
+                            title = '是否启用该字典类型？'
                         }
-                        if(status===0){
-                            title='是否禁用该字典类型？'
+                        if (status === 0) {
+                            title = '是否禁用该字典类型？'
                         }
                         swal({
-                            title:title ,
+                            title: title,
                             type: "warning",
                             showCancelButton: true,
                             confirmButtonColor: "#DD6B55",
@@ -191,7 +190,7 @@ var tt = null, showBill = null;
                             closeOnConfirm: false
                         }, function (isConfirm) {
                             if (isConfirm) {
-                                self.$http.post('/api/system/dictionary/save',self.dictionary).then(function (res) {
+                                self.$http.post('/api/system/dictionary/save', self.dictionary).then(function (res) {
                                     if (res.data.code == 1) {
                                         self.$toastr.success('操作成功');
                                         self.$dataTable.bootstrapTable('refresh');
@@ -231,28 +230,29 @@ var tt = null, showBill = null;
             $modal: $modal, // 模式窗体 jQuery 对象
             data: {
                 list: [],
-                dictionary:{
-                    id:id,
-                    status:1,
-                    list:null
+                dictionary: {
+                    id: id,
+                    status: 1,
+                    list: null
                 }
             },
             //正整数校验
             validators: {
                 numeric: function (val) {
                     var g = /^[1-9]*[1-9][0-9]*$/;
-                    return g.test(val);;//验证正整数
+                    return g.test(val);
+                    ;//验证正整数
                 }
             },
             methods: {
                 findDictionary: function () {
-                    if(id==undefined || id=='undefined'){
-                    }else {
+                    if (id == undefined || id == 'undefined') {
+                    } else {
                         var self = this;
-                        self.$http.get('/api/system/dictionary/'+id+'').then(function (res) {
+                        self.$http.get('/api/system/dictionary/' + id + '').then(function (res) {
                             if (res.data.code == 1) {
                                 self.dictionary = res.data.data;
-                                self.list=res.data.data.list;
+                                self.list = res.data.data.list;
                             }
                         }).catch(function () {
 
@@ -265,11 +265,11 @@ var tt = null, showBill = null;
                     var uuid = 'mdni' + new Date().getTime();
                     var self = this;
                     self.list.push({
-                        id:uuid,
+                        id: uuid,
                         dicName: '',
                         dicValue: '',
                         status: 1,
-                        sort:'',
+                        sort: '',
                         remarks: '',
                     })
                 },
@@ -292,8 +292,8 @@ var tt = null, showBill = null;
                                     };
                                     lists.push(review);
                                 })
-                                self.dictionary.list=lists;
-                                self.$http.post('/api/system/dictionary/save',self.dictionary).then(function (res) {
+                                self.dictionary.list = lists;
+                                self.$http.post('/api/system/dictionary/save', self.dictionary).then(function (res) {
                                     if (res.data.code == 1) {
                                         self.$toastr.success('操作成功');
                                         $modal.modal('hide');
@@ -319,9 +319,9 @@ var tt = null, showBill = null;
                             confirmButtonColor: '#ed5565',
                             closeOnConfirm: false
                         }, function () {
-                            if(isNaN(id)){
-                                }else{
-                                self.$http.get('/api/system/dictionary/'+id+'/del').then(function (res) {
+                            if (isNaN(id)) {
+                            } else {
+                                self.$http.get('/api/system/dictionary/' + id + '/del').then(function (res) {
                                     if (res.data.code == 1) {
                                         self.$toastr.success('操作成功');
                                         swal.close();

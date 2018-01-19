@@ -9,14 +9,13 @@
             allOrganization: null,
             applyStatusList: null,
             breadcrumbs: [{
-                path: '/',
+                path: '/admin',
                 name: '主页'
-            },
-                {
-                    path: '/',
-                    name: 'sku列表',
-                    active: true
-                }],
+            }, {
+                path: '/',
+                name: 'sku列表',
+                active: true
+            }],
             form: {
                 keyword: '',
                 excludeSkuIdList: '',
@@ -59,7 +58,7 @@
                 var self = this;
                 self.$http.get('/api/system/dictionary/findByValue?dicValue=sku_status').then(function (res) {
                     if (res.data.code == 1) {
-                        self.processStatusList=res.data.data;
+                        self.processStatusList = res.data.data;
                     }
                 }).catch(function () {
                 }).finally(function () {
@@ -222,10 +221,10 @@
                             orderable: true,
                             formatter: function (value, row) {
                                 var label = '';
-                                if( value!=undefined && value.indexOf("SUPPLY")>=0){
-                                    label='已填写';
-                                }else{
-                                    label='未填写';
+                                if (value != undefined && value.indexOf("SUPPLY") >= 0) {
+                                    label = '已填写';
+                                } else {
+                                    label = '未填写';
                                 }
                                 return label;
                             }
@@ -315,8 +314,8 @@
                                 var html = '';
                                 var class_val = "m-r-xs btn btn-xs btn-danger";
                                 var nostatus = '';
-                                if(row.processStatus!='sku_void'){
-                                    if (acctType == 'PROD_SUPPLIER'&& row.processStatus!='sku_shelf_failure' && row.processStatus!='sku_shelf_shelves') {
+                                if (row.processStatus != 'sku_void') {
+                                    if (acctType == 'PROD_SUPPLIER' && row.processStatus != 'sku_shelf_failure' && row.processStatus != 'sku_shelf_shelves') {
                                         html += '<button style="margin-left:10px;"';
                                         html += 'data-handle="set"';
                                         html += 'data-id="' + value + '"';
@@ -353,7 +352,7 @@
                         var id = $(this).data('id')
                         var status = $(this).data('status')
                         self.skuId = id
-                        priceModal(id,status);
+                        priceModal(id, status);
                         e.stopPropagation();
                     })
 
@@ -456,7 +455,7 @@
     })
 
     // 设置价格
-    function priceModal(id,status) {
+    function priceModal(id, status) {
         var $modal = $('#priceModal').clone()
         $modal.modal({
             height: 600,
@@ -536,7 +535,7 @@
                                 this.aShow = 1;
                                 this.bShow = 0;
                                 this.cShow = 0;
-                                if(acctType=='PROD_SUPPLIER'&& status!='sku_draft' &&status!='sku_supplier_audit'){
+                                if (acctType == 'PROD_SUPPLIER' && status != 'sku_draft' && status != 'sku_supplier_audit') {
                                     this.aControl = 0;
                                 }
                                 break;
@@ -615,7 +614,7 @@
                                         align: 'center',
                                         formatter: function (value, row, index) {
                                             var html = ''
-                                            if ( control == '1' && acctType=='PROD_SUPPLIER'&& (status=='sku_draft' || status=='sku_supplier_audit') ) {
+                                            if (control == '1' && acctType == 'PROD_SUPPLIER' && (status == 'sku_draft' || status == 'sku_supplier_audit')) {
                                                 html += '<button style="margin-left:10px;"'
                                                 html += 'data-handle="aEdit"'
                                                 html += 'data-priceStartDate="' + row.priceStartDate + '"'
@@ -883,7 +882,7 @@
                                     e.stopPropagation();
                                 })
                         },
-                        closeFrame:function () {
+                        closeFrame: function () {
                             $modal.modal('hide');
                             vueProductList.$dataTable.bootstrapTable('refresh');
                         }
@@ -920,7 +919,7 @@
                         skuId: vueProductList.skuId,
                         priceType: model.priceType,
                         type: '价格',
-                        blank:false
+                        blank: false
                     },
                     ready: function () {
                         $('#timepick', this._$el).datetimepicker({
@@ -939,7 +938,7 @@
                                 this.type = '门店销售价';
                                 break;
                         }
-                        if(atableData.length == 0){
+                        if (atableData.length == 0) {
                             this.blank = true;
                             this.priceStartDate = moment().format('YYYY-MM-DD');
                         }
