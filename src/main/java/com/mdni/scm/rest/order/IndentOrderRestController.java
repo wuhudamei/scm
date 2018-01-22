@@ -62,6 +62,22 @@ public class IndentOrderRestController extends BaseComController<IndentOrderServ
     private IndentOrderService indentOrderService;
     @Autowired
     private OrderInstallDataService orderInstallDataService;
+    /**
+     * 创建时间
+     */
+    private static final String CREATE_DATE = "CREATE_DATE";
+    /**
+     * 接收时间
+     */
+    private static final String ACCEPT_DATE = "ACCEPT_DATE";
+    /**
+     * 下载时间
+     */
+    private static final String DOWNLOAD_DATE = "DOWNLOAD_DATE";
+    /**
+     * 通知安装时间
+     */
+    private static final String NOTICE_INSTALL_TIME = "NOTICE_INSTALL_TIME";
 
 
     @RequestMapping(value = "list", method = RequestMethod.GET)
@@ -100,16 +116,16 @@ public class IndentOrderRestController extends BaseComController<IndentOrderServ
         MapUtils.putNotNull(paramMap, "status", status);
         MapUtils.putNotNull(paramMap, "managedSupplierIdList", managedSupplierIdList);
         //时间的勾选类型
-        if ("CREATE_DATE".equals(dateType)) {
+        if (CREATE_DATE.equals(dateType)) {
             paramMap.put("createStartDate", startDate);
             paramMap.put("createEndDate", endDate);
-        } else if ("ACCEPT_DATE".equals(dateType)) {
+        } else if (ACCEPT_DATE.equals(dateType)) {
             paramMap.put("acceptStartDate", startDate);
             paramMap.put("acceptEndDate", endDate);
-        } else if ("DOWNLOAD_DATE".equals(dateType)) {
+        } else if (DOWNLOAD_DATE.equals(dateType)) {
             paramMap.put("downloadStartDate", startDate);
             paramMap.put("downloadEndDate", endDate);
-        } else if ("NOTICE_INSTALL_TIME".equals(dateType)) {
+        } else if (NOTICE_INSTALL_TIME.equals(dateType)) {
             paramMap.put("noticeInstallStartDate", startDate);
             paramMap.put("noticeInstallEndDate", endDate);
         }
