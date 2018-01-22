@@ -53,6 +53,19 @@
                         </select>
                     </div>
 
+                    <div class="col-md-4 form-group" >
+                        <label class="sr-only" for="dateType"></label>
+                        <select v-model="form.dateType"
+                                id="dateType"
+                                name="dateType"
+                                class="form-control">
+                            <option value="">选择时间类型</option>
+                            <option value="CREATE_DATE">创建时间</option>
+                            <option value="ACCEPT_DATE">接单时间</option>
+                            <option value="DOWNLOAD_DATE">下载时间</option>
+                            <option value="NOTICE_INSTALL_TIME">通知安装时间</option>
+                        </select>
+                    </div>
                     <div class="col-md-4 form-group">
                         <input v-model="form.startDate" v-el:start-date id="startDate"
                                name="startDate" type="text" readonly
@@ -85,8 +98,6 @@
                             <option value="YES">已下载</option>
                             <option value="NO">未下载</option>
                         </select>
-                    </div>
-                    <div class="col-md-4 form-group" >
                     </div>
                     <div class="col-md-4 form-group">
                         <button id="searchBtn" type="submit"

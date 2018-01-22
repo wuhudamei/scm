@@ -251,12 +251,37 @@
 					${supplierId}
 	        	</foreach>
 		    </if>
-            <if test="startDate != null">
+            <if test="createStartDate != null">
 				AND io.create_time >= #{startDate,jdbcType=DATE}
 			</if>
-			<if test="endDate != null">
+			<if test="createEndDate != null">
 				AND DATE_FORMAT(io.create_time,'%Y-%m-%d') &lt;= #{endDate,jdbcType=DATE}
 			</if>
+
+            <if test="acceptStartDate != null">
+                AND io.accept_date >= #{startDate,jdbcType=DATE}
+            </if>
+            <if test="acceptEndDate != null">
+                AND DATE_FORMAT(io.accept_date,'%Y-%m-%d') &lt;= #{endDate,jdbcType=DATE}
+            </if>
+
+            <if test="downloadStartDate != null">
+                AND io.download_date >= #{startDate,jdbcType=DATE}
+            </if>
+            <if test="downloadEndDate != null">
+                AND DATE_FORMAT(io.download_date,'%Y-%m-%d') &lt;= #{endDate,jdbcType=DATE}
+            </if>
+
+            <if test="noticeInstallStartDate != null">
+                AND io.notice_install_time >= #{startDate,jdbcType=DATE}
+            </if>
+            <if test="noticeInstallEndDate != null">
+                AND DATE_FORMAT(io.notice_install_time,'%Y-%m-%d') &lt;= #{endDate,jdbcType=DATE}
+            </if>
+
+
+
+
 			<if test="contractCode != null">
 				AND io.contract_code = #{contractCode}
 			</if>

@@ -23,7 +23,8 @@
                 endDate: '',
                 startDate: '',
                 contractCode: '',
-                brandId: ''
+                brandId: '',
+                dateType:''
             },
             brands: {},
             $dataTable: null,

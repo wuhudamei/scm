@@ -71,6 +71,7 @@ public class IndentOrderRestController extends BaseComController<IndentOrderServ
                        @RequestParam(required = false) Long id,
                        @RequestParam(required = false) String acceptStatus,
                        @RequestParam(required = false) String download,
+                       @RequestParam(required = false)String dateType,
                        @RequestParam(required = false) Date startDate, @RequestParam(required = false) OrderStatusEnum status,
                        @RequestParam(defaultValue = "0") int offset, @RequestParam(defaultValue = "20") int limit,
                        @RequestParam(defaultValue = "id") String orderColumn, @RequestParam(defaultValue = "DESC") String orderSort,
@@ -98,6 +99,20 @@ public class IndentOrderRestController extends BaseComController<IndentOrderServ
         MapUtils.putNotNull(paramMap, "endDate", endDate);
         MapUtils.putNotNull(paramMap, "status", status);
         MapUtils.putNotNull(paramMap, "managedSupplierIdList", managedSupplierIdList);
+        //时间的勾选类型
+        if ("CREATE_DATE".equals(dateType)) {
+            paramMap.put("createStartDate", startDate);
+            paramMap.put("createEndDate", endDate);
+        } else if ("ACCEPT_DATE".equals(dateType)) {
+            paramMap.put("acceptStartDate", startDate);
+            paramMap.put("acceptEndDate", endDate);
+        } else if ("DOWNLOAD_DATE".equals(dateType)) {
+            paramMap.put("downloadStartDate", startDate);
+            paramMap.put("downloadEndDate", endDate);
+        } else if ("NOTICE_INSTALL_TIME".equals(dateType)) {
+            paramMap.put("noticeInstallStartDate", startDate);
+            paramMap.put("noticeInstallEndDate", endDate);
+        }
         paramMap.put(Constants.PAGE_OFFSET, offset);
         paramMap.put(Constants.PAGE_SIZE, limit);
         paramMap.put(Constants.PAGE_SORT, new Sort(Sort.Direction.valueOf(orderSort.toUpperCase()), orderColumn));
