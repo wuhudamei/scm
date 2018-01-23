@@ -24,7 +24,7 @@
 
     <!-- logback.xml -->
     <config-file path="WEB-INF/classes/logback.xml">
-        <replace xpath="/configuration/root/@level">WARN</replace>
+        <replace xpath="/configuration/root/level/@value">WARN</replace>
         <replace xpath="/configuration/logger/@level">WARN</replace>
     </config-file>
 </portable-config>
