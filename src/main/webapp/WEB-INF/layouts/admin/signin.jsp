@@ -9,8 +9,8 @@
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
-  <meta name="keywords" content="美得你,供应链,系统">
-  <meta name="description" content="美得你供应链平台">
+  <meta name="keywords" content="大美装饰管理平台,供应链,系统">
+  <meta name="description" content="大美装饰管理平台供应链平台">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
   <meta name="renderer" content="webkit">
   <meta http-equiv="Cache-Control" content="no-siteapp" />

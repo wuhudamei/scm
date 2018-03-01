@@ -58,7 +58,7 @@ new Vue({
     ready: function () {},
     methods: {
       addData: function () {
-        var uuid = 'mdni' + new Date().getTime();
+        var uuid = 'damei' + new Date().getTime();
         var self = this;
         self.list.push({
           id: uuid,

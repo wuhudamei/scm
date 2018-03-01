@@ -146,7 +146,7 @@
         <button type="button" class="close" data-dismiss="modal"
                 aria-hidden="true">×
         </button>
-        <h3 align="center">北京美得你装饰设计有限公司-订货单详情</h3>
+        <h3 align="center">大美装饰管理平台-订货单详情</h3>
         <div :class="{hasHeight:isShow }" class="row detail-stranding-book detail-state" v-cloak
              style="padding: 10px 1%;">
             <div style="border: 1px solid #c2ccd1;overflow: hidden;clear: both">

@@ -906,7 +906,7 @@
                                     </descriptors>
                                     <archive>
                                         <manifest>
-                                            <mainClass>com.mdni.scm.Main</mainClass>
+                                            <mainClass>com.damei.scm.Main</mainClass>
                                         </manifest>
                                     </archive>
                                 </configuration>

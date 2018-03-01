@@ -104,7 +104,7 @@ var createOrEditProductVue
             //动态增加其他费用
             addData: function (index) {
                 var self = this;
-                var uuid = 'mdni' + new Date().getTime();
+                var uuid = 'damei' + new Date().getTime();
                 var obj = {
                     id: uuid,
                     otherFee: '',
@@ -129,7 +129,7 @@ var createOrEditProductVue
                                 var otherFees = otherNote.substr(0, otherNote.length - 1).split('@');
                                 orderItem.otherFeesList = [];
                                 otherFees.forEach(function (obj) {
-                                    var uuid = 'mdni' + new Date().getTime();
+                                    var uuid = 'damei' + new Date().getTime();
                                     var other = obj.split('=');
                                     orderItem.otherFeesList.push({
                                         id: uuid,
@@ -139,7 +139,7 @@ var createOrEditProductVue
                                 });
                             } else {
                                 orderItem.otherFeesList = [];
-                                var uuid = 'mdni' + new Date().getTime();
+                                var uuid = 'damei' + new Date().getTime();
                                 var obj = {
                                     id: uuid,
                                     otherFee: '',

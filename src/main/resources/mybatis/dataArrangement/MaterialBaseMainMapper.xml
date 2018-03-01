@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.mdni.scm.repository.dataArrangement.MaterialBaseMainDao">
-  <resultMap id="BaseResultMap" type="com.mdni.scm.entity.dataArrangement.MaterialBaseMain">
+<mapper namespace="com.damei.scm.repository.dataArrangement.MaterialBaseMainDao">
+  <resultMap id="BaseResultMap" type="com.damei.scm.entity.dataArrangement.MaterialBaseMain">
     <id column="id" property="id" />
     <result column="contract_id" property="contractId" />
     <result column="project_name" property="projectName" />
@@ -31,7 +31,7 @@
     delete from material_base_main
     where id = #{id}
   </delete>
-  <insert id="insert" parameterType="com.mdni.scm.entity.dataArrangement.MaterialBaseMain" useGeneratedKeys="true" keyProperty="id">
+  <insert id="insert" parameterType="com.damei.scm.entity.dataArrangement.MaterialBaseMain" useGeneratedKeys="true" keyProperty="id">
     insert into material_base_main (id, contract_id, project_name, 
       metarial_type, fee_type, unit, 
       quantity, wastage, price, 
@@ -45,7 +45,7 @@
       #{artificialFee}, #{feeTotal}, #{remarks}, 
       #{createAccount}, #{createDate},#{delAccount},#{delDate},#{delStatus})
   </insert>
-  <update id="update" parameterType="com.mdni.scm.entity.dataArrangement.MaterialBaseMain">
+  <update id="update" parameterType="com.damei.scm.entity.dataArrangement.MaterialBaseMain">
     update material_base_main set contract_id = #{contractId},project_name = #{projectName}, metarial_type = #{metarialType},
       fee_type = #{feeType}, unit = #{unit},quantity = #{quantity}, wastage = #{wastage}, price = #{price},
       main_metarial_price = #{mainMetarialPrice},accessories_metarial_price = #{accessoriesMetarialPrice},

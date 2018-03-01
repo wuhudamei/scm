@@ -46,7 +46,7 @@
         </encoder>
     </appender>
 
-    <logger name="com.mdni.scm" level="DEBUG"/>
+    <logger name="com.damei.scm" level="DEBUG"/>
     <root>
         <level value="DEBUG"/>
         <appender-ref ref="STOUT"/>

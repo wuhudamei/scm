@@ -338,7 +338,7 @@ var tt = null, showBill = null;
                     })
                 },
                 addData: function () {
-                    var uuid = 'mdni' + new Date().getTime();
+                    var uuid = 'damei' + new Date().getTime();
                     var self = this;
                     self.list.push({
                         id: uuid,
@@ -524,7 +524,7 @@ var tt = null, showBill = null;
                     self.$http.get('/api/reviewSizeResult/getReviewSizeResultById?id=' + id).then(function (res) {
                         if (res.data.code == 1) {
                             res.data.data.forEach(function (reviewItem) {
-                                var uuid = 'mdni' + new Date().getTime();
+                                var uuid = 'damei' + new Date().getTime();
                                 self.list.push({
                                     id: reviewItem.id,
                                     productName: reviewItem.productName,

@@ -1,10 +1,10 @@
 package com.rocoinfo;
 
-import com.mdni.scm.common.Constants;
-import com.mdni.scm.entity.account.User;
-import com.mdni.scm.entity.eum.AccoutTypeEnum;
-import com.mdni.scm.service.order.IndentOrderService;
-import com.mdni.scm.service.prod.ProductService;
+import com.damei.scm.common.Constants;
+import com.damei.scm.entity.account.User;
+import com.damei.scm.entity.eum.AccoutTypeEnum;
+import com.damei.scm.service.order.IndentOrderService;
+import com.damei.scm.service.prod.ProductService;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;

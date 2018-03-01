@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.mdni.scm.repository.prod.RegionSupplierDao">
+<mapper namespace="com.damei.scm.repository.prod.RegionSupplierDao">
     <resultMap id="BaseResultMap" type="RegionSupplier">
         <id column="id" property="id"/>
         <result column="region_name" property="name"/>
@@ -10,7 +10,7 @@
     </resultMap>
     
      <resultMap id="baseWithSupplierListResultMap" extends="BaseResultMap" type="RegionSupplier">
-       	<collection property="supplierList"  javaType="list"  ofType="com.mdni.scm.entity.prod.Supplier">
+       	<collection property="supplierList"  javaType="list"  ofType="com.damei.scm.entity.prod.Supplier">
        		    <id column="supplier_id" property="id"/>
 		        <result column="code" property="code"/>
 		        <result column="name" property="name"/>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.mdni.scm.repository.dataArrangement.MaterialChangeDao">
-  <resultMap id="BaseResultMap" type="com.mdni.scm.entity.dataArrangement.MaterialChange">
+<mapper namespace="com.damei.scm.repository.dataArrangement.MaterialChangeDao">
+  <resultMap id="BaseResultMap" type="com.damei.scm.entity.dataArrangement.MaterialChange">
     <id column="id" property="id" />
     <result column="contract_id" property="contractId" />
     <result column="change_date" property="changeDate" />
@@ -21,7 +21,7 @@
     delete from material_change
     where id = #{id}
   </delete>
-  <insert id="insert" parameterType="com.mdni.scm.entity.dataArrangement.MaterialChange" useGeneratedKeys="true" keyProperty="id">
+  <insert id="insert" parameterType="com.damei.scm.entity.dataArrangement.MaterialChange" useGeneratedKeys="true" keyProperty="id">
     insert into material_change (id,contract_id, change_date, change_order_number, 
       describation, create_account, create_date,del_account,del_date,del_status
       )
@@ -29,7 +29,7 @@
       #{describation}, #{createAccount}, #{createDate},#{delAccount},#{delDate},#{delStatus}
       )
   </insert>
-  <update id="update" parameterType="com.mdni.scm.entity.dataArrangement.MaterialChange">
+  <update id="update" parameterType="com.damei.scm.entity.dataArrangement.MaterialChange">
     update material_change set  contract_id = #{contractId}, change_date = #{changeDate}, change_order_number = #{changeOrderNumber},
     describation = #{describation}  where id = #{id}
 
