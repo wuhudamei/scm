@@ -27,7 +27,7 @@ public class PropertyHolder implements ServletContextAware, ApplicationContextAw
 	private static String oauthCenterAppid;
 	private static String oauthCenterSecret;
 
-	private static String mdniUCenterCreateUserUrl;
+	private static String uCenterCreateUserUrl;
 	private static String oauthCenterDomain;
 
 	private static String oAuthLoginUrl;
@@ -157,13 +157,13 @@ public class PropertyHolder implements ServletContextAware, ApplicationContextAw
 		return PropertyHolder.getImageBaseUrl() + imagePath;
 	}
 
-	public static String getMdniUcenterCreateAccountUrl() {
-		return PropertyHolder.mdniUCenterCreateUserUrl;
+	public static String getUcenterCreateAccountUrl() {
+		return PropertyHolder.uCenterCreateUserUrl;
 	}
 
-	@Value("${ucenter.mdni.createAccount.url}")
-	public void setMdniUCenterCreateAccoutUrl(String createAccountUrl) {
-		PropertyHolder.mdniUCenterCreateUserUrl = createAccountUrl;
+	@Value("${ucenter.createAccount.url}")
+	public void setUCenterCreateAccoutUrl(String createAccountUrl) {
+		PropertyHolder.uCenterCreateUserUrl = createAccountUrl;
 	}
 
 	@Value("${oa.storeCogradient.url}")
