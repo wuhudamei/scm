@@ -89,7 +89,7 @@ public class UserService extends CrudService<UserDao, User> {
 		String createParam = JsonUtils.pojoToJson(postParamMap);
 		logger.info("调用认证中心创建接口，传输参数：" + createParam);
 		try {
-			createRespResult = HttpUtils.postJson(PropertyHolder.getMdniUcenterCreateAccountUrl(), createParam);
+			createRespResult = HttpUtils.postJson(PropertyHolder.getUcenterCreateAccountUrl(), createParam);
 			logger.info("调用认证中心创建接口，返回结果：" + createRespResult);
 		} catch (Exception e) {
 			logger.error("调用认证中心创建接口出现异常，返回结果：" + createRespResult + "异常信息" + e.getMessage());
