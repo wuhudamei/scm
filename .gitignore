@@ -23,7 +23,7 @@ node_modules/
 */META-INF/*
 */uploads/*
 admin/node_modules
-src/test/java/com/rocoinfo/QuickStartServer.java
+src/test/java/cn/damei/QuickStartServer.java
 
 */qrcode/*
 /qrcode/
