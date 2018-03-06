@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.damei.scm.repository.reviewSizeResult.ReviewSizeResultDao">
+<mapper namespace="cn.damei.scm.repository.reviewSizeResult.ReviewSizeResultDao">
     <resultMap id="BaseResultMap" type="ReviewSizeResult">
         <id column="id" property="id"/>
         <result column="product_name" property="productName"/>

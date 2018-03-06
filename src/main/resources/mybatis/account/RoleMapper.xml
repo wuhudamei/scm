@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.damei.scm.repository.account.RoleDao">
+<mapper namespace="cn.damei.scm.repository.account.RoleDao">
     
     <sql id="selectAllRoleColumn">
     	id, name, description
@@ -64,7 +64,7 @@
         delete from acct_user_role where user_id = #{userId}
     </select>
 
-    <insert id="insertUserRole" parameterType="com.damei.scm.entity.account.UserRole">
+    <insert id="insertUserRole" parameterType="cn.damei.scm.entity.account.UserRole">
         insert into acct_user_role(role_id,user_id) values (#{roleId},#{userId})
     </insert>
 

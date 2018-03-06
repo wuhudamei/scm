@@ -21,7 +21,7 @@
                                   location="classpath*:/application.properties" file-encoding="UTF-8"/>
 
     <!-- 使用annotation 自动注册bean, 并保证@Required、@Autowired的属性被注入 -->
-    <context:component-scan base-package="com.damei.scm">
+    <context:component-scan base-package="cn.damei.scm">
         <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
         <context:exclude-filter type="annotation"
                                 expression="org.springframework.web.bind.annotation.ControllerAdvice"/>
@@ -34,17 +34,17 @@
     <!-- MyBatis配置 -->
     <!-- <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean"> -->
     <!-- 当mapper错误时，解开下段，看报错信息 -->
-    <bean id="sqlSessionFactory" class="com.damei.scm.common.SqlFactory">
+    <bean id="sqlSessionFactory" class="cn.damei.scm.common.SqlFactory">
         <property name="dataSource" ref="dataSource"/>
         <!-- 自动扫描entity目录, 省掉Configuration.xml里的手工配置 -->
-        <property name="typeAliasesPackage" value="com.damei.scm.entity"/>
+        <property name="typeAliasesPackage" value="cn.damei.scm.entity"/>
         <!-- 显式指定Mapper文件位置 -->
         <property name="mapperLocations" value="classpath:/mybatis/**/*Mapper.xml"/>
     </bean>
     <!-- 扫描basePackage下所有以@MyBatisRepository标识的 接口-->
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-        <property name="basePackage" value="com.damei.scm.repository"/>
-        <property name="annotationClass" value="com.damei.scm.common.MyBatisRepository"/>
+        <property name="basePackage" value="cn.damei.scm.repository"/>
+        <property name="annotationClass" value="cn.damei.scm.common.MyBatisRepository"/>
     </bean>
     <!-- 数据源配置, 使用Tomcat JDBC连接池 -->
     <bean id="dataSource" class="org.apache.tomcat.jdbc.pool.DataSource" destroy-method="close">
@@ -80,11 +80,11 @@
     <tx:annotation-driven transaction-manager="transactionManager" proxy-target-class="true"/>
 
     <!-- Redis配置 -->
-    <bean id="jedisTemplate" class="com.damei.scm.redis.JedisTemplate">
+    <bean id="jedisTemplate" class="cn.damei.scm.redis.JedisTemplate">
         <constructor-arg ref="jedisPool"/>
     </bean>
 
-    <bean id="redissonTemplate" class="com.damei.scm.redis.RedissonTemplate">
+    <bean id="redissonTemplate" class="cn.damei.scm.redis.RedissonTemplate">
         <constructor-arg index="0" value="${redis.host}"/>
         <constructor-arg index="1" value="${redis.database}"/>
         <constructor-arg index="2" value="${redis.timeout}"/>
@@ -113,7 +113,7 @@
     <!-- Spring Cache Redis配置 -->
     <cache:annotation-driven cache-manager="redisCacheManager" key-generator="mySimpleKeyGenerator"/>
 
-    <bean id="redisCacheManager" class="com.damei.scm.common.utils.cache.MyRedisCacheManager">
+    <bean id="redisCacheManager" class="cn.damei.scm.common.utils.cache.MyRedisCacheManager">
         <constructor-arg index="0" ref="redisTemplate"/>
         <!-- springCache注解缓存15分钟,900s -->
         <property name="defaultExpiration" value="900"/>

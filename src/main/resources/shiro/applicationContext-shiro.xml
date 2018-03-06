@@ -20,29 +20,29 @@
     </bean>
 
     <!-- custom shiro session listener -->
-    <bean id="customSessionListener" class="com.damei.scm.shiro.listener.CustomSessionListener"/>
+    <bean id="customSessionListener" class="cn.damei.scm.shiro.listener.CustomSessionListener"/>
 
     <!-- custom realm -->
-    <bean id="shiroDbRealm" class="com.damei.scm.shiro.ShiroDbRealm">
+    <bean id="shiroDbRealm" class="cn.damei.scm.shiro.ShiroDbRealm">
         <property name="credentialsMatcher" ref="customCredentialsMather"/>
         <property name="userService" ref="userService"/>
     </bean>
 
-    <bean id="shiroSSORealm" class="com.damei.scm.shiro.ShiroSSORealm">
+    <bean id="shiroSSORealm" class="cn.damei.scm.shiro.ShiroSSORealm">
         <property name="userService" ref="userService"/>
     </bean>
 
 
     <!-- custom validate password -->
-    <bean id="customCredentialsMather" class="com.damei.scm.shiro.CustomShiroCredentialsMatherFactoryBean"/>
+    <bean id="customCredentialsMather" class="cn.damei.scm.shiro.CustomShiroCredentialsMatherFactoryBean"/>
 
     <!-- ...AUTHENTICATION INFO CACHE BEGIN... -->
-    <bean id="sessionDao" class="com.damei.scm.shiro.session.CachingShiroSessionDao">
+    <bean id="sessionDao" class="cn.damei.scm.shiro.session.CachingShiroSessionDao">
         <property name="shiroSessionRepository" ref="jedisShiroSessionRepository"/>
     </bean>
 
     <bean id="jedisShiroSessionRepository"
-          class="com.damei.scm.shiro.session.JedisShiroSessionToStringRepository">
+          class="cn.damei.scm.shiro.session.JedisShiroSessionToStringRepository">
         <property name="jedisManager" ref="jedisManager"/>
         <property name="sessionTimeOut" value="${session.timeout}"/>
     </bean>
@@ -54,13 +54,13 @@
 
 
     <!-- redis manager class -->
-    <bean id="jedisManager" class="com.damei.scm.shiro.JedisManager">
+    <bean id="jedisManager" class="cn.damei.scm.shiro.JedisManager">
         <property name="jedisPool" ref="jedisPool"/>
         <property name="database" value="${redis.database}"/>
     </bean>
 
     <!-- 自定义Session工厂方法 返回会标识是否修改主要字段的自定义Session-->
-    <bean id="sessionFactory" class="com.damei.scm.shiro.session.ShiroSessionFactory"/>
+    <bean id="sessionFactory" class="cn.damei.scm.shiro.session.ShiroSessionFactory"/>
 
     <!-- default web session manager，session expire time 4 hours -->
     <bean id="defaultWebSessionManager" class="org.apache.shiro.web.session.mgt.DefaultWebSessionManager">
