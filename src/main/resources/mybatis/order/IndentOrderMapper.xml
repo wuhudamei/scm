@@ -4,7 +4,7 @@
     <resultMap id="BaseResultMap" type="IndentOrder">
         <id column="id" property="id"/>
         <result column="order_code" property="code"/>
-        <result column="contract_code" property="contractCode"/>
+        <result column="dm_contract_code" property="contractCode"/>
         <result column="status" property="status"/>
         <result column="note" property="note"/>
         <result column="reason" property="reason"/>
@@ -43,7 +43,7 @@
     </resultMap>
 
     <sql id="Base_Column_List">
-        io.id, io.order_code,io.contract_code,io.status,io.note,io.reason,io.creator,io.create_time,io.editor,io.edit_time,io.download_number
+        io.id, io.order_code,io.dm_contract_code,io.status,io.note,io.reason,io.creator,io.create_time,io.editor,io.edit_time,io.download_number
         ,io.notice_install_time,usr.name as creator_name,usr.username as creator_username,
         io.reconciliation_time,io.reconciliation_remarks,io.actual_installation_time
     </sql>
@@ -67,7 +67,7 @@
                 order_code,
             </if>
             <if test="contractCode != null">
-                contract_code,
+                dm_contract_code,
             </if>
             <if test="status != null">
                 status,
@@ -213,12 +213,12 @@
         LEFT JOIN indent_order_item item ON (io.id= item.order_id)
         LEFT JOIN acct_user  usr ON (usr.id = io.creator)
         LEFT JOIN prod_brand pb ON (item.brand_id = pb.id)
-        LEFT JOIN customer_contract cucs ON (cucs.contract_code = io.contract_code)
+        LEFT JOIN customer_contract cucs ON (cucs.dm_contract_code = io.dm_contract_code)
         LEFT JOIN customer cus ON (cucs.customer_id = cus.id)
         <where>
             <if test="keyword != null">
                 (io.order_code like CONCAT('%', #{keyword}, '%')
-                or io.contract_code like CONCAT('%', #{keyword}, '%')
+                or io.dm_contract_code like CONCAT('%', #{keyword}, '%')
                 or usr.name like CONCAT('%', #{keyword}, '%')
                 or cus.name like CONCAT('%', #{keyword}, '%')
                 or cus.mobile like CONCAT('%', #{keyword}, '%')
@@ -283,7 +283,7 @@
 
 
 			<if test="contractCode != null">
-				AND io.contract_code = #{contractCode}
+				AND io.dm_contract_code = #{contractCode}
 			</if>
             <if test="brandId != null and brandId != ''">
                 AND pb.id = #{brandId}
@@ -326,7 +326,7 @@
         LEFT JOIN indent_order_item item ON (io.id= item.order_id)
         LEFT JOIN acct_user usr ON (usr.id = io.creator)
         LEFT JOIN prod_brand pb ON (item.brand_id = pb.id)
-        LEFT JOIN customer_contract cucs ON (cucs.contract_code = io.contract_code)
+        LEFT JOIN customer_contract cucs ON (cucs.dm_contract_code = io.dm_contract_code)
         LEFT JOIN customer cus ON (cucs.customer_id = cus.id)
         where io.id = #{id}
     </select>
@@ -336,7 +336,7 @@
         INSERT INTO indent_order
           (
             order_code,
-            contract_code,
+            dm_contract_code,
             status,
             note,
             reason,
@@ -369,7 +369,7 @@
         LEFT JOIN acct_user usr ON io.creator = usr.id
         <where>
             <if test="contractCode != null">
-                AND io.contract_code = #{contractCode}
+                AND io.dm_contract_code = #{contractCode}
             </if>
             <if test="branchNo != null">
                 AND io.branch_no = #{branchNo}

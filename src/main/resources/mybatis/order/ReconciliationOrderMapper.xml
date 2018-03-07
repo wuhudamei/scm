@@ -17,7 +17,7 @@
         <result column="send_time" property="sendTime"/>
         <result column="pay_status" property="payStatus"/>
         <result column="other_fee" property="otherFee"/>
-        <result column="contract_code" property="contractCode"/>
+        <result column="dm_contract_code" property="contractCode"/>
         <result column="order_code" property="orderCode"/>
         <result column="pay_time" property="payTime"/>
         <result column="operator" property="operator"/>
@@ -29,7 +29,7 @@
         ioi.id,ioi.supplier_id,ioi.sku_id, ioi.sku_name, ioi.model,spec,ioi.attribute1,ioi.attribute2,ioi.attribute3,
         ioi.supply_price,ioi.quantity,ioi.status,ioi.send_time,ioi.pay_status,
         ifnull(iofee.other_fee,0.00) other_fee,
-        io.contract_code,io.order_code
+        io.dm_contract_code,io.order_code
         from indent_order_item ioi
         LEFT JOIN indent_order io ON ioi.order_id = io.id
         left join ( select item_id,sum(fee_value) other_fee  from ident_order_item_otherfee group by item_id) iofee on ioi.id = iofee.item_id
@@ -65,7 +65,7 @@
         ioi.id,ioi.supplier_id,ioi.sku_id, ioi.sku_name, ioi.model,spec,ioi.attribute1,ioi.attribute2,ioi.attribute3,
         ioi.supply_price,ioi.quantity,ioi.status,ioi.send_time,ioi.pay_status,
         ifnull(iofee.other_fee,0.00) other_fee,
-        io.contract_code,io.order_code
+        io.dm_contract_code,io.order_code
         from indent_order_item ioi
         LEFT JOIN indent_order io ON ioi.order_id = io.id
         left join ( select item_id,sum(fee_value) other_fee  from ident_order_item_otherfee group by item_id) iofee on ioi.id = iofee.item_id
@@ -80,7 +80,7 @@
         ioi.id,ioi.supplier_id,ioi.sku_id, ioi.sku_name, ioi.model,spec,ioi.attribute1,ioi.attribute2,ioi.attribute3,
         ioi.supply_price,ioi.quantity,ioi.status,ioi.send_time,ioi.pay_status,ioi.operator,
         ifnull(iofee.other_fee,0.00) other_fee,
-        io.contract_code,io.order_code,au.name
+        io.dm_contract_code,io.order_code,au.name
         from indent_order_item ioi
         LEFT JOIN indent_order io ON ioi.order_id = io.id
         LEFT JOIN acct_user au ON ioi.operator = au.id
@@ -93,7 +93,7 @@
                 </foreach>
             </if>
             <if test="keyword != null and keyword != ''">
-                AND (io.contract_code = #{keyword} OR io.order_code = #{keyword} OR ioi.sku_name = #{keyword})
+                AND (io.dm_contract_code = #{keyword} OR io.order_code = #{keyword} OR ioi.sku_name = #{keyword})
             </if>
             <if test="startTime != null and startTime !=''">
                 AND ioi.pay_time &gt;= #{startTime}

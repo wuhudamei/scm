@@ -4,7 +4,7 @@
 
     <resultMap id="BaseResultMap" type="IndentPrepareOrder">
         <id column="id" property="id"/>
-        <result column="contract_code" property="contractCode" />
+        <result column="dm_contract_code" property="contractCode" />
         <result column="contract_id" property="contractId" />
         <result column="data_source" property="dataSource" />
         <result column="status" property="status" />
@@ -41,7 +41,7 @@
     </resultMap>
 
     <sql id="Base_Column_List">
-        id, contract_code, data_source, status, brand_id, brand_name, create_time,
+        id, dm_contract_code, data_source, status, brand_id, brand_name, create_time,
         update_time, update_account, switch_time
     </sql>
 
@@ -61,7 +61,7 @@
         INSERT INTO indent_prepare_order
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="contractCode != null">
-                contract_code,
+                dm_contract_code,
             </if>
             <if test="dataSource != null">
                 data_source,
@@ -123,7 +123,7 @@
     <!--<insert id="batchInsertList">
         INSERT INTO indent_prepare_order
           (
-              contract_code, data_source, status, brand_id, brand_name,
+              dm_contract_code, data_source, status, brand_id, brand_name,
               create_time, update_time, update_account,
               switch_time
           )
@@ -141,7 +141,7 @@
         UPDATE indent_prepare_order
         <set>
             <if test="contractCode != null">
-                contract_code = #{contractCode},
+                dm_contract_code = #{contractCode},
             </if>
             <if test="dataSource != null">
                 data_source = #{dataSource},
@@ -175,14 +175,14 @@
         SELECT COUNT(0)
         FROM
           indent_prepare_order inOrder
-        LEFT JOIN customer_contract con ON con.contract_code = inOrder.contract_code
+        LEFT JOIN customer_contract con ON con.dm_contract_code = inOrder.dm_contract_code
         LEFT JOIN customer cus ON cus.id = con.customer_id
         <where>
             <if test="brandId != null">
                 AND inOrder.brand_id = #{brandId}
             </if>
             <if test="keyword != null">
-                AND (inOrder.contract_code = #{keyword}
+                AND (inOrder.dm_contract_code = #{keyword}
                 OR cus.name LIKE CONCAT('%', #{keyword} , '%')
                 )
             </if>
@@ -207,7 +207,7 @@
           GROUP_CONCAT(DISTINCT item.installation_location Separator ',') installation_location
         FROM
           indent_prepare_order inOrder
-        LEFT JOIN customer_contract con ON con.contract_code = inOrder.contract_code
+        LEFT JOIN customer_contract con ON con.dm_contract_code = inOrder.dm_contract_code
         LEFT JOIN customer cus ON cus.id = con.customer_id
         LEFT JOIN indent_prepare_order_item item ON item.prepare_order_id = inOrder.id
         <where>
@@ -215,7 +215,7 @@
                 AND inOrder.brand_id = #{brandId}
             </if>
             <if test="keyword != null">
-                AND (inOrder.contract_code = #{keyword}
+                AND (inOrder.dm_contract_code = #{keyword}
                       OR cus.name LIKE CONCAT('%', #{keyword} , '%')
                     )
             </if>

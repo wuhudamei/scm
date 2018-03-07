@@ -79,7 +79,7 @@ CREATE TABLE customer (
 DROP TABLE IF EXISTS customer_contract;
 CREATE TABLE customer_contract (
   id int(10) unsigned NOT NULL AUTO_INCREMENT,
-  contract_code varchar(30) NOT NULL COMMENT '合同编号',
+  dm_contract_code varchar(30) NOT NULL COMMENT '合同编号',
   customer_id int(11) NOT NULL COMMENT '客户id reference customer(id)',
   house_addr varchar(150) NOT NULL COMMENT '客户装修地址',
   designer varchar(20) NOT NULL COMMENT '设计师',
@@ -89,7 +89,7 @@ CREATE TABLE customer_contract (
   project_manager varchar(20) DEFAULT NULL COMMENT '项目经理',
   pm_mobile varchar(13) DEFAULT NULL COMMENT '项目经理电话',
   PRIMARY KEY (id),
-  UNIQUE KEY uqk_contract_code (contract_code)
+  UNIQUE KEY uqk_dm_contract_code (dm_contract_code)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COMMENT='客户装修合同';
 
 -- ----------------------------
@@ -133,7 +133,7 @@ DROP TABLE IF EXISTS indent_order;
 CREATE TABLE indent_order (
   id int(11) NOT NULL AUTO_INCREMENT,
   order_code varchar(30) NOT NULL COMMENT '订货单号',
-  contract_code varchar(30) NOT NULL COMMENT '合同单号 reference customer_contract(contract_code)',
+  dm_contract_code varchar(30) NOT NULL COMMENT '合同单号 reference customer_contract(dm_contract_code)',
   status enum('DRAFT','NOTIFIED','REJECT','ALREADY_INSTALLED','REJECTINSTALL','SETTLEACCOUNTS','INSTALLEND_WAITCHECK','INSTALLCHECKNOTPASS','INSTALLCHECKPASS','INVALID') DEFAULT NULL,
   note varchar(200) DEFAULT NULL COMMENT '订货单说明',
   reason varchar(200) DEFAULT NULL COMMENT '选择的作废原因',
@@ -460,7 +460,7 @@ CREATE TABLE operator_log (
   operator_time datetime DEFAULT NULL COMMENT '操作时间',
   operator_explain varchar(200) DEFAULT NULL COMMENT '操作说明',
   order_id varchar(50) DEFAULT NULL COMMENT '订单id',
-  contract_code varchar(50) DEFAULT NULL COMMENT '项目编号',
+  dm_contract_code varchar(50) DEFAULT NULL COMMENT '项目编号',
   PRIMARY KEY (id)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COMMENT='操作日志';
 

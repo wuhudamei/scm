@@ -3,7 +3,7 @@
 <mapper namespace="cn.damei.scm.repository.customer.CustomerContractDao">
 	<resultMap id="BaseResultMap" type="CustomerContract">
 		<id column="id" property="id" />
-		<result column="contract_code" property="contractCode" />
+		<result column="dm_contract_code" property="contractCode" />
 		<result column="customer_id" property="customer.id" />
 		<result column="house_addr" property="houseAddr" />
 		<result column="designer" property="designer" />
@@ -20,7 +20,7 @@
 	</resultMap>
 
 	<sql id="customerContractInfo">
-		cc.id,cc.contract_code,cc.customer_id,cc.house_addr,cc.designer,cc.designer_mobile,cc.supervisor,cc.supervisor_mobile,cc.project_manager,cc.pm_mobile,ct.name
+		cc.id,cc.dm_contract_code,cc.customer_id,cc.house_addr,cc.designer,cc.designer_mobile,cc.supervisor,cc.supervisor_mobile,cc.project_manager,cc.pm_mobile,ct.name
 		as name,ct.code as code,ct.mobile as mobile
 	</sql>
 	<sql id="fromInfo">
@@ -48,7 +48,7 @@
 				cc.id=#{id}
 			</if>
 			<if test="code != null and code != null">
-				cc.contract_code = #{code}
+				cc.dm_contract_code = #{code}
 			</if>
 		</where>
 	</select>
@@ -57,7 +57,7 @@
 		useGeneratedKeys="true" keyProperty="id">
 		insert into customer_contract (
 		<if test="contractCode != null">
-			contract_code,
+			dm_contract_code,
 		</if>
 		<if test="customer.id != null">
 			customer_id,
@@ -117,7 +117,7 @@
 	<update id="update" parameterType="CustomerContract">
 		update customer_contract set
 		<if test="contractCode != null">
-			contract_code=#{contractCode},
+			dm_contract_code=#{contractCode},
 		</if>
 		<if test="customer.id != null">
 			customer_id=#{customer.id},
@@ -149,7 +149,7 @@
 	<select id="getByCode" resultMap="BaseResultMap">
 		select
 		*
-		from customer_contract where contract_code
+		from customer_contract where dm_contract_code
 		= #{code}
 	</select>
 
@@ -174,13 +174,13 @@
 	</select>
 
 	<select id="getContractCodeById" resultType="string">
-		select cc.contract_code from customer_contract AS  cc where id=#{contractId}
+		select cc.dm_contract_code from customer_contract AS  cc where id=#{contractId}
 	</select>
 
 	<sql id="searchWhere">
 		<where>
 			<if test="keyword != null">
-				and (cc.contract_code like CONCAT('%', #{keyword}, '%') or ct.name like
+				and (cc.dm_contract_code like CONCAT('%', #{keyword}, '%') or ct.name like
 				CONCAT('%',
 				#{keyword}, '%') or cc.pm_mobile like CONCAT('%', #{keyword},
 				'%') )

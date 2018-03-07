@@ -14,7 +14,7 @@
         <result column="attribute3" property="sku.attribute3"/>
         <result column="supply_price" property="supplyPrice"/>
         <result column="quantity" property="quantity"/>
-        <result column="contract_code" property="contractCode"/>
+        <result column="dm_contract_code" property="contractCode"/>
         <result column="install_date" property="installDate"/>
         <result column="note" property="note"/>
         <result column="status" property="status"/>
@@ -213,7 +213,7 @@
             ioi.installation_location,ioi.tablet_num,pb.brand_name,
             ioi.brand_id,ioi.tablet_num,ioi.spec_unit,pc.url,pc.is_check_scale,pc.convert_unit,
             (SELECT sum(fee_value) FROM ident_order_item_otherfee
-              WHERE item_id = ioi.id ) AS otherFee,po.contract_code
+              WHERE item_id = ioi.id ) AS otherFee,po.dm_contract_code
         FROM indent_order_item ioi
         LEFT JOIN prod_sku ps ON ioi.sku_id = ps.id
         LEFT JOIN prod_product pp ON ps.product_id = pp.id
@@ -275,7 +275,7 @@
         FROM
             indent_order_item ioi
         JOIN indent_order io ON ioi.order_id = io.id
-        JOIN  customer_contract cucs ON cucs.contract_code=io.contract_code
+        JOIN  customer_contract cucs ON cucs.dm_contract_code=io.dm_contract_code
         JOIN customer cus ON cus.id=cucs.customer_id
         WHERE
 	     io.id=#{id}

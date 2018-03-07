@@ -13,7 +13,7 @@
         <result column="review_status" property="reviewStatus"/>
         <result column="img_url" property="reviewSizeNoticeImage"/>
         <result column="name" property="customerName"/>
-        <result column="contract_code" property="contractCode"/>
+        <result column="dm_contract_code" property="contractCode"/>
         <result column="creator_name" property="creatorName"/>
         <result column="order_code" property="orderCode"/>
         <result column="prod_cataLog_id" property="prodCataLogId"/>
@@ -33,7 +33,7 @@
         LEFT JOIN prod_catalog pc ON pc.id=rsn.prod_catalog_id
         <where>
             <if test="keyword != null">
-                (cucs.contract_code like CONCAT('%', #{keyword}, '%')  or cus.name like CONCAT('%', #{keyword}, '%'))
+                (cucs.dm_contract_code like CONCAT('%', #{keyword}, '%')  or cus.name like CONCAT('%', #{keyword}, '%'))
             </if>
             <if test="status!=null">
                 AND rsn.review_status=#{status}
@@ -62,7 +62,7 @@
    <select id="search" resultMap="BaseResultMap" parameterType="map">
        SELECT rsn.img_url,rsn.notice_time,rsn.upload_url,
            rsn.supplier_id,rsn.prod_catalog_id,rsn.brand_id,rsn.id,rsn.remark,rsn.review_status,
-           cus. NAME,cucs.contract_code, rsn.creat_name,rsn.creat_time,rsn.contract_id,ps.name AS supplierName,
+           cus. NAME,cucs.dm_contract_code, rsn.creat_name,rsn.creat_time,rsn.contract_id,ps.name AS supplierName,
            pb.brand_name AS brandName,pc.`name` AS prodCataLogName
        FROM
        review_size_notice rsn
@@ -73,7 +73,7 @@
        LEFT JOIN prod_catalog pc ON pc.id=rsn.prod_catalog_id
        <where>
            <if test="keyword != null">
-               (cucs.contract_code like CONCAT('%', #{keyword}, '%')  or cus.name like CONCAT('%', #{keyword}, '%'))
+               (cucs.dm_contract_code like CONCAT('%', #{keyword}, '%')  or cus.name like CONCAT('%', #{keyword}, '%'))
            </if>
            <if test="status!=null">
                AND rsn.review_status=#{status}

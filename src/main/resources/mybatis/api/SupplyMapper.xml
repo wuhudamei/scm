@@ -28,6 +28,6 @@
         FROM indent_order io
         LEFT JOIN indent_order_item ioi ON io.id = ioi.order_id
         left JOIN acct_user usr on io.creator = usr.id
-        where io.contract_code = #{contractNo} AND io.status != 'INVALID'
+        where io.dm_contract_code = #{contractNo} AND io.status != 'INVALID'
     </select>
 </mapper>
