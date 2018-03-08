@@ -4,7 +4,7 @@ var tt = null, showBill = null;
     $('#dictionary').addClass('active');
     tt = new Vue({
         el: '#container',
-        mixins: [RocoVueMixins.DataTableMixin],
+        mixins: [DaMeiVueMixins.DataTableMixin],
         data: {
             breadcrumbs: [{
                 path: '/admin',
@@ -112,7 +112,7 @@ var tt = null, showBill = null;
                             formatter: function (value, row) {
                                 var fragment = '';
                                 if (hasDictionary) {
-                                    if (RocoUtils.hasPermission('dict:edit')) {
+                                    if (DaMeiUtils.hasPermission('dict:edit')) {
                                         fragment += ('<button   data-handle="edit" data-id="' + row.id + '"  type="button" class="btn btn-xs btn-primary">编辑</button>&nbsp');
                                     }
                                     fragment += ('<button   data-handle="delete" data-id="' + row.id + '" type="button" class="btn btn-xs btn-danger">删除</button>&nbsp');
@@ -226,7 +226,7 @@ var tt = null, showBill = null;
         showBill = new Vue({
             el: el,
             // 模式窗体必须引用 ModalMixin
-            mixins: [RocoVueMixins.ModalMixin],
+            mixins: [DaMeiVueMixins.ModalMixin],
             $modal: $modal, // 模式窗体 jQuery 对象
             data: {
                 list: [],

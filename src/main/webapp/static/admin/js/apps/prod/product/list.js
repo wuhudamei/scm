@@ -4,7 +4,7 @@ var skuModal = null;
     $('#productApplyList').addClass('active');
     var vueProductList = new Vue({
         el: '#container',
-        mixins: [RocoVueMixins.DataTableMixin],
+        mixins: [DaMeiVueMixins.DataTableMixin],
         data: {
             allCatalog: null,
             allOrganization: null,
@@ -190,7 +190,7 @@ var skuModal = null;
                             orderable: false,
                             formatter: function (value, row, index) {
                                 var html = '';
-                                if (RocoUtils.hasPermission('product:edit')) {
+                                if (DaMeiUtils.hasPermission('product:edit')) {
                                     //可编辑
                                     if (acctType == 'PROD_SUPPLIER' && row.processStatus == '1' && row.status == 'LIST') {
                                         html += '<button data-handle="edit-click" data-id="' + row.id + '" type="button" class="m-r-xs btn btn-xs btn-primary">编辑</button>';
@@ -291,9 +291,9 @@ var skuModal = null;
                             'Content-Type': 'application/x-www-form-urlencoded'
                         }
                     },
-                    mixins: [RocoVueMixins.ModalMixin],
+                    mixins: [DaMeiVueMixins.ModalMixin],
                     components: {
-                        'web-uploader': RocoVueComponents.WebUploaderComponent
+                        'web-uploader': DaMeiVueComponents.WebUploaderComponent
                     },
                     $modal: $el,
                     created: function () {
@@ -659,7 +659,7 @@ var skuModal = null;
                         this.getMate();
                     },
                     components: {
-                        'web-uploader': RocoVueComponents.WebUploaderComponent
+                        'web-uploader': DaMeiVueComponents.WebUploaderComponent
                     },
                     data: {
                         //删除的路径

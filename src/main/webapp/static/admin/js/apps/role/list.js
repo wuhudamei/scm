@@ -3,7 +3,7 @@
     $('#roleMenu').addClass('active');
     var vueRole = new Vue({
         el: '#container',
-        mixins: [RocoVueMixins.DataTableMixin],
+        mixins: [DaMeiVueMixins.DataTableMixin],
         data: {
             breadcrumbs: [{
                 path: '/admin',
@@ -181,7 +181,7 @@
                     'Content-Type': 'application/x-www-form-urlencoded'
                 }
             },
-            mixins: [RocoVueMixins.ModalMixin],
+            mixins: [DaMeiVueMixins.ModalMixin],
             $modal: $el,
             created: function () {
             },
@@ -269,7 +269,7 @@
                     'Content-Type': 'application/x-www-form-urlencoded'
                 }
             },
-            mixins: [RocoVueMixins.ModalMixin],
+            mixins: [DaMeiVueMixins.ModalMixin],
             $modal: $el,
             created: function () {
             },

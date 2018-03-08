@@ -5,7 +5,7 @@
     var Detail = null;
     var vueIndex = new Vue({
         el: '#container',
-        mixins: [RocoVueMixins.DataTableMixin],
+        mixins: [DaMeiVueMixins.DataTableMixin],
         data: {
             breadcrumbs: [{
                 path: '/admin',
@@ -250,7 +250,7 @@
                                 if (row) {
                                     var html = '';
                                     //下单员操作
-                                    if (RocoUtils.hasPermission('indentorder:edit')) {
+                                    if (DaMeiUtils.hasPermission('indentorder:edit')) {
                                         //接受后
                                         if (row.acceptStatus == 'YES') {
                                             if (row.status == 'INSTALLEND_WAITCHECK' && acctType == 'MATERIAL_CLERK') {//安装提交待审核
@@ -281,7 +281,7 @@
                                         }
                                     }
                                     //变更
-                                    if (RocoUtils.hasPermission('indentorder:change')) {
+                                    if (DaMeiUtils.hasPermission('indentorder:change')) {
                                         //接受后
                                         if (row.acceptStatus == 'YES') {
                                             if (row.placeEnum != 'CHANGE') {
@@ -297,7 +297,7 @@
                                         }
                                     }
                                     //供应商能操作
-                                    if (RocoUtils.hasPermission('indentorder:supplyDeal')) {
+                                    if (DaMeiUtils.hasPermission('indentorder:supplyDeal')) {
                                         //接受按钮
                                         if (row.acceptStatus == 'NO') {
                                             html += ('<button   data-handle="acceptOrder" data-id="' + row.id + '"   type="button" class="m-r-xs btn btn-xs btn-warning">接收</button>');
@@ -332,7 +332,7 @@
                                     if (row.status == 'INSTALLCHECKNOTPASS') {
                                         html += ('<button   data-handle="installRejectReason" data-id="' + row.id + '"   type="button" class="m-r-xs btn btn-xs btn-primary">驳回记录</button>');
                                     }
-                                    if (RocoUtils.hasPermission('indentorder:printBtn')) {
+                                    if (DaMeiUtils.hasPermission('indentorder:printBtn')) {
                                         html += ('<button data-handle="print" data-id="' + row.id + '"   type="button" class="m-r-xs btn btn-xs btn-primary">打印</button>');
                                     }
                                     return html ;
@@ -652,7 +652,7 @@
                             'Content-Type': 'application/x-www-form-urlencoded'
                         }
                     },
-                    mixins: [RocoVueMixins.ModalMixin],
+                    mixins: [DaMeiVueMixins.ModalMixin],
                     $modal: $el,
                     created: function () {
                     },
@@ -733,7 +733,7 @@
                             'Content-Type': 'application/x-www-form-urlencoded'
                         }
                     },
-                    mixins: [RocoVueMixins.ModalMixin],
+                    mixins: [DaMeiVueMixins.ModalMixin],
                     $modal: $el,
                     created: function () {
                     },
@@ -978,7 +978,7 @@
                             'Content-Type': 'application/x-www-form-urlencoded'
                         }
                     },
-                    mixins: [RocoVueMixins.ModalMixin],
+                    mixins: [DaMeiVueMixins.ModalMixin],
                     $modal: $el,
                     created: function () {
                     },
@@ -1045,7 +1045,7 @@
         showBill2 = new Vue({
             el: el,
             // 模式窗体必须引用 ModalMixin
-            mixins: [RocoVueMixins.ModalMixin],
+            mixins: [DaMeiVueMixins.ModalMixin],
             $modal: $modal, // 模式窗体 jQuery 对象
             data: {
                 rejects: null,
@@ -1107,7 +1107,7 @@
         showBill2 = new Vue({
             el: el,
             // 模式窗体必须引用 ModalMixin
-            mixins: [RocoVueMixins.ModalMixin],
+            mixins: [DaMeiVueMixins.ModalMixin],
             $modal: $modal, // 模式窗体 jQuery 对象
             data: {
                 rejectReasons: '',
@@ -1150,7 +1150,7 @@
         showBill2 = new Vue({
             el: el,
             // 模式窗体必须引用 ModalMixin
-            mixins: [RocoVueMixins.ModalMixin],
+            mixins: [DaMeiVueMixins.ModalMixin],
             $modal: $modal, // 模式窗体 jQuery 对象
             data: {
                 id: id,
@@ -1203,9 +1203,9 @@
                 var installObject = new Vue({
                     el: el,
                     // 模式窗体必须引用 ModalMixin
-                    mixins: [RocoVueMixins.ModalMixin],
+                    mixins: [DaMeiVueMixins.ModalMixin],
                     components: {
-                        'web-uploader': RocoVueComponents.WebUploaderComponent
+                        'web-uploader': DaMeiVueComponents.WebUploaderComponent
                     },
                     //$modal: $modal, // 模式窗体 jQuery 对象
                     $modal: $el,
@@ -1361,7 +1361,7 @@
         var approveInstallDataVue = new Vue({
             el: el,
             // 模式窗体必须引用 ModalMixin
-            mixins: [RocoVueMixins.ModalMixin],
+            mixins: [DaMeiVueMixins.ModalMixin],
             $modal: $modal, // 模式窗体 jQuery 对象
             data: {
                 approvalOpinion: true,
@@ -1497,7 +1497,7 @@
         showBill2 = new Vue({
             el: el,
             // 模式窗体必须引用 ModalMixin
-            mixins: [RocoVueMixins.ModalMixin],
+            mixins: [DaMeiVueMixins.ModalMixin],
             $modal: $modal, // 模式窗体 jQuery 对象
             data: {
                 fullPath: fullPath

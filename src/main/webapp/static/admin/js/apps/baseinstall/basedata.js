@@ -42,7 +42,7 @@ Vue.filter('dateFormater-filter', function(val) {
   $('#measureUnit').addClass('active');
   var vueRole = new Vue({
     el: '#container',
-    mixins: [RocoVueMixins.DataTableMixin],
+    mixins: [DaMeiVueMixins.DataTableMixin],
     data: {
       breadcrumbs: [{
         path: '/',
@@ -57,7 +57,7 @@ Vue.filter('dateFormater-filter', function(val) {
         baseMain: null
     },
     created: function () {
-        this.id = RocoUtils.parseQueryString().id || ''
+        this.id = DaMeiUtils.parseQueryString().id || ''
         this.fetchDetail()
     },
     ready: function () {

@@ -4,7 +4,7 @@
 
     var vueUser = new Vue({
         el: '#container',
-        mixins: [RocoVueMixins.DataTableMixin],
+        mixins: [DaMeiVueMixins.DataTableMixin],
         data: {
             breadcrumbs: [{
                 path: '/admin',
@@ -144,7 +144,7 @@
                             orderable: false,
                             width: '15%',
                             formatter: function (value, row, index) {
-                                if (RocoUtils.hasPermission('user:edit')) {
+                                if (DaMeiUtils.hasPermission('user:edit')) {
                                     var html = '<button style="margin-left:10px;" data-handle="user-edit" data-id="' + value + '"  data-username="' + row.username + '" data-name="' + row.name + '" data-mobile="' + row.mobile + '" data-accttype="' + row.acctType + '" data-status="' + row.status + '" data-position="' + row.position + '" data-supplierid="' + row.supplierId + '" data-storecode="' + row.storeCode + '"  class="m-r-xs btn btn-xs btn-primary" type="button">编辑</button>';
                                 }
                                 return html;
@@ -322,7 +322,7 @@
                     'Content-Type': 'application/x-www-form-urlencoded'
                 }
             },
-            mixins: [RocoVueMixins.ModalMixin],
+            mixins: [DaMeiVueMixins.ModalMixin],
             $modal: $el,
             created: function () {
             },
@@ -436,7 +436,7 @@
                     'Content-Type': 'application/x-www-form-urlencoded'
                 }
             },
-            mixins: [RocoVueMixins.ModalMixin],
+            mixins: [DaMeiVueMixins.ModalMixin],
             $modal: $el,
             created: function () {
             },

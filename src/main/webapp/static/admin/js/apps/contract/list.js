@@ -6,7 +6,7 @@
     })
     var vueIndex = new Vue({
         el: '#container',
-        mixins: [RocoVueMixins.DataTableMixin],
+        mixins: [DaMeiVueMixins.DataTableMixin],
         data: {
             breadcrumbs: [{
                 path: '/admin',
@@ -140,7 +140,7 @@
                             align: 'center',
                             formatter: function (value, row) {
                                 var html = '';
-                                if (RocoUtils.hasPermission('contract:edit')) {
+                                if (DaMeiUtils.hasPermission('contract:edit')) {
                                     if (acctType == 'FINANCE' || acctType == 'MATERIAL_MANAGER') {
                                         html += '<button style="margin-left:10px;"'
                                         html += 'data-handle="data-edit"'
@@ -257,9 +257,9 @@
                             'Content-Type': 'application/x-www-form-urlencoded'
                         }
                     },
-                    mixins: [RocoVueMixins.ModalMixin],
+                    mixins: [DaMeiVueMixins.ModalMixin],
                     components: {
-                        'web-uploader': RocoVueComponents.WebUploaderComponent
+                        'web-uploader': DaMeiVueComponents.WebUploaderComponent
                     },
                     $modal: $el,
                     created: function () {

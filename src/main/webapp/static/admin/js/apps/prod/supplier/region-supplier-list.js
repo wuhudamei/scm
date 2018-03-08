@@ -6,7 +6,7 @@
     })
     var vueIndex = new Vue({
         el: '#container',
-        mixins: [RocoVueMixins.DataTableMixin],
+        mixins: [DaMeiVueMixins.DataTableMixin],
         data: {
             breadcrumbs: [{
                 path: '/admin',
@@ -111,7 +111,7 @@
                                     } else {
                                         nostatus = 'LOCK'
                                     }
-                                    if (RocoUtils.hasPermission('region_supplier:edit')) {
+                                    if (DaMeiUtils.hasPermission('region_supplier:edit')) {
                                         html += '<button style="margin-left:10px;"';
                                         html += 'data-handle="data-edit"';
                                         html += 'data-id="' + value + '"';
@@ -187,9 +187,9 @@
                             'Content-Type': 'application/x-www-form-urlencoded'
                         }
                     },
-                    mixins: [RocoVueMixins.ModalMixin],
+                    mixins: [DaMeiVueMixins.ModalMixin],
                     components: {
-                        'web-uploader': RocoVueComponents.WebUploaderComponent
+                        'web-uploader': DaMeiVueComponents.WebUploaderComponent
                     },
                     $modal: $el,
                     created: function () {

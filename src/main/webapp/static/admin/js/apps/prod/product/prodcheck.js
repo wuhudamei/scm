@@ -11,9 +11,9 @@
                 'Content-Type': 'application/x-www-form-urlencoded'
             }
         },
-        mixins: [RocoVueMixins.ModalMixin],
+        mixins: [DaMeiVueMixins.ModalMixin],
         components: {
-            'web-uploader': RocoVueComponents.WebUploaderComponent
+            'web-uploader': DaMeiVueComponents.WebUploaderComponent
         },
         created: function () {
         },

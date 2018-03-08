@@ -5,7 +5,7 @@ var vueIndex;
     var Detail = null;
     vueIndex = new Vue({
         el: '#container',
-        mixins: [RocoVueMixins.DataTableMixin],
+        mixins: [DaMeiVueMixins.DataTableMixin],
         data: {
             breadcrumbs: [{
                 path: '/admin',
@@ -187,7 +187,7 @@ var vueIndex;
                             'Content-Type': 'application/x-www-form-urlencoded'
                         }
                     },
-                    mixins: [RocoVueMixins.ModalMixin],
+                    mixins: [DaMeiVueMixins.ModalMixin],
                     $modal: $el,
                     created: function () {
                     },
@@ -412,7 +412,7 @@ var vueIndex;
                             'Content-Type': 'application/x-www-form-urlencoded'
                         }
                     },
-                    mixins: [RocoVueMixins.ModalMixin],
+                    mixins: [DaMeiVueMixins.ModalMixin],
                     $modal: $el,
                     created: function () {
                     },

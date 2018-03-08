@@ -4,7 +4,7 @@ var createOrEditProductVue
     createOrEditProductVue = new Vue({
         el: '#container',
         components: {
-            'web-uploader': RocoVueComponents.WebUploaderComponent
+            'web-uploader': DaMeiVueComponents.WebUploaderComponent
         },
         validators: {
             numeric: function (val/*,rule*/) {
@@ -331,7 +331,7 @@ var createOrEditProductVue
             function () {
                 vueModal2 = new Vue({
                     el: $modal.get(0),
-                    mixins: [RocoVueMixins.DataTableMixin],
+                    mixins: [DaMeiVueMixins.DataTableMixin],
                     data: {
                         form: {
                             keyword: '',
@@ -558,7 +558,7 @@ var createOrEditProductVue
             function () {
                 vueModal2 = new Vue({
                     el: $modal.get(0),
-                    mixins: [RocoVueMixins.DataTableMixin],
+                    mixins: [DaMeiVueMixins.DataTableMixin],
                     data: {
                         contractId: '',
                         type: type,

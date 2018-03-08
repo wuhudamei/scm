@@ -3,7 +3,7 @@
     $('#skuApprove').addClass('active')
     var vueProductList = new Vue({
         el: '#container',
-        mixins: [RocoVueMixins.DataTableMixin],
+        mixins: [DaMeiVueMixins.DataTableMixin],
         data: {
             allCatalog: null,
             allOrganization: null,
@@ -274,9 +274,9 @@
                             'Content-Type': 'application/x-www-form-urlencoded'
                         }
                     },
-                    mixins: [RocoVueMixins.ModalMixin],
+                    mixins: [DaMeiVueMixins.ModalMixin],
                     components: {
-                        'web-uploader': RocoVueComponents.WebUploaderComponent
+                        'web-uploader': DaMeiVueComponents.WebUploaderComponent
                     },
                     $modal: $el,
                     created: function () {

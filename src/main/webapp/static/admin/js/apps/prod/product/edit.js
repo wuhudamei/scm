@@ -16,7 +16,7 @@ var createOrEditProductVue;
     createOrEditProductVue = new Vue({
         el: '#container',
         components: {
-            'web-uploader': RocoVueComponents.WebUploaderComponent
+            'web-uploader': DaMeiVueComponents.WebUploaderComponent
         },
         validators: { // `numeric` and `url` custom validator is local registration
             url: function (val) {
@@ -774,7 +774,7 @@ var createOrEditProductVue;
             function () {
                 vueModal2 = new Vue({
                     el: $modal.get(0),
-                    mixins: [RocoVueMixins.DataTableMixin],
+                    mixins: [DaMeiVueMixins.DataTableMixin],
                     data: {
                         form: {
                             keyword: '',
@@ -896,7 +896,7 @@ var createOrEditProductVue;
             function () {
                 vueModal2 = new Vue({
                     el: $modal.get(0),
-                    mixins: [RocoVueMixins.DataTableMixin],
+                    mixins: [DaMeiVueMixins.DataTableMixin],
                     data: {
                         form: {
                             keyword: '',
@@ -1339,7 +1339,7 @@ var createOrEditProductVue;
                             'Content-Type': 'application/x-www-form-urlencoded'
                         }
                     },
-                    mixins: [RocoVueMixins.ModalMixin],
+                    mixins: [DaMeiVueMixins.ModalMixin],
                     $modal: $el,
                     data: {
                         id: model.id,

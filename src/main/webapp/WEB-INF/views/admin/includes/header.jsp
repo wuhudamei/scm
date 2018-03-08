@@ -10,13 +10,13 @@
             return '';
         return val;
     }
-    window.RocoUser = {
+    window.DaMeiUser = {
         id: null2Empty('<shiro:principal property="id"/>'),
         name: null2Empty('<shiro:principal property="name" />'),
         supplierId: null2Empty('<shiro:principal property="supplierId" />'),
         storeCode: null2Empty('<shiro:principal property="storeCode" />'),
         roleNameList: null2Empty('<shiro:principal property="roleNameList" />'),
-        permissionList: RocoUtils.permissionsFormat(null2Empty('<shiro:principal property="permissionList" />'))
+        permissionList: DaMeiUtils.permissionsFormat(null2Empty('<shiro:principal property="permissionList" />'))
     }
 </script>
 <div class="header fixed row border-bottom">

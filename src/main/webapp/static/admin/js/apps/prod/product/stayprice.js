@@ -3,7 +3,7 @@
     $('#stayPrice').addClass('active')
     var vueProductList = new Vue({
         el: '#container',
-        mixins: [RocoVueMixins.DataTableMixin],
+        mixins: [DaMeiVueMixins.DataTableMixin],
         data: {
             allCatalog: null,
             allOrganization: null,
@@ -419,7 +419,7 @@
             function () {
                 vueModal2 = new Vue({
                     el: $modal.get(0),
-                    mixins: [RocoVueMixins.DataTableMixin],
+                    mixins: [DaMeiVueMixins.DataTableMixin],
                     data: {
                         form: {
                             keyword: '',
@@ -864,7 +864,7 @@
                             'Content-Type': 'application/x-www-form-urlencoded'
                         }
                     },
-                    mixins: [RocoVueMixins.ModalMixin],
+                    mixins: [DaMeiVueMixins.ModalMixin],
                     $modal: $el,
                     data: {
                         id: model.id,
@@ -960,7 +960,7 @@
                             'Content-Type': 'application/x-www-form-urlencoded'
                         }
                     },
-                    mixins: [RocoVueMixins.ModalMixin],
+                    mixins: [DaMeiVueMixins.ModalMixin],
                     $modal: $el,
                     created: function () {
                     },

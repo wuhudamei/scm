@@ -15,14 +15,14 @@
 
 new Vue({
     el: '#container',
-    mixins: [RocoVueMixins.DataTableMixin],
+    mixins: [DaMeiVueMixins.DataTableMixin],
     validators: {
       suppliers: function (val) {
         return val.length === 0;
       }
     },
     components: {
-      'web-uploader': RocoVueComponents.WebUploaderComponent
+      'web-uploader': DaMeiVueComponents.WebUploaderComponent
     },
     data: {
       breadcrumbs: [{

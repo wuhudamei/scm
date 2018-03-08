@@ -7,7 +7,7 @@ Vue.mixin({
 });
 
 // 列表 Mixin
-RocoVueMixins.DataTableMixin = {
+DaMeiVueMixins.DataTableMixin = {
   created: function() {
     // 会给你创建一个选中对象
     this.selectedRows = {};
@@ -61,7 +61,7 @@ RocoVueMixins.DataTableMixin = {
 
 
 // 模式窗体 Mixin
-RocoVueMixins.ModalMixin = {
+DaMeiVueMixins.ModalMixin = {
   created: function() {},
   ready: function() {
     var self = this;

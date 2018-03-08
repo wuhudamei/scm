@@ -1,7 +1,7 @@
 (function() {
     var base = Vue.extend({
         template: '#changemain',
-        mixins: [RocoVueMixins.DataTableMixin],
+        mixins: [DaMeiVueMixins.DataTableMixin],
         props: {
             contractId: ''
         },

@@ -148,5 +148,5 @@ var index = 0;
     }
   });
 
-  RocoVueComponents.WebUploaderComponent = WebUploaderComponent;
-})(Vue, RocoVueComponents);
+  DaMeiVueComponents.WebUploaderComponent = WebUploaderComponent;
+})(Vue, DaMeiVueComponents);

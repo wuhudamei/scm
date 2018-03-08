@@ -2,7 +2,7 @@
   $('#messageAllMenu').addClass('active');
   var vueIndex = new Vue({
     el: '#container',
-    mixins: [RocoVueMixins.DataTableMixin],
+    mixins: [DaMeiVueMixins.DataTableMixin],
     data: {
       // 面包屑
       breadcrumbs: [{
@@ -143,7 +143,7 @@
     var vueModal = new Vue({
       el: el,
       // 模式窗体必须引用 ModalMixin
-      mixins: [RocoVueMixins.ModalMixin],
+      mixins: [DaMeiVueMixins.ModalMixin],
       $modal: $el, //模式窗体 jQuery 对象
       data: {
         //控制 按钮是否可点击

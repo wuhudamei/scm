@@ -1,6 +1,6 @@
 var tt = null;
 var queryCount = 0;
-+(function (window, RocoUtils) {
++(function (window, DaMeiUtils) {
     $('#order').addClass('active');
     $('#isAccountChecking').addClass('active');
     tt = new Vue({

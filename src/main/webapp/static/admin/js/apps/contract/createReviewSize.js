@@ -1,14 +1,14 @@
 +(function () {
     new Vue({
         el: '#container',
-        mixins: [RocoVueMixins.DataTableMixin],
+        mixins: [DaMeiVueMixins.DataTableMixin],
         validators: {
             suppliers: function (val) {
                 return val > 0;
             }
         },
         components: {
-            'web-uploader': RocoVueComponents.WebUploaderComponent,
+            'web-uploader': DaMeiVueComponents.WebUploaderComponent,
         },
         data: {
             breadcrumbs: [{
@@ -199,7 +199,7 @@
         showBill2 = new Vue({
             el: el,
             // 模式窗体必须引用 ModalMixin
-            mixins: [RocoVueMixins.ModalMixin],
+            mixins: [DaMeiVueMixins.ModalMixin],
             $modal: $modal, // 模式窗体 jQuery 对象
             data: {
                 fullPath: fullPath

@@ -6,7 +6,7 @@
     })
     var vueIndex = new Vue({
         el: '#container',
-        mixins: [RocoVueMixins.DataTableMixin],
+        mixins: [DaMeiVueMixins.DataTableMixin],
         data: {
             acctType: null,
             breadcrumbs: [{
@@ -95,7 +95,7 @@
                             align: 'center',
                             formatter: function (data, full) {
                                 var str = '';
-                                if (RocoUtils.hasPermission('customer:edit')) {
+                                if (DaMeiUtils.hasPermission('customer:edit')) {
                                     if (self.acctType == 'FINANCE' && acctType != 'ADMIN') {
                                         str += '<button style="margin-left:10px;" data-handle="data-edit" data-id="' + data + '" data-code="' + full.code + '" data-name="' + full.name + '" data-mobile="' + full.mobile + '" class="m-r-xs btn btn-xs btn-primary" type="button">编辑</button>';
                                     }
@@ -175,9 +175,9 @@
                             'Content-Type': 'application/x-www-form-urlencoded'
                         }
                     },
-                    mixins: [RocoVueMixins.ModalMixin],
+                    mixins: [DaMeiVueMixins.ModalMixin],
                     components: {
-                        'web-uploader': RocoVueComponents.WebUploaderComponent
+                        'web-uploader': DaMeiVueComponents.WebUploaderComponent
                     },
                     $modal: $el,
                     created: function () {
@@ -240,9 +240,9 @@
                             'Content-Type': 'application/x-www-form-urlencoded'
                         }
                     },
-                    mixins: [RocoVueMixins.ModalMixin],
+                    mixins: [DaMeiVueMixins.ModalMixin],
                     components: {
-                        'web-uploader': RocoVueComponents.WebUploaderComponent
+                        'web-uploader': DaMeiVueComponents.WebUploaderComponent
                     },
                     $modal: $el,
                     created: function () {

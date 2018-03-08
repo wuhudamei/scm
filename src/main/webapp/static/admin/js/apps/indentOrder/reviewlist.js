@@ -6,7 +6,7 @@ var tt = null, showBill = null;
     var Detail = null;
     tt = new Vue({
         el: '#container',
-        mixins: [RocoVueMixins.DataTableMixin],
+        mixins: [DaMeiVueMixins.DataTableMixin],
         data: {
             breadcrumbs: [{
                 path: '/admin',
@@ -259,7 +259,7 @@ var tt = null, showBill = null;
         var newReviewSizeResult = new Vue({
             el: el,
             // 模式窗体必须引用 ModalMixin
-            mixins: [RocoVueMixins.ModalMixin],
+            mixins: [DaMeiVueMixins.ModalMixin],
             $modal: $modal, // 模式窗体 jQuery 对象
             data: {
                 list: [],
@@ -450,7 +450,7 @@ var tt = null, showBill = null;
         var viewReviewResultVue = new Vue({
             el: el,
             // 模式窗体必须引用 ModalMixin
-            mixins: [RocoVueMixins.ModalMixin],
+            mixins: [DaMeiVueMixins.ModalMixin],
             $modal: $modal, // 模式窗体 jQuery 对象
             data: {
                 list: [],
@@ -654,7 +654,7 @@ var tt = null, showBill = null;
         var rejectModel2 = new Vue({
             el: el,
             // 模式窗体必须引用 ModalMixin
-            mixins: [RocoVueMixins.ModalMixin],
+            mixins: [DaMeiVueMixins.ModalMixin],
             $modal: $modal, // 模式窗体 jQuery 对象
             data: {
                 id: model.id,
@@ -715,7 +715,7 @@ var tt = null, showBill = null;
         showBill2 = new Vue({
             el: el,
             // 模式窗体必须引用 ModalMixin
-            mixins: [RocoVueMixins.ModalMixin],
+            mixins: [DaMeiVueMixins.ModalMixin],
             $modal: $modal, // 模式窗体 jQuery 对象
             data: {
                 fullPath: fullPath
@@ -742,7 +742,7 @@ var tt = null, showBill = null;
         showBill2 = new Vue({
             el: el,
             // 模式窗体必须引用 ModalMixin
-            mixins: [RocoVueMixins.ModalMixin],
+            mixins: [DaMeiVueMixins.ModalMixin],
             $modal: $modal, // 模式窗体 jQuery 对象
             data: {
                 rejectReasons: '',
@@ -790,9 +790,9 @@ var tt = null, showBill = null;
                             'Content-Type': 'application/x-www-form-urlencoded'
                         }
                     },
-                    mixins: [RocoVueMixins.ModalMixin],
+                    mixins: [DaMeiVueMixins.ModalMixin],
                     components: {
-                        'web-uploader': RocoVueComponents.WebUploaderComponent
+                        'web-uploader': DaMeiVueComponents.WebUploaderComponent
                     },
                     $modal: $el,
                     created: function () {

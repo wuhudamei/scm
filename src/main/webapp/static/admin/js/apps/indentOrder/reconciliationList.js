@@ -5,7 +5,7 @@
     var Detail = null;
     var vueIndex = new Vue({
         el: '#container',
-        mixins: [RocoVueMixins.DataTableMixin],
+        mixins: [DaMeiVueMixins.DataTableMixin],
         data: {
             breadcrumbs: [{
                 path: '/admin',
@@ -251,7 +251,7 @@
                                 if (row) {
                                     var html = '';
                                     //对账操作
-                                    if (RocoUtils.hasPermission('reconciliation:edit')) {
+                                    if (DaMeiUtils.hasPermission('reconciliation:edit')) {
                                         if (row.status != 'HASBEENRECONCILED') {
                                             html += '<button data-handle="data-reconciliation" data-id="' + row.id + '"  data-code="' + row.contractCode + '" data-status="' + row.status + '"  data-ordercode="' + row.code + '"class="m-r-xs btn btn-xs btn-primary" type="button">标记对账</button>';
                                         }
@@ -305,7 +305,7 @@
                 var el = $el.get(0);
                 Detail = new Vue({
                     el: el,
-                    mixins: [RocoVueMixins.ModalMixin],
+                    mixins: [DaMeiVueMixins.ModalMixin],
                     $modal: $el,
                     created: function () {
                     },
@@ -586,7 +586,7 @@
                 var el = $el.get(0);
                 Detail = new Vue({
                     el: el,
-                    mixins: [RocoVueMixins.ModalMixin],
+                    mixins: [DaMeiVueMixins.ModalMixin],
                     $modal: $el,
                     created: function () {
                     },

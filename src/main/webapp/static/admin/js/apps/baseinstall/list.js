@@ -12,7 +12,7 @@
 
     var vueRole = new Vue({
         el: '#container',
-        mixins: [RocoVueMixins.DataTableMixin],
+        mixins: [DaMeiVueMixins.DataTableMixin],
         data: {
             breadcrumbs: [{
                 path: '/admin',
@@ -144,7 +144,7 @@
                             if (row.contractStatus !== 'COMPLETED') {
                                 html += '<button style="margin-left:30px;" data-handle="complete-click" data-id="' + row.id + '" data-contract-status="' + "COMPLETED" + '"class="m-r-xs btn btn-xs btn-primary" type="button">竣工</button>'
                             }
-                            if (RocoUtils.hasPermission('data_repair')) {
+                            if (DaMeiUtils.hasPermission('data_repair')) {
                                 html += '<button style="margin-left:30px;" data-handle="repair-click" data-id="' + row.id + '" class="m-r-xs btn btn-xs btn-primary" type="button">数据修复</button>'
                             }
                             return html;
@@ -156,7 +156,7 @@
                     function (e) {
                         var id = $(this).data("id");
                         var keyboarder = $(this).data("keyboarder");
-                        if (keyboarder != 'undefined' && keyboarder != RocoUser.name && RocoUser.name != '闫双') {
+                        if (keyboarder != 'undefined' && keyboarder != DaMeiUser.name && DaMeiUser.name != '闫双') {
                             swal({
                                 title: '您没有该操作的权限！',
                                 text: '此单录入人为【' + keyboarder + '】，您不能执行该操作！',
@@ -222,7 +222,7 @@
                 var bill = new Vue({
                     el: el,
                     // 模式窗体必须引用 ModalMixin
-                    mixins: [RocoVueMixins.ModalMixin],
+                    mixins: [DaMeiVueMixins.ModalMixin],
                     $modal: $el, // 模式窗体 jQuery 对象
                     data: {
                         customerContract: model,
@@ -276,7 +276,7 @@
             isEdit = !!isEdit;
             var vueModal = new Vue({
                 el: el,
-                mixins: [RocoVueMixins.ModalMixin],
+                mixins: [DaMeiVueMixins.ModalMixin],
                 $modal: $el,
                 created: function () {
                 },
@@ -416,9 +416,9 @@
                             'Content-Type': 'application/x-www-form-urlencoded'
                         }
                     },
-                    mixins: [RocoVueMixins.ModalMixin],
+                    mixins: [DaMeiVueMixins.ModalMixin],
                     components: {
-                        'web-uploader': RocoVueComponents.WebUploaderComponent
+                        'web-uploader': DaMeiVueComponents.WebUploaderComponent
                     },
                     $modal: $el,
                     created: function () {

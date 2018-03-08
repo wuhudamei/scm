@@ -4,7 +4,7 @@ var vueModal;
     $('#catalogMenu').addClass('active');
     var vueIndex = new Vue({
         el: '#container',
-        mixins: [RocoVueMixins.DataTableMixin],
+        mixins: [DaMeiVueMixins.DataTableMixin],
         data: {
             // 面包屑
             breadcrumbs: [{
@@ -254,9 +254,9 @@ var vueModal;
                         }
                     },
                     // 模式窗体必须引用 ModalMixin
-                    mixins: [RocoVueMixins.ModalMixin],
+                    mixins: [DaMeiVueMixins.ModalMixin],
                     components: {
-                        'web-uploader': RocoVueComponents.WebUploaderComponent
+                        'web-uploader': DaMeiVueComponents.WebUploaderComponent
                     },
                     $modal: $el,
                     //模式窗体 jQuery 对象

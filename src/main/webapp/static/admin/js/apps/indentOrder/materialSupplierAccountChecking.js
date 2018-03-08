@@ -1,6 +1,6 @@
 var tt = null;
 var idArr = [];
-+(function (window, RocoUtils) {
++(function (window, DaMeiUtils) {
     $('#order').addClass('active');
     $('#accountChecking').addClass('active');
     tt = new Vue({
