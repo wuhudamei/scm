@@ -3,9 +3,9 @@
 <portable-config>
     <!-- application.properties -->
     <config-file path="WEB-INF/classes/application.properties">
-        <replace key="jdbc.url">jdbc:mysql://rm-2ze3i1721k91nc024.mysql.rds.aliyuncs.com/mdni_scm_uat?useUnicode=true&amp;characterEncoding=utf-8&amp;zeroDateTimeBehavior=convertToNull&amp;transformedBitIsBoolean=true</replace>
-        <replace key="jdbc.username">scmuatuser</replace>
-        <replace key="jdbc.password">KLLhkjk#$%dd342</replace>
+        <replace key="jdbc.url">jdbc:mysql://rm-2zea20z998tfwmd68.mysql.rds.aliyuncs.com/mdni_scm?useUnicode=true&amp;characterEncoding=utf-8&amp;zeroDateTimeBehavior=convertToNull&amp;transformedBitIsBoolean=true</replace>
+        <replace key="jdbc.username">dmscmuser</replace>
+        <replace key="jdbc.password">dmscmuser!@#</replace>
 
         <replace key="redis.host">172.16.25.72</replace>
         <replace key="redis.password">redis123!@#</replace>
@@ -13,7 +13,7 @@
         <replace key="redis.timeout">3000</replace>
         <replace key="upload.dir">uploads</replace>
         <replace key="profile">test</replace>
-        <replace key="baseurl">http://supplychainuat.mdni.cn/</replace>
+        <replace key="baseurl">http://47.95.234.249:8193</replace>
 
         <replace key="oauth.center.domain">http://47.95.234.249:8185</replace>
         <replace key="oauth.center.appid">a53708b29bd246fd7a</replace>
