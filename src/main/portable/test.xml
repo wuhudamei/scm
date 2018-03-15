@@ -7,19 +7,19 @@
         <replace key="jdbc.username">scmuatuser</replace>
         <replace key="jdbc.password">KLLhkjk#$%dd342</replace>
 
-        <replace key="redis.host">r-2zef4160b7753ad4.redis.rds.aliyuncs.com</replace>
-        <replace key="redis.password">ZkTWOScO9JIPHJyjwqEFiFNkQ1CHr9</replace>
+        <replace key="redis.host">172.16.25.72</replace>
+        <replace key="redis.password">redis123!@#</replace>
         <replace key="redis.database">5</replace>
         <replace key="redis.timeout">3000</replace>
         <replace key="upload.dir">uploads</replace>
         <replace key="profile">test</replace>
         <replace key="baseurl">http://supplychainuat.mdni.cn/</replace>
 
-        <replace key="oauth.center.domain">http://logintest.mdni.net.cn</replace>
+        <replace key="oauth.center.domain">http://47.95.234.249:8185</replace>
         <replace key="oauth.center.appid">a53708b29bd246fd7a</replace>
         <replace key="oauth.center.secret">457bbd6d0abf7b0b717aacd91181f944</replace>
 
-        <replace key="oa.domain">http://oatest.mdni.net.cn</replace>
+        <replace key="oa.domain">http://47.95.234.249:8187</replace>
 
     </config-file>
 
